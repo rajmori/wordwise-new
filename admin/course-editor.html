@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Editor - WordWise Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./admin-style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Admin Navigation -->
+        <nav class="admin-navbar">
+            <div class="admin-nav-container">
+                <div class="admin-logo">
+                    WordWise<span class="dot">.</span>
+                    <span class="badge-small">ADMIN</span>
+                </div>
+                <div class="admin-nav-links">
+                    <a href="./dashboard.html">Users</a>
+                    <a href="./courses.html" class="active">Courses</a>
+                    <a href="./flash-cards.html">Flash Cards</a>
+                </div>
+                <div class="admin-nav-actions">
+                    <button class="btn-secondary-admin" onclick="window.location.href='./courses.html'">← Back to
+                        Courses</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Course Editor -->
+        <section class="course-editor-section">
+            <div class="container">
+                <div class="editor-header">
+                    <h1 id="editorTitle">Create New Course</h1>
+                    <div class="editor-actions">
+                        <button class="btn-secondary-admin" id="saveDraftBtn">Save as Draft</button>
+                        <button class="btn btn-primary" id="publishBtn">Publish Course</button>
+                    </div>
+                </div>
+
+                <form id="courseForm" class="course-form">
+                    <!-- Basic Information -->
+                    <div class="form-section">
+                        <h2>Basic Information</h2>
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label>Course ID</label>
+                                <span id="courseIdDisplay" class="readonly-field"
+                                    style="display: block; padding: 12px; background: #f1f5f9; border-radius: 8px; color: #64748b; font-weight: 500;">
+                                    New Course (Auto-generated)
+                                </span>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="courseTitle">Course Title *</label>
+                                <input type="text" id="courseTitle" required placeholder="e.g., GRE Vocabulary Mastery">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="courseDescription">Description *</label>
+                                <textarea id="courseDescription" rows="4" required
+                                    placeholder="Describe what students will learn in this course..."></textarea>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label>Course Thumbnail *</label>
+                                <div class="upload-area" id="thumbnailUploadArea">
+                                    <input type="file" id="thumbnailUpload" accept=".jpg,.jpeg,.png,.svg" style="display: none;">
+                                    <div class="upload-placeholder" onclick="document.getElementById('thumbnailUpload').click()">
+                                        <span class="upload-icon">🖼️</span>
+                                        <p>Click to upload course thumbnail</p>
+                                        <small>Supported: .jpg, .jpeg, .png, .svg (Max 5MB)</small>
+                                    </div>
+                                    <div id="thumbnailPreview" class="upload-preview" style="display: none;">
+                                        <img id="thumbnailPreviewImg" src="" alt="Thumbnail Preview">
+                                        <button type="button" class="btn-remove" onclick="removeThumbnail()">Remove</button>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="thumbnailUrl" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="difficultyLevel">Difficulty Level *</label>
+                                <select id="difficultyLevel" required>
+                                    <option value="">Select level</option>
+                                    <option value="Beginner">Beginner</option>
+                                    <option value="Intermediate">Intermediate</option>
+                                    <option value="Advanced">Advanced</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="instructor">Instructor</label>
+                                <input type="text" id="instructor" placeholder="Instructor name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="durationValue">Estimated Duration *</label>
+                                <div class="duration-input">
+                                    <input type="number" id="durationValue" min="1" required placeholder="10">
+                                    <select id="durationUnit" required>
+                                        <option value="days">Days</option>
+                                        <option value="weeks">Weeks</option>
+                                        <option value="months">Months</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="category">Category</label>
+                                <input type="text" id="category" placeholder="e.g., Vocabulary, Grammar">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="coursePrice">Course Price (INR) *</label>
+                                <input type="number" id="coursePrice" min="0" required placeholder="999">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Learning Outcomes -->
+                    <div class="form-section">
+                        <h2>Learning Outcomes</h2>
+                        <div class="form-group">
+                            <label>What will students learn?</label>
+                            <div id="learningOutcomesList" class="tag-list"></div>
+                            <div class="add-item-input">
+                                <input type="text" id="learningOutcomeInput" placeholder="Add a learning outcome...">
+                                <button type="button" class="btn-secondary-admin" id="addLearningOutcome">+ Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Target Audience -->
+                    <div class="form-section">
+                        <h2>Target Audience</h2>
+                        <div class="form-group">
+                            <label>Who is this course for?</label>
+                            <div id="targetAudienceList" class="tag-list"></div>
+                            <div class="add-item-input">
+                                <input type="text" id="targetAudienceInput"
+                                    placeholder="e.g., GRE students, Business professionals">
+                                <button type="button" class="btn-secondary-admin" id="addTargetAudience">+ Add</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course Structure -->
+                    <div class="form-section">
+                        <h2>Course Structure</h2>
+                        <div class="modules-container" id="modulesContainer">
+                            <!-- Modules will be added here -->
+                        </div>
+                        <button type="button" class="btn-secondary-admin" id="addModuleBtn">+ Add Module</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Add/Edit Module Modal -->
+        <div id="moduleModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="moduleModalTitle">Add Module</h2>
+                    <button class="modal-close" onclick="closeModal('moduleModal')">×</button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editModuleIndex">
+                    <div class="form-group">
+                        <label for="moduleTitle">Module Title *</label>
+                        <input type="text" id="moduleTitle" required placeholder="e.g., Week 1: Root Words">
+                    </div>
+                    <div class="form-group">
+                        <label for="moduleDescription">Module Description</label>
+                        <textarea id="moduleDescription" rows="3"
+                            placeholder="Brief description of this module..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary-admin" onclick="closeModal('moduleModal')">Cancel</button>
+                    <button class="btn btn-primary" id="saveModuleBtn">Save Module</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lesson Editor Modal -->
+        <div id="lessonModal" class="modal lesson-modal">
+            <div class="modal-content large">
+                <div class="modal-header">
+                    <h2 id="lessonModalTitle">Add Lesson</h2>
+                    <button class="modal-close" onclick="closeModal('lessonModal')">×</button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="lessonModuleId">
+                    <input type="hidden" id="editLessonId">
+
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="lessonTitle">Lesson Title *</label>
+                            <input type="text" id="lessonTitle" required placeholder="e.g., Understanding Root Words">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="lessonDescription">Description</label>
+                            <textarea id="lessonDescription" rows="2"
+                                placeholder="Brief description of this lesson..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contentType">Content Type *</label>
+                            <select id="contentType" required>
+                                <option value="text">Text</option>
+                                <option value="video">Video</option>
+                                <option value="image">Image</option>
+                                <option value="document">Document (PDF)</option>
+                                <option value="interactive">Interactive</option>
+                                <option value="mixed">Mixed</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lessonDuration">Duration (minutes)</label>
+                            <input type="number" id="lessonDuration" min="0" placeholder="15">
+                        </div>
+                    </div>
+
+                    <!-- Content Sections -->
+                    <div id="textContentSection" class="content-section">
+                        <label for="textContent">Text Content</label>
+                        <textarea id="textContent" rows="6" placeholder="Enter the lesson content here..."></textarea>
+                    </div>
+
+                    <div id="imageContentSection" class="content-section" style="display: none;">
+                        <label>Image Upload</label>
+                        <div class="upload-area" id="imageUploadArea">
+                            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                            <div class="upload-placeholder" onclick="document.getElementById('imageUpload').click()">
+                                <span class="upload-icon">📷</span>
+                                <p>Click to upload image</p>
+                                <small>Supported: JPG, PNG, GIF, WebP (Max 5MB)</small>
+                            </div>
+                            <div id="imagePreview" class="upload-preview" style="display: none;">
+                                <img id="imagePreviewImg" src="" alt="Preview">
+                                <button type="button" class="btn-remove" onclick="removeImage()">Remove</button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="imageUrl">
+                    </div>
+
+                    <div id="videoContentSection" class="content-section" style="display: none;">
+                        <label>Video Upload</label>
+                        <div class="upload-area" id="videoUploadArea">
+                            <input type="file" id="videoUpload" accept=".mp4,.webm" style="display: none;">
+                            <div class="upload-placeholder" onclick="document.getElementById('videoUpload').click()">
+                                <span class="upload-icon">🎥</span>
+                                <p>Click to upload video</p>
+                                <small>Supported: .mp4, .webm (Max 100MB)</small>
+                            </div>
+                            <div id="videoPreview" class="upload-preview" style="display: none;">
+                                <video id="videoPreviewVideo" controls></video>
+                                <button type="button" class="btn-remove" onclick="removeVideo()">Remove</button>
+                            </div>
+                            <div id="uploadProgress" class="upload-progress" style="display: none;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progressFill"></div>
+                                </div>
+                                <p id="progressText">Uploading... 0%</p>
+                            </div>
+                        </div>
+                        <input type="hidden" id="videoUrl">
+                    </div>
+
+                    <div id="documentContentSection" class="content-section" style="display: none;">
+                        <label>Document Upload (PDF)</label>
+                        <div class="upload-area" id="documentUploadArea">
+                            <input type="file" id="documentUpload" accept=".pdf" style="display: none;">
+                            <div class="upload-placeholder" onclick="document.getElementById('documentUpload').click()">
+                                <span class="upload-icon">📄</span>
+                                <p>Click to upload PDF</p>
+                                <small>Supported: .pdf only (Max 20MB)</small>
+                            </div>
+                            <div id="documentPreview" class="upload-preview" style="display: none;">
+                                <div class="doc-preview-item">
+                                    <span class="doc-icon">📄</span>
+                                    <span id="documentName">filename.pdf</span>
+                                </div>
+                                <button type="button" class="btn-remove" onclick="removeDocument()">Remove</button>
+                            </div>
+                            <div id="docUploadProgress" class="upload-progress" style="display: none;">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="docProgressFill"></div>
+                                </div>
+                                <p id="docProgressText">Uploading... 0%</p>
+                            </div>
+                        </div>
+                        <input type="hidden" id="documentUrl">
+                    </div>
+
+                    <div id="interactiveContentSection" class="content-section" style="display: none;">
+                        <label>Interactive Examples</label>
+                        <div id="interactiveExamplesList" class="examples-list"></div>
+                        <button type="button" class="btn-secondary-admin" id="addInteractiveExample">+ Add
+                            Example</button>
+                    </div>
+
+                    <!-- Tags Section -->
+                    <div class="form-section">
+                        <label>Tags (topics, roots, parts of speech)</label>
+                        <div id="lessonTagsList" class="tag-list"></div>
+                        <div class="add-item-input">
+                            <input type="text" id="lessonTagInput" placeholder="Add tag...">
+                            <button type="button" class="btn-secondary-admin" id="addLessonTag">+ Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary-admin" onclick="closeModal('lessonModal')">Cancel</button>
+                    <button class="btn btn-primary" id="saveLessonBtn">Save Lesson</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Example Modal -->
+        <div id="exampleModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add Interactive Example</h2>
+                    <button class="modal-close" onclick="closeModal('exampleModal')">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleType">Example Type</label>
+                        <select id="exampleType">
+                            <option value="fill-in-blank">Fill in the Blank</option>
+                            <option value="sentence-builder">Sentence Builder</option>
+                            <option value="multiple-choice">Multiple Choice</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleQuestion">Question/Sentence</label>
+                        <input type="text" id="exampleQuestion"
+                            placeholder="e.g., The _____ of the argument was compelling.">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleAnswer">Answer</label>
+                        <input type="text" id="exampleAnswer" placeholder="e.g., crux">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleExplanation">Explanation (optional)</label>
+                        <textarea id="exampleExplanation" rows="2" placeholder="Explain the answer..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary-admin" onclick="closeModal('exampleModal')">Cancel</button>
+                    <button class="btn btn-primary" id="saveExampleBtn">Add Example</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./course-editor.js"></script>
+</body>
+
+</html>

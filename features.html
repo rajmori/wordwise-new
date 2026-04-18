@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Features - WordWise</title>
+    <meta name="description" content="Explore all WordWise features — science-backed spaced repetition, mnemonic hooks, dual-coding, real-world context, and more to master vocabulary faster.">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G2S551QV48"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-G2S551QV48');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        /* ── Features page-specific styles ─────────────────────────────── */
+        .features-hero {
+            padding: 7rem 0 4rem;
+            text-align: center;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99,102,241,.18) 0%, transparent 70%);
+        }
+        .features-hero h1 { font-size: clamp(2rem, 5vw, 3.25rem); margin-bottom: 1rem; line-height: 1.2; }
+        .features-hero p  { font-size: 1.125rem; max-width: 600px; margin: 0 auto 2rem; color: var(--text-muted,#94a3b8); }
+
+        .features-main { padding: 4rem 0 6rem; }
+
+        /* Big feature cards (alternating layout) */
+        .feature-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 5rem;
+        }
+        .feature-block.reverse { direction: rtl; }
+        .feature-block.reverse > * { direction: ltr; }
+
+        .feature-block-visual {
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 260px;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-block-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 60% 40%, rgba(99,102,241,.12), transparent 70%);
+        }
+        .feature-block-emoji {
+            font-size: 6rem;
+            filter: drop-shadow(0 0 24px rgba(99,102,241,.4));
+            position: relative;
+            z-index: 1;
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,100% { transform: translateY(0);    }
+            50%      { transform: translateY(-12px); }
+        }
+
+        .feature-block-text h2 {
+            font-size: 1.75rem;
+            margin-bottom: .75rem;
+            background: linear-gradient(135deg, #fff 60%, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .feature-block-text p  { color: var(--text-muted,#94a3b8); line-height: 1.75; margin-bottom: 1.25rem; }
+        .feature-block-text ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: .6rem; }
+        .feature-block-text ul li::before { content: '✓ '; color: #818cf8; font-weight: 700; }
+        .feature-block-text ul li { color: #cbd5e1; font-size: .95rem; }
+
+        /* Grid of mini feature tiles */
+        .mini-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 5rem;
+        }
+        .mini-feature-card {
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 1rem;
+            padding: 1.75rem;
+            transition: transform .25s, border-color .25s, box-shadow .25s;
+        }
+        .mini-feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99,102,241,.4);
+            box-shadow: 0 8px 32px rgba(99,102,241,.15);
+        }
+        .mini-feature-icon { font-size: 2rem; margin-bottom: .75rem; }
+        .mini-feature-card h3 { font-size: 1.05rem; margin-bottom: .5rem; }
+        .mini-feature-card p  { font-size: .88rem; color: var(--text-muted,#94a3b8); line-height: 1.6; margin: 0; }
+
+        /* CTA banner */
+        .features-cta {
+            background: linear-gradient(135deg, rgba(99,102,241,.18), rgba(168,85,247,.12));
+            border: 1px solid rgba(99,102,241,.25);
+            border-radius: 1.5rem;
+            padding: 3.5rem;
+            text-align: center;
+        }
+        .features-cta h2 { font-size: 2rem; margin-bottom: .75rem; }
+        .features-cta p  { color: var(--text-muted,#94a3b8); margin-bottom: 2rem; font-size: 1.05rem; }
+        .features-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .feature-block            { grid-template-columns: 1fr; }
+            .feature-block.reverse    { direction: ltr; }
+            .mini-features-grid       { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            .mini-features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="index.html" class="logo">WordWise<span class="dot">.</span></a>
+                <div class="nav-links">
+                    <a href="features.html" class="active">Features</a>
+                    <a href="my-course.html">My Course</a>
+                    <a href="flash-cards.html">Flash Cards</a>
+                    <a href="subscription.html">Pricing</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="login.html" class="nav-link-login">Log In</a>
+                    <a href="subscription.html" class="btn btn-primary small">Get Started</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero -->
+        <header class="features-hero">
+            <div class="container">
+                <span class="badge">Built on Cognitive Science</span>
+                <h1>Everything You Need to <span class="gradient-text">Master Vocabulary</span></h1>
+                <p>WordWise combines the most effective learning research into one seamless platform — so you learn faster, retain longer, and actually enjoy it.</p>
+                <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+                    <a href="subscription.html" class="btn btn-primary">Get Started Free</a>
+                    <a href="index.html#demo" class="btn btn-secondary">See Demo</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Features -->
+        <main class="features-main">
+            <div class="container">
+
+                <!-- Block 1: Spaced Repetition -->
+                <div class="feature-block">
+                    <div class="feature-block-visual">
+                        <div class="feature-block-emoji">🧠</div>
+                    </div>
+                    <div class="feature-block-text">
+                        <h2>Spaced Repetition System</h2>
+                        <p>Our algorithm schedules each word to reappear at the exact moment your brain is about to forget it — dramatically improving long-term retention with less study time.</p>
+                        <ul>
+                            <li>Scientifically optimal review intervals</li>
+                            <li>Adapts to your personal forgetting curve</li>
+                            <li>Up to 95% retention after just a few reviews</li>
+                            <li>Works across all devices seamlessly</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Block 2: Mnemonic Hooks (reversed) -->
+                <div class="feature-block reverse">
+                    <div class="feature-block-visual">
+                        <div class="feature-block-emoji">🔗</div>
+                    </div>
+                    <div class="feature-block-text">
+                        <h2>Unforgettable Mnemonic Hooks</h2>
+                        <p>Every word comes with a crafted memory hook — vivid associations, stories, and mental images that make words effortlessly stick in your long-term memory.</p>
+                        <ul>
+                            <li>Story-based mnemonic devices for each word</li>
+                            <li>Visual imagery and sound associations</li>
+                            <li>Dual-coding for deeper neural encoding</li>
+                            <li>Proven to outperform rote repetition 3×</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Block 3: Real-World Context -->
+                <div class="feature-block">
+                    <div class="feature-block-visual">
+                        <div class="feature-block-emoji">📖</div>
+                    </div>
+                    <div class="feature-block-text">
+                        <h2>Real-World Context & Usage</h2>
+                        <p>Words aren't learned in isolation here. Every lesson includes sentences from literature, journalism, and professional environments so you understand nuance and context.</p>
+                        <ul>
+                            <li>Curated examples from real texts</li>
+                            <li>Multiple usage contexts per word</li>
+                            <li>Formal, informal, and academic registers</li>
+                            <li>Understand connotation, not just definition</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Block 4: Root Analysis (reversed) -->
+                <div class="feature-block reverse">
+                    <div class="feature-block-visual">
+                        <div class="feature-block-emoji">🌱</div>
+                    </div>
+                    <div class="feature-block-text">
+                        <h2>Etymology & Root Analysis</h2>
+                        <p>Learning a root unlocks dozens of words at once. We break every word into its Greek or Latin components, giving you a multiplier effect on vocabulary growth.</p>
+                        <ul>
+                            <li>Prefix, root, and suffix breakdowns</li>
+                            <li>Historical origin stories</li>
+                            <li>Related word families highlighted</li>
+                            <li>Infer meanings of unfamiliar words instantly</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Mini Feature Tiles -->
+                <div class="section-header" style="text-align:center;margin-bottom:2.5rem;">
+                    <h2>More Powerful Tools</h2>
+                    <p>Everything designed to make your learning experience complete.</p>
+                </div>
+
+                <div class="mini-features-grid">
+                    <div class="mini-feature-card">
+                        <div class="mini-feature-icon">🃏</div>
+                        <h3>Interactive Flash Cards</h3>
+                        <p>Swipe-based flash cards with pronunciation audio, images, and contextual clues for active recall practice.</p>
+                    </div>
+                    <div class="mini-feature-card">
+                        <div class="mini-feature-icon">📊</div>
+                        <h3>Progress Dashboard</h3>
+                        <p>Track words learned, streaks, mastery levels, and weekly goals in a beautiful personal dashboard.</p>
+                    </div>
+                    <div class="mini-feature-card">
+                        <div class="mini-feature-icon">🎯</div>
+                        <h3>Exam-Ready Word Lists</h3>
+                        <p>Curated high-frequency word lists for GRE, SAT, LSAT, GMAT, and IELTS with targeted exam strategies.</p>
+                    </div>
+                    <div class="mini-feature-card">
+                        <div class="mini-feature-icon">🔊</div>
+                        <h3>Pronunciation Audio</h3>
+                        <p>Native-speaker audio with IPA notation for every word — hear it correctly before you use it.</p>
+                    </div>
+                    <div class="mini-feature-card">
+                        <div class="mini-feature-icon">💼</div>
+                        <h3>Professional Vocabulary</h3>
+                        <p>Business, legal, and academic word sets to elevate your professional communication and writing.</p>
+                    </div>
+                    <div class="mini-feature-card">
+                        <div class="mini-feature-icon">📱</div>
+                        <h3>Learn Anywhere</h3>
+                        <p>Fully responsive experience across desktop, tablet, and mobile — your learning never has to stop.</p>
+                    </div>
+                </div>
+
+                <!-- CTA Banner -->
+                <div class="features-cta">
+                    <h2>Ready to Build an Exceptional Vocabulary?</h2>
+                    <p>Join thousands of students, professionals, and lifelong learners who trust WordWise.</p>
+                    <div class="features-cta-btns">
+                        <a href="subscription.html" class="btn btn-primary">Start Learning Today</a>
+                        <a href="contact.html" class="btn btn-secondary">Talk to Us</a>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container footer-content">
+                <div class="footer-col">
+                    <h4>WordWise.</h4>
+                    <p>The smartest way to build your vocabulary.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="features.html">Features</a>
+                    <a href="subscription.html">Pricing</a>
+                    <a href="#">For Schools</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+            <div class="container copyright">
+                <p>&copy; 2024 WordWise Inc. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="/js/navigation.js"></script>
+</body>
+
+</html>

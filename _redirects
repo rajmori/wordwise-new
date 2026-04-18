@@ -1,0 +1,5 @@
+# SPA Fallback - redirect all non-file requests to index.html
+/*    /index.html   200
+
+# Custom 404
+/404.html  /index.html  404

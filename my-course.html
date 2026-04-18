@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course - WordWise</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G2S551QV48"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-G2S551QV48');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+
+    <script type="module" src="./course-player.js"></script>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="index.html" class="logo">WordWise<span class="dot">.</span></a>
+                <div class="nav-links">
+                    <a href="features.html">Features</a>
+                    <a href="my-course.html" class="active">My Course</a>
+                    <a href="flash-cards.html">Flash Cards</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <div class="user-profile-nav">
+                        <div class="avatar" id="userAvatar">U</div>
+                        <a href="#" id="logout-btn"
+                            style="margin-left: 1rem; color: var(--text-muted); font-size: 0.9rem;">Logout</a>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Course Page -->
+        <div class="course-container">
+            <!-- Course Header -->
+            <div class="course-header">
+                <div class="container">
+                    <div class="course-header-content">
+                        <span id="courseIdDisplay"
+                            style="display: inline-block; font-size: 0.85rem; background: rgba(255,255,255,0.1); color: #cbd5e1; padding: 4px 10px; border-radius: 99px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.2);">
+                            ID: Loading...
+                        </span>
+                        <h1 id="courseTitle">Loading...</h1>
+                        <p id="courseDescription" class="course-description"></p>
+                        <div class="course-meta">
+                            <span class="course-meta-item">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path
+                                        d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 14.5a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13z" />
+                                    <path
+                                        d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H5.5a.5.5 0 0 1 0-1H7.5V4a.5.5 0 0 1 .5-.5z" />
+                                </svg>
+                                <span id="totalDuration">0h 0m</span>
+                            </span>
+                            <span class="course-meta-item">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path
+                                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z" />
+                                    <path
+                                        d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2.5a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2.5a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5z" />
+                                </svg>
+                                <span id="videoCount">0 lessons</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="container">
+                <div class="course-content">
+                    <!-- Video Player Section -->
+                    <div class="video-section">
+                        <div class="video-player-wrapper">
+                            <video id="courseVideo" class="course-video" controlsList="nodownload"
+                                disablePictureInPicture>
+                                <source id="videoSource" src="" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+
+                            <!-- Custom Video Controls -->
+                            <div class="video-controls">
+                                <div class="progress-container">
+                                    <div class="progress-bar">
+                                        <div class="progress-filled" id="progressFilled"></div>
+                                    </div>
+                                    <input type="range" id="progressSlider" class="progress-slider" min="0" max="100"
+                                        value="0" step="0.1">
+                                </div>
+
+                                <div class="controls-bottom">
+                                    <div class="controls-left">
+                                        <button id="playPauseBtn" class="control-btn" aria-label="Play/Pause">
+                                            <svg id="playIcon" width="24" height="24" viewBox="0 0 24 24"
+                                                fill="currentColor">
+                                                <path d="M8 5v14l11-7z" />
+                                            </svg>
+                                            <svg id="pauseIcon" width="24" height="24" viewBox="0 0 24 24"
+                                                fill="currentColor" style="display:none;">
+                                                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+                                            </svg>
+                                        </button>
+
+                                        <div class="volume-control">
+                                            <button id="volumeBtn" class="control-btn" aria-label="Mute/Unmute">
+                                                <svg id="volumeIcon" width="24" height="24" viewBox="0 0 24 24"
+                                                    fill="currentColor">
+                                                    <path
+                                                        d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
+                                                </svg>
+                                            </button>
+                                            <input type="range" id="volumeSlider" class="volume-slider" min="0"
+                                                max="100" value="100">
+                                        </div>
+
+                                        <div class="time-display">
+                                            <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="controls-right">
+                                        <button id="fullscreenBtn" class="control-btn" aria-label="Fullscreen">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                                <path
+                                                    d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Video Info -->
+                        <div class="video-info">
+                            <h2 id="currentVideoTitle">Select a video to start learning</h2>
+                            <p id="currentVideoDescription" class="video-description"></p>
+                        </div>
+                    </div>
+
+                    <!-- Playlist Sidebar -->
+                    <div class="playlist-sidebar">
+                        <div class="playlist-header">
+                            <h3>Course Content</h3>
+                            <span id="playlistProgress" class="playlist-progress">0 / 0</span>
+                        </div>
+
+                        <div class="playlist-container" id="playlistContainer">
+                            <!-- Playlist items will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container footer-content">
+                <div class="footer-col">
+                    <h4>WordWise.</h4>
+                    <p>The smartest way to build your vocabulary.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="features.html">Features</a>
+                    <a href="my-course.html">My Course</a>
+                    <a href="subscription.html">Pricing</a>
+
+                    <a href="#">For Schools</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+            <div class="container copyright">
+                <p>&copy; 2024 WordWise Inc. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <script type="module" src="/js/navigation.js"></script>
+</body>
+
+</html>

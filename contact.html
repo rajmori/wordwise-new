@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - WordWise</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G2S551QV48"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-G2S551QV48');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="index.html" class="logo">WordWise<span class="dot">.</span></a>
+                <div class="nav-links">
+                    <a href="features.html">Features</a>
+                    <a href="my-course.html">My Course</a>
+                    <a href="flash-cards.html">Flash Cards</a>
+                    <a href="subscription.html">Pricing</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="login.html" class="nav-link-login">Log In</a>
+                    <a href="subscription.html" class="btn btn-primary small">Get Started</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-header">
+                        <h1>Get in Touch</h1>
+                        <p>Have questions about our science-backed method? We're here to help.</p>
+                    </div>
+
+                    <div class="contact-card">
+                        <form id="contactForm" class="contact-form" novalidate>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required placeholder="Your Name">
+                                <span class="error-msg">Please enter your name</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required placeholder="you@example.com">
+                                <span class="error-msg">Please enter a valid email address</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" required placeholder="How can we help you?"
+                                    rows="5"></textarea>
+                                <span class="error-msg">Please enter a message</span>
+                            </div>
+
+                            <!-- Honeypot field for bots -->
+                            <div style="display:none;">
+                                <label for="honeypot">Do not fill this out</label>
+                                <input type="text" id="honeypot" name="honeypot">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary full-width" id="submitBtn">
+                                <span class="btn-text">Send Message</span>
+                                <span class="loader" style="display:none;"></span>
+                            </button>
+                        </form>
+
+                        <!-- Success Message (Hidden by default) -->
+                        <div id="successMessage" class="success-message" style="display:none;">
+                            <div class="success-icon">✅</div>
+                            <h3>Message Sent!</h3>
+                            <p>Thank you for contacting us. We'll get back to you shortly.</p>
+                            <button class="btn btn-secondary small" id="resetBtn">Send Another</button>
+                        </div>
+
+                        <!-- Error Message (Hidden by default) -->
+                        <div id="errorMessage" class="error-alert" style="display:none;">
+                            <p>Sorry, something went wrong. Please try again later.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container footer-content">
+                <div class="footer-col">
+                    <h4>WordWise.</h4>
+                    <p>The smartest way to build your vocabulary.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="features.html">Features</a>
+                    <a href="my-course.html">My Course</a>
+                    <a href="subscription.html">Pricing</a>
+
+                    <a href="#">For Schools</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                    <a href="contact.html" class="active-footer-link">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+            <div class="container copyright">
+                <p>&copy; 2024 WordWise Inc. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <script type="module" src="/main.js"></script>
+    <script type="module" src="/js/navigation.js"></script>
+</body>
+
+</html>

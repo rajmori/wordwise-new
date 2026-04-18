@@ -1,0 +1,5 @@
+name = "wordwise"
+compatibility_date = "2024-12-07"
+
+# Cloudflare Pages Configuration
+pages_build_output_dir = "dist"

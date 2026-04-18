@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subscribe - WordWise</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G2S551QV48"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-G2S551QV48');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <!-- Razorpay Checkout Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="index.html" class="logo">WordWise<span class="dot">.</span></a>
+                <div class="nav-links">
+                    <a href="features.html">Features</a>
+                    <a href="my-course.html">My Course</a>
+                    <a href="flash-cards.html">Flash Cards</a>
+                    <a href="subscription.html" class="active">Courses</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="login.html" class="nav-link-login">Log In</a>
+                    <a href="subscription.html" class="btn btn-primary small">Get Started</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Subscription Hero -->
+        <header class="sub-hero">
+            <div class="container">
+                <span class="badge">Course Marketplace</span>
+                <h1>Master Vocabulary with <span class="gradient-text">Expert Courses</span>.</h1>
+                <p class="sub-hero-text">
+                    Browse our collection of professionally designed courses. Purchase once, learn forever.
+                    Join thousands of students mastering words faster, deeper, and permanently.
+                </p>
+            </div>
+        </header>
+
+        <!-- Target Audience Value -->
+        <section class="audience-value">
+            <div class="container">
+                <div class="audience-grid">
+                    <div class="audience-card student">
+                        <div class="icon-wrapper">🎓</div>
+                        <h3>For Students</h3>
+                        <p>Ace your GRE, SAT, or LSAT with confidence. Our science-backed methods ensure you don't just
+                            memorize for the test, but retain for life.</p>
+                        <ul class="benefit-list">
+                            <li>🚀 Exam-focused word lists</li>
+                            <li>📝 Academic writing context</li>
+                            <li>📊 Retention tracking</li>
+                        </ul>
+                    </div>
+                    <div class="audience-card professional">
+                        <div class="icon-wrapper">💼</div>
+                        <h3>For Professionals</h3>
+                        <p>Command the room. Elevate your communication skills for negotiations, presentations, and
+                            leadership roles.</p>
+                        <ul class="benefit-list">
+                            <li>🤝 Business terminology</li>
+                            <li>🗣️ Public speaking confidence</li>
+                            <li>📈 Career-advancing vocabulary</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section class="pricing-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Available Courses</h2>
+                    <p>Choose from our collection of expertly designed vocabulary courses</p>
+                </div>
+
+                <!-- Loading State -->
+                <div id="coursesLoading" class="loading-state" style="display: none;">
+                    <div class="loader"></div>
+                    <p>Loading courses...</p>
+                </div>
+
+                <!-- Courses Grid -->
+                <div id="coursesGrid" class="pricing-grid">
+                    <!-- Courses will be populated by JavaScript -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="coursesEmpty" class="empty-state" style="display: none;">
+                    <div class="empty-icon">📚</div>
+                    <h3>No courses available yet</h3>
+                    <p>Check back soon for new courses!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container footer-content">
+                <div class="footer-col">
+                    <h4>WordWise.</h4>
+                    <p>The smartest way to build your vocabulary.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="features.html">Features</a>
+                    <a href="subscription.html">Pricing</a>
+
+                    <a href="#">For Schools</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+            <div class="container copyright">
+                <p>&copy; 2024 WordWise Inc. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <script type="module" src="/main.js"></script>
+    <script type="module" src="/js/navigation.js"></script>
+    <script type="module" src="/js/course-purchase.js"></script>
+</body>
+
+</html>

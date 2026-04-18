@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Management - WordWise Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./admin-style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Admin Navigation -->
+        <nav class="admin-navbar">
+            <div class="admin-nav-container">
+                <div class="admin-logo">
+                    WordWise<span class="dot">.</span>
+                    <span class="badge-small">ADMIN</span>
+                </div>
+                <div class="admin-nav-links">
+                    <a href="./dashboard.html">Users</a>
+                    <a href="./courses.html">Courses</a>
+                    <a href="./flash-cards.html">Flash Cards</a>
+                    <a href="./quiz-management.html" class="active">Quizzes</a>
+                </div>
+                <div class="admin-nav-actions">
+                    <div class="admin-user-info">
+                        <div class="admin-avatar" title="View Admin Profile">A</div>
+                        <span>Admin User</span>
+                    </div>
+                    <button class="btn-logout" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Quiz Management Section -->
+        <section class="admin-dashboard">
+            <div class="container">
+                <!-- Header -->
+                <div class="dashboard-header-admin">
+                    <div class="header-content">
+                        <h1>Quiz Management</h1>
+                        <p>Create and manage alphabetical quizzes</p>
+                    </div>
+                    <button class="btn btn-primary" id="createQuizBtn">
+                        <span class="icon">+</span> New Quiz
+                    </button>
+                    <button class="btn btn-secondary-admin" id="importQuizBtn" style="margin-left: 10px;">
+                        <span class="icon">📥</span> Import CSV
+                    </button>
+                </div>
+
+                <!-- Filter Bar -->
+                <div class="section-header-admin">
+                    <div class="search-filter-bar full-width">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="searchQuizzes" placeholder="Search quizzes...">
+                        </div>
+                        <select class="filter-select" id="filterAlphabet">
+                            <option value="">All Alphabets</option>
+                            <!-- A-Z options will be populated by JS -->
+                        </select>
+                        <select class="filter-select" id="filterStatus">
+                            <option value="">All Status</option>
+                            <option value="draft">Draft</option>
+                            <option value="published">Published</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Quizzes Table -->
+                <div class="users-table-container">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Questions</th>
+                                <th>Status</th>
+                                <th>Created By</th>
+                                <th>Created At</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="quizzesTableBody">
+                            <!-- Quizzes will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Create/Edit Quiz Modal -->
+        <div id="quizModal" class="modal">
+            <div class="modal-content modal-large">
+                <div class="modal-header">
+                    <h2 id="quizModalTitle">Create New Quiz</h2>
+                    <button class="modal-close" onclick="closeModal('quizModal')">×</button>
+                </div>
+                <form id="quizForm">
+                    <input type="hidden" id="quizId">
+                    <div class="modal-body">
+                        <!-- Basic Info -->
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="quizAlphabet">Alphabet</label>
+                                <select id="quizAlphabet" class="filter-select" required>
+                                    <option value="" disabled selected>Select Alphabet</option>
+                                    <!-- A-Z options -->
+                                </select>
+                            </div>
+                            <div class="form-group half">
+                                <label for="quizSequence">Sequence Number (1-90)</label>
+                                <input type="number" id="quizSequence" min="1" max="90" required placeholder="e.g. 01">
+                            </div>
+                        </div>
+
+                        <!-- Questions Section -->
+                        <div class="questions-section">
+                            <div class="section-divider">
+                                <h3>Questions</h3>
+                                <button type="button" class="btn-secondary-admin small" id="addQuestionBtn">+ Add
+                                    Question</button>
+                            </div>
+                            <div id="questionsContainer">
+                                <!-- Question Items will be added here -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="status-actions">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="publishImmediately">
+                                <span class="checkmark"></span>
+                                Publish immediately
+                            </label>
+                        </div>
+                        <div class="modal-actions">
+                            <button type="button" class="btn-secondary-admin"
+                                onclick="closeModal('quizModal')">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Quiz</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Import CSV Modal -->
+        <div id="importModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Import Quizzes from CSV</h2>
+                    <button class="modal-close" onclick="closeModal('importModal')">×</button>
+                </div>
+                <form id="importForm">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="csvFile">Select CSV File</label>
+                            <input type="file" id="csvFile" accept=".csv" required class="form-control">
+                            <small class="text-muted">
+                                Format: Alphabet, Sequence, Question Text, Option A, Option B, Option C, Option D,
+                                Correct Option (A/B/C/D), Hint
+                            </small>
+                            <div style="margin-top: 10px;">
+                                <a href="#" id="downloadTemplateBtn"
+                                    style="color: var(--primary-color); text-decoration: none; font-size: 0.9em;">
+                                    ⬇️ Download Sample Template
+                                </a>
+                            </div>
+                        </div>
+                        <div id="importStatus" class="status-message" style="display:none; margin-top: 10px;"></div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary-admin"
+                            onclick="closeModal('importModal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Upload & Import</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Preview Quiz Modal -->
+        <div id="previewQuizModal" class="modal">
+            <div class="modal-content modal-large">
+                <div class="modal-header">
+                    <h2>Quiz Preview: <span id="previewTitle"></span></h2>
+                    <button class="modal-close" onclick="closeModal('previewQuizModal')">×</button>
+                </div>
+                <div class="modal-body quiz-preview-body" id="previewContainer">
+                    <!-- Student view content -->
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary-admin" onclick="closeModal('previewQuizModal')">Close Preview</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="deleteQuizModal" class="modal delete-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Confirm Delete</h2>
+                    <button class="modal-close" onclick="closeModal('deleteQuizModal')">×</button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="deleteQuizId">
+                    <div class="delete-icon">⚠️</div>
+                    <h3>Delete Quiz?</h3>
+                    <p>Are you sure you want to delete <strong id="deleteQuizTitle"></strong>? This action cannot be
+                        undone.</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary-admin" onclick="closeModal('deleteQuizModal')">Cancel</button>
+                    <button class="btn-danger" id="confirmDeleteQuizBtn">Delete Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Templates for Questions -->
+    <template id="questionTemplate">
+        <div class="question-item">
+            <div class="question-header">
+                <h4>Question <span class="q-number">1</span></h4>
+                <button type="button" class="btn-icon delete-q-btn" title="Remove Question">🗑️</button>
+            </div>
+            <div class="form-group">
+                <label>Question Text</label>
+                <input type="text" class="q-text" required placeholder="Enter question text">
+            </div>
+            <div class="options-grid">
+                <!-- 4 Options -->
+                <div class="option-row">
+                    <input type="radio" name="temp-correct" class="q-correct" value="0" title="Mark as correct">
+                    <input type="text" class="q-option" placeholder="Option A" required>
+                </div>
+                <div class="option-row">
+                    <input type="radio" name="temp-correct" class="q-correct" value="1" title="Mark as correct">
+                    <input type="text" class="q-option" placeholder="Option B" required>
+                </div>
+                <div class="option-row">
+                    <input type="radio" name="temp-correct" class="q-correct" value="2" title="Mark as correct">
+                    <input type="text" class="q-option" placeholder="Option C" required>
+                </div>
+                <div class="option-row">
+                    <input type="radio" name="temp-correct" class="q-correct" value="3" title="Mark as correct">
+                    <input type="text" class="q-option" placeholder="Option D" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Hint (Optional)</label>
+                <input type="text" class="q-hint" placeholder="Enter a hint for the student">
+            </div>
+        </div>
+    </template>
+
+    <script type="module" src="./quiz-management.js"></script>
+    <!-- Add global closeModal to window for inline onclicks -->
+    <script>
+        window.closeModal = (id) => {
+            document.getElementById(id).style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

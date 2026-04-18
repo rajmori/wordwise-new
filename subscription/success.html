@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Successful - WordWise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .success-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .success-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .success-message {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .success-details {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .detail-value {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .success-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .loading-state {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="success-container">
+        <div class="success-card">
+            <div class="success-icon">🎉</div>
+            <h1 class="success-title">Payment Successful!</h1>
+            <p class="success-message">
+                Thank you for subscribing to WordWise Premium! Your annual subscription is now active.
+            </p>
+
+            <div class="success-details" id="subscriptionDetails">
+                <div class="detail-row">
+                    <span class="detail-label">Plan:</span>
+                    <span class="detail-value">WordWise Premium Annual</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Amount:</span>
+                    <span class="detail-value">$99.00 / year</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="detail-value" style="color: #10b981;">✓ Active</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Session ID:</span>
+                    <span class="detail-value loading-state" id="sessionId">Loading...</span>
+                </div>
+            </div>
+
+            <div class="success-actions">
+                <a href="/dashboard.html" class="btn btn-primary">Go to Dashboard</a>
+                <a href="/my-course.html" class="btn btn-secondary">Browse My Course</a>
+            </div>
+
+            <p style="margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem;">
+                A confirmation email has been sent to your registered email address.
+            </p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { authService } from '../auth-service.js';
+        import { API_BASE_URL } from '../config.js';
+
+        // Get payment details from URL
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Check for payment link parameters (new flow)
+        const paymentLinkId = urlParams.get('razorpay_payment_link_id');
+        const paymentId = urlParams.get('razorpay_payment_id');
+        const paymentLinkReferenceId = urlParams.get('razorpay_payment_link_reference_id');
+        const paymentLinkStatus = urlParams.get('razorpay_payment_link_status');
+
+        // Check for subscription parameters (old flow)
+        const subscriptionId = urlParams.get('subscription_id') || urlParams.get('razorpay_subscription_id');
+
+        console.log('🎉 Payment success page loaded');
+        console.log('📋 Payment Link ID:', paymentLinkId);
+        console.log('💳 Payment ID:', paymentId);
+        console.log('📋 Subscription ID:', subscriptionId);
+        console.log('📊 Payment Link Status:', paymentLinkStatus);
+
+        // Determine which flow to use
+        if (paymentLinkId && paymentId) {
+            // Payment Link flow (new)
+            console.log('✅ Using Payment Link flow');
+            document.getElementById('sessionId').textContent = paymentId.substring(0, 20) + '...';
+            document.getElementById('sessionId').classList.remove('loading-state');
+            confirmPaymentLink(paymentLinkId, paymentId, paymentLinkReferenceId, paymentLinkStatus);
+        } else if (subscriptionId) {
+            // Subscription flow (old)
+            console.log('✅ Using Subscription flow');
+            document.getElementById('sessionId').textContent = subscriptionId.substring(0, 20) + '...';
+            document.getElementById('sessionId').classList.remove('loading-state');
+            confirmPaymentAndActivate(subscriptionId, paymentId);
+        } else {
+            console.error('❌ No payment details found in URL');
+            document.querySelector('.success-message').textContent =
+                'Payment completed, but payment details are missing. Please contact support.';
+        }
+
+        async function confirmPaymentLink(paymentLinkId, paymentId, referenceId, status) {
+            try {
+                console.log('🔄 Confirming payment link payment...');
+
+                const token = authService.getBackendToken();
+                if (!token) {
+                    console.error('❌ No authentication token found');
+                    return;
+                }
+
+                const response = await fetch(`${API_BASE_URL}/subscriptions/confirm-payment-link`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        razorpay_payment_link_id: paymentLinkId,
+                        razorpay_payment_id: paymentId,
+                        razorpay_payment_link_reference_id: referenceId,
+                        razorpay_payment_link_status: status
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    console.log('✅ Subscription activated successfully:', data.subscription);
+
+                    // Update UI with subscription details
+                    if (data.subscription) {
+                        const endDate = new Date(data.subscription.currentPeriodEnd);
+                        const detailsHtml = `
+                            <div class="detail-row">
+                                <span class="detail-label">Plan:</span>
+                                <span class="detail-value">${data.subscription.planName}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Status:</span>
+                                <span class="detail-value" style="color: #10b981;">✓ ${data.subscription.status.toUpperCase()}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Access:</span>
+                                <span class="detail-value">Lifetime</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Payment ID:</span>
+                                <span class="detail-value">${paymentId.substring(0, 20)}...</span>
+                            </div>
+                        `;
+                        document.getElementById('subscriptionDetails').innerHTML = detailsHtml;
+                    }
+
+                    // Auto-redirect to dashboard after 5 seconds
+                    setTimeout(() => {
+                        window.location.href = '/dashboard.html';
+                    }, 5000);
+
+                } else {
+                    console.error('❌ Failed to activate subscription:', data.message);
+                    document.querySelector('.success-message').textContent =
+                        'Payment received, but there was an issue activating your subscription. Please contact support.';
+                }
+
+            } catch (error) {
+                console.error('❌ Error confirming payment link:', error);
+                document.querySelector('.success-message').textContent =
+                    'Payment received. Your subscription will be activated shortly.';
+
+                // Still redirect to dashboard
+                setTimeout(() => {
+                    window.location.href = '/dashboard.html';
+                }, 5000);
+            }
+        }
+
+        async function confirmPaymentAndActivate(subscriptionId, paymentId) {
+            try {
+                console.log('🔄 Confirming payment and activating subscription...');
+
+                const token = authService.getBackendToken();
+                if (!token) {
+                    console.error('❌ No authentication token found');
+                    return;
+                }
+
+                const response = await fetch(`${API_BASE_URL}/subscriptions/confirm-payment`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        subscription_id: subscriptionId,
+                        payment_id: paymentId
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    console.log('✅ Subscription activated successfully:', data.subscription);
+
+                    // Update UI with subscription details
+                    if (data.subscription) {
+                        const startDate = new Date(data.subscription.currentPeriodStart);
+                        const endDate = new Date(data.subscription.currentPeriodEnd);
+                        const amount = data.subscription.amount ? (data.subscription.amount / 100).toFixed(2) : '-';
+
+                        const detailsHtml = `
+                            <div class="detail-row">
+                                <span class="detail-label">Plan:</span>
+                                <span class="detail-value">${data.subscription.planName}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Amount:</span>
+                                <span class="detail-value">₹${amount}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Status:</span>
+                                <span class="detail-value" style="color: #10b981;">✓ ${data.subscription.status.toUpperCase()}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Start Date:</span>
+                                <span class="detail-value">${startDate.toLocaleDateString()}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Valid Until:</span>
+                                <span class="detail-value">${endDate.toLocaleDateString()}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Subscription ID:</span>
+                                <span class="detail-value">${data.subscription.razorpaySubscriptionId || subscriptionId}</span>
+                            </div>
+                        `;
+                        document.getElementById('subscriptionDetails').innerHTML = detailsHtml;
+                    }
+
+                    // Auto-redirect to dashboard after 5 seconds
+                    setTimeout(() => {
+                        window.location.href = '/dashboard.html';
+                    }, 5000);
+
+                } else {
+                    console.error('❌ Failed to activate subscription:', data.message);
+                    document.querySelector('.success-message').textContent =
+                        'Payment received, but there was an issue activating your subscription. Please contact support.';
+                }
+
+            } catch (error) {
+                console.error('❌ Error confirming payment:', error);
+                document.querySelector('.success-message').textContent =
+                    'Payment received. Your subscription will be activated shortly.';
+
+                // Still redirect to dashboard
+                setTimeout(() => {
+                    window.location.href = '/dashboard.html';
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+
+</html>

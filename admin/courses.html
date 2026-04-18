@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Management - WordWise Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./admin-style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Admin Navigation -->
+        <nav class="admin-navbar">
+            <div class="admin-nav-container">
+                <div class="admin-logo">
+                    WordWise<span class="dot">.</span>
+                    <span class="badge-small">ADMIN</span>
+                </div>
+                <div class="admin-nav-links">
+                    <a href="./dashboard.html">Users</a>
+                    <a href="./courses.html" class="active">Courses</a>
+                    <a href="./flash-cards.html">Flash Cards</a>
+                    <a href="./quiz-management.html">Quizzes</a>
+                </div>
+                <div class="admin-nav-actions">
+                    <div class="admin-user-info">
+                        <div class="admin-avatar">A</div>
+                        <span>Admin User</span>
+                    </div>
+                    <button class="btn-logout" id="logoutBtn">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Course Management Dashboard -->
+        <section class="admin-dashboard">
+            <div class="container">
+                <!-- Dashboard Header -->
+                <div class="dashboard-header-admin">
+                    <h1>Course Management</h1>
+                    <p>Create and manage courses, lessons, and learning content</p>
+                </div>
+
+                <!-- Statistics Grid -->
+                <div class="admin-stats-grid">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon" title="Total number of created courses">📚</div>
+                        <div class="admin-stat-info">
+                            <h3>Total Courses</h3>
+                            <div class="admin-stat-value" id="totalCourses">0</div>
+                            <div class="admin-stat-sub">All courses</div>
+                        </div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon" title="Courses currently live and accessible">✅</div>
+                        <div class="admin-stat-info">
+                            <h3>Published</h3>
+                            <div class="admin-stat-value" id="publishedCourses">0</div>
+                            <div class="admin-stat-sub">Live courses</div>
+                        </div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon" title="Courses currently in progress">📝</div>
+                        <div class="admin-stat-info">
+                            <h3>Draft</h3>
+                            <div class="admin-stat-value" id="draftCourses">0</div>
+                            <div class="admin-stat-sub">In progress</div>
+                        </div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon" title="Total number of student enrollments">👥</div>
+                        <div class="admin-stat-info">
+                            <h3>Total Enrollments</h3>
+                            <div class="admin-stat-value" id="totalEnrollments">0</div>
+                            <div class="admin-stat-sub">All courses</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Management Section -->
+                <div class="user-management-section">
+                    <div class="section-header-admin">
+                        <h2>All Courses</h2>
+                        <div class="header-actions">
+                            <div class="search-filter-bar">
+                                <div class="search-box">
+                                    <span class="search-icon" title="Search">🔍</span>
+                                    <input type="text" id="searchCourses" placeholder="Search courses...">
+                                </div>
+                                <select class="filter-select" id="filterStatus">
+                                    <option value="">All Status</option>
+                                    <option value="published">Published</option>
+                                    <option value="draft">Draft</option>
+                                </select>
+                                <select class="filter-select" id="filterDifficulty">
+                                    <option value="">All Levels</option>
+                                    <option value="Beginner">Beginner</option>
+                                    <option value="Intermediate">Intermediate</option>
+                                    <option value="Advanced">Advanced</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary" id="createCourseBtn">
+                                <span>+ Create Course</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Courses Grid -->
+                    <div class="courses-grid" id="coursesGrid">
+                        <!-- Courses will be populated by JavaScript -->
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="loadingState" class="loading-state" style="display: none;">
+                        <div class="loader"></div>
+                        <p>Loading courses...</p>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="emptyState" class="empty-state" style="display: none;">
+                        <div class="empty-icon" title="No courses found">📚</div>
+                        <h3>No courses yet</h3>
+                        <p>Create your first course to get started</p>
+                        <button class="btn btn-primary" onclick="window.location.href='./course-editor.html'">
+                            Create Course
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="deleteCourseModal" class="modal delete-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Confirm Delete</h2>
+                    <button class="modal-close" onclick="closeModal('deleteCourseModal')">×</button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="deleteCourseId">
+                    <div class="delete-icon">⚠️</div>
+                    <h3>Delete Course?</h3>
+                    <p>Are you sure you want to delete <strong id="deleteCourseName"></strong>? This will also delete
+                        all associated lessons. This action cannot be undone.</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-secondary-admin" onclick="closeModal('deleteCourseModal')">Cancel</button>
+                    <button class="btn-danger" onclick="confirmDeleteCourse()">Delete Course</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./course-management.js"></script>
+</body>
+
+</html>

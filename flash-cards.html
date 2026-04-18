@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Cards | WordWise</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G2S551QV48"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-G2S551QV48');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* Flash Card Viewer Specific Styles */
+        .fc-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .fc-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .fc-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+
+        .fc-header p {
+            color: #666;
+            font-size: 1.125rem;
+        }
+
+        .fc-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .fc-search {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .fc-search input {
+            width: 100%;
+            padding: 12px 20px 12px 48px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .fc-search input:focus {
+            outline: none;
+            border-color: #000;
+        }
+
+        .fc-search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .fc-filters {
+            display: flex;
+            gap: 12px;
+        }
+
+        .fc-filter-select {
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            font-size: 0.95rem;
+            color: #444;
+            cursor: pointer;
+        }
+
+        .fc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .fc-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #eaeaea;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .fc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+            border-color: #000;
+        }
+
+        .fc-card-content {
+            padding: 24px;
+            text-align: center;
+        }
+
+        .fc-card-words {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .fc-card-vs {
+            font-size: 0.9rem;
+            color: #999;
+            font-weight: 400;
+            margin: 0 4px;
+            font-style: italic;
+        }
+
+        .fc-card-category {
+            display: inline-block;
+            background: #f5f5f5;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #666;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Modal Viewer */
+        .fc-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .fc-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .fc-modal-content {
+            background: white;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            border-radius: 20px;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .fc-modal-overlay.active .fc-modal-content {
+            transform: scale(1);
+        }
+
+        .fc-modal-body {
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+        }
+
+        .fc-modal-image-container {
+            flex: 1.2;
+            background: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            min-height: 400px;
+        }
+
+        .fc-modal-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .fc-modal-details {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .fc-modal-words {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .fc-modal-desc {
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .fc-modal-tags {
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .fc-modal-tag {
+            background: #eef2f6;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .fc-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            font-size: 1.2rem;
+            color: #333;
+            transition: transform 0.2s;
+        }
+
+        .fc-modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .fc-modal-body {
+                flex-direction: column;
+            }
+
+            .fc-modal-image-container {
+                padding: 20px;
+                min-height: 250px;
+            }
+
+            .fc-modal-details {
+                padding: 24px;
+            }
+
+            .fc-modal-words {
+                font-size: 2rem;
+            }
+
+            .fc-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Reusing Navbar from course.html style -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="./index.html" class="logo">
+                    WordWise<span class="dot">.</span>
+                </a>
+                <div class="nav-links">
+                    <a href="./features.html">Features</a>
+                    <a href="./subscription.html">Courses</a>
+                    <a href="./login.html" class="nav-link-login">Log In</a>
+                    <a href="./subscription.html" class="btn btn-primary small">Get Started</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="fc-container">
+            <div class="fc-header">
+                <h1>Visual Flash Cards</h1>
+                <p>Master confusing words with our visual memory aids.</p>
+            </div>
+
+            <div class="fc-controls">
+                <div class="fc-search">
+                    <span class="fc-search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Search words or tags...">
+                </div>
+                <div class="fc-filters">
+                    <select class="fc-filter-select" id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="Confusing Words">Confusing Words</option>
+                        <option value="Grammar">Grammar</option>
+                        <option value="Vocabulary">Vocabulary</option>
+                        <option value="Idioms">Idioms</option>
+                    </select>
+                    <select class="fc-filter-select" id="sortFilter">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <!-- <option value="viewed">Most Viewed</option> -->
+                    </select>
+                </div>
+            </div>
+
+            <div id="loadingState" style="text-align: center; padding: 40px; display: none;">
+                <div class="loader"></div>
+                <p style="margin-top: 10px; color: #666;">Loading cards...</p>
+            </div>
+
+            <div id="errorState" style="text-align: center; padding: 40px; display: none;">
+                <div style="font-size: 3rem; margin-bottom: 15px;">🔒</div>
+                <h3>Subscription Required</h3>
+                <p style="color: #666; max-width: 400px; margin: 10px auto;">You need an active subscription to access
+                    Flash Cards. Upgrade now to unlock visual learning.</p>
+                <a href="./index.html#pricing-section" class="btn btn-primary" style="margin-top: 20px;">View Plans</a>
+            </div>
+
+            <div id="cardsGrid" class="fc-grid">
+                <!-- Cards will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Viewer Modal -->
+    <div id="viewerModal" class="fc-modal-overlay">
+        <div class="fc-modal-content">
+            <button class="fc-modal-close" onclick="closeModal()">×</button>
+            <div class="fc-modal-body">
+                <div class="fc-modal-image-container">
+                    <img id="modalImage" src="" alt="Flash Card" class="fc-modal-image">
+                </div>
+                <div class="fc-modal-details">
+                    <div class="fc-card-category" id="modalCategory"></div>
+                    <div class="fc-modal-words" id="modalWords"></div>
+                    <p class="fc-modal-desc" id="modalDescription"></p>
+                    <div class="fc-modal-tags" id="modalTags"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./js/flash-cards.js"></script>
+    <script type="module" src="./main.js"></script>
+    <script type="module" src="/js/navigation.js"></script>
+</body>
+
+</html>

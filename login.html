@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log In - WordWise</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G2S551QV48"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-G2S551QV48');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="index.html" class="logo">WordWise<span class="dot">.</span></a>
+                <div class="nav-links">
+                    <a href="features.html">Features</a>
+                    <a href="my-course.html">My Course</a>
+                    <a href="flash-cards.html">Flash Cards</a>
+                    <a href="subscription.html">Pricing</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="login.html" class="nav-link-login active">Log In</a>
+                    <a href="subscription.html" class="btn btn-primary small">Get Started</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Auth Section -->
+        <section class="auth-section">
+            <div class="container">
+                <div class="auth-card">
+                    <!-- Tabs -->
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" data-tab="signin">Sign In</button>
+                        <button class="auth-tab" data-tab="signup">Sign Up</button>
+                    </div>
+
+                    <!-- Sign In Form -->
+                    <div id="signin-form" class="auth-form-container active">
+                        <div class="auth-header">
+                            <h2>Welcome Back</h2>
+                            <p>Continue your vocabulary journey.</p>
+                        </div>
+
+                        <div id="google-signin-button" class="google-button-container"></div>
+
+                        <div class="divider">
+                            <span>or</span>
+                        </div>
+
+                        <form id="loginForm" novalidate>
+                            <div class="form-group">
+                                <label for="login-email">Email</label>
+                                <input type="email" id="login-email" name="email" required
+                                    placeholder="you@example.com">
+                                <span class="error-msg">Please enter a valid email</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="login-password">Password</label>
+                                <input type="password" id="login-password" name="password" required
+                                    placeholder="••••••••">
+                                <span class="error-msg">Password is required</span>
+                            </div>
+
+                            <div class="form-actions">
+                                <a href="forgot-password.html" class="forgot-password">Forgot password?</a>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary full-width" id="loginBtn">
+                                <span class="btn-text">Sign In</span>
+                                <span class="loader" style="display:none;"></span>
+                            </button>
+                        </form>
+
+                        <p class="auth-switch">
+                            New to WordWise? <a href="#" class="switch-to-signup">Create an account</a>
+                        </p>
+                    </div>
+
+                    <!-- Sign Up Form -->
+                    <div id="signup-form" class="auth-form-container">
+                        <div class="auth-header">
+                            <h2>Create Account</h2>
+                            <p>Start learning scientifically today.</p>
+                        </div>
+
+                        <div id="google-signup-button" class="google-button-container"></div>
+
+                        <div class="divider">
+                            <span>or</span>
+                        </div>
+
+                        <form id="registerForm" novalidate>
+                            <div class="form-group">
+                                <label for="register-name">Full Name</label>
+                                <input type="text" id="register-name" name="name" required placeholder="John Doe">
+                                <span class="error-msg">Name is required</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="register-email">Email</label>
+                                <input type="email" id="register-email" name="email" required
+                                    placeholder="you@example.com">
+                                <span class="error-msg">Please enter a valid email</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="register-password">Password</label>
+                                <input type="password" id="register-password" name="password" required
+                                    placeholder="••••••••">
+                                <span class="error-msg">Min. 8 characters</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="register-confirm">Confirm Password</label>
+                                <input type="password" id="register-confirm" name="confirm-password" required
+                                    placeholder="••••••••">
+                                <span class="error-msg">Passwords do not match</span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary full-width" id="registerBtn">
+                                <span class="btn-text">Sign Up</span>
+                                <span class="loader" style="display:none;"></span>
+                            </button>
+                        </form>
+
+                        <p class="terms-text">
+                            By signing up, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.
+                        </p>
+
+                        <p class="auth-switch">
+                            Already have an account? <a href="#" class="switch-to-signin">Sign in</a>
+                        </p>
+                    </div>
+
+                    <!-- Global Error Message -->
+                    <div id="authErrorMessage" class="error-alert" style="display:none;">
+                        <p>Invalid credentials. Please try again.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container footer-content">
+                <div class="footer-col">
+                    <h4>WordWise.</h4>
+                    <p>The smartest way to build your vocabulary.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="features.html">Features</a>
+                    <a href="subscription.html">Pricing</a>
+
+                    <a href="#">For Schools</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="admin/login.html"
+                        style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;">Admin</a>
+                </div>
+            </div>
+            <div class="container copyright">
+                <p>&copy; 2024 WordWise Inc. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <script type="module" src="/main.js"></script>
+    <script type="module" src="/js/navigation.js"></script>
+</body>
+
+</html>

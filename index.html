@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WordWise - Master Vocabulary with Science</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G2S551QV48"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-G2S551QV48');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    rel="stylesheet">
+
+  <script type="module" src="/main.js"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <div id="app">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container nav-container">
+        <a href="index.html" class="logo">WordWise<span class="dot">.</span></a>
+        <div class="nav-links">
+          <a href="features.html">Features</a>
+          <a href="my-course.html">My Course</a>
+          <a href="flash-cards.html">Flash Cards</a>
+          <a href="subscription.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+          <a href="login.html" class="nav-link-login">Log In</a>
+          <a href="subscription.html" class="btn btn-primary small">Get Started</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <span class="badge">Science-Backed Learning</span>
+          <h1>Master Vocabulary with <span class="gradient-text">Science</span>, Smarts, and <span
+              class="gradient-text">Style</span>.</h1>
+          <p class="hero-sub">Stop forgetting words. Our spaced-repetition system and mnemonic hooks ensure you learn
+            faster and retain forever.</p>
+          <div class="hero-cta">
+            <a href="subscription.html" class="btn btn-primary">Get Started Free</a>
+            <a href="#demo" class="btn btn-secondary">See How It Works</a>
+            <button id="openPptBtn" class="btn btn-accent">📚 View Vocabulary PPT</button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">10k+</span>
+              <span class="stat-label">Active Learners</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">95%</span>
+              <span class="stat-label">Retention Rate</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="floating-card card-1">
+            <div class="icon">🧠</div>
+            <div class="text">Cognitive Science</div>
+          </div>
+          <div class="floating-card card-2">
+            <div class="icon">⚡</div>
+            <div class="text">Instant Recall</div>
+          </div>
+          <div class="hero-image-placeholder">
+            <!-- Abstract scientific/learning visualization -->
+            <div class="brain-graphic"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Key Benefits Section -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>The WordWise Advantage</h2>
+          <p>Why our method works better than rote memorization.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h3>Faster Retention</h3>
+            <p>Accelerate your learning with our science-backed spaced repetition algorithms that ensure you review
+              words at the perfect moment.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔗</div>
+            <h3>Unforgettable Mnemonics</h3>
+            <p>Stop forgetting. We use powerful mnemonic devices and memory hooks to lock new words into your long-term
+              memory instantly.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🌍</div>
+            <h3>Real-World Context</h3>
+            <p>Understand nuances deeply with examples drawn from literature, news, and professional environments, not
+              just dictionary definitions.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">👁️‍🗨️</div>
+            <h3>Dual-Coding Mastery</h3>
+            <p>Engage both visual and auditory senses for deeper cognitive processing and stronger neural connections.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Experience the Difference</h2>
+          <p>See how we teach a single word using our multifaceted approach.</p>
+        </div>
+
+        <div class="demo-display">
+          <div class="demo-card">
+            <div class="word-header">
+              <div class="word-title">
+                <h3>Serendipity</h3>
+                <span class="pronunciation">/ˌser.ənˈdɪp.ə.ti/</span>
+                <button class="audio-btn" aria-label="Play pronunciation">🔊</button>
+              </div>
+              <div class="word-type">noun</div>
+            </div>
+
+            <div class="word-body">
+              <div class="definition-box">
+                <h4>Definition</h4>
+                <p>The occurrence and development of events by chance in a happy or beneficial way.</p>
+              </div>
+
+              <div class="mnemonic-box">
+                <h4>🧠 Memory Hook</h4>
+                <p>Think of a <strong>"Serene Dip"</strong> in a pool where you find a treasure chest floating by—a
+                  happy accident!</p>
+              </div>
+
+              <div class="context-box">
+                <h4>📖 Context</h4>
+                <p>"The discovery of penicillin was a stroke of <strong>serendipity</strong>; Fleming noticed the mold
+                  killing bacteria by pure chance."</p>
+              </div>
+
+              <div class="roots-box">
+                <h4>🌱 Roots & Origins</h4>
+                <p>Coined by Horace Walpole from the Persian fairy tale <em>The Three Princes of Serendip</em>, whose
+                  heroes were always making discoveries by accidents and sagacity.</p>
+              </div>
+            </div>
+          </div>
+          <div class="demo-explanation">
+            <ul>
+              <li class="active"><span>1</span> Definition & Audio</li>
+              <li><span>2</span> Mnemonic Hook</li>
+              <li><span>3</span> Contextual Usage</li>
+              <li><span>4</span> Etymology & Roots</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verb of the Day Section -->
+    <section id="verb-of-day" class="verb-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge">Daily Learning</span>
+          <h2>Verb of the Day</h2>
+          <p>Build your vocabulary one word at a time.</p>
+        </div>
+
+        <div class="verb-card-wrapper">
+          <div class="verb-card">
+            <div class="verb-header">
+              <div class="verb-main">
+                <h3>Ephemeral</h3>
+                <span class="verb-pronunciation">/əˈfem.ər.əl/</span>
+              </div>
+              <div class="verb-meta">
+                <span class="verb-type">adjective</span>
+                <button class="audio-btn-large" aria-label="Play pronunciation">
+                  <span>🔊</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="verb-content-grid">
+              <div class="verb-def-col">
+                <div class="verb-block definition">
+                  <h4>Definition</h4>
+                  <p>Lasting for a very short time; short-lived; transitory.</p>
+                </div>
+
+                <div class="verb-block context">
+                  <h4>📖 Context</h4>
+                  <p>"The <strong>ephemeral</strong> beauty of a sunset reminds us to cherish the moment before it fades
+                    into the night."</p>
+                </div>
+              </div>
+
+              <div class="verb-memory-col">
+                <div class="verb-block mnemonic">
+                  <h4>🧠 Memory Hook</h4>
+                  <div class="mnemonic-content">
+                    <span class="mnemonic-icon">⏳</span>
+                    <p>Think <strong>"E-fem-eral"</strong> → <strong>"Fem"</strong> sounds like <strong>"Fame"</strong>.
+                      <br><em>Fame is often short-lived and fleeting.</em>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="verb-block roots">
+                  <h4>🌱 Roots</h4>
+                  <ul class="roots-list">
+                    <li><strong>epi-</strong> (Greek): on, upon</li>
+                    <li><strong>hemera</strong> (Greek): day</li>
+                    <li><em>Literally: "lasting only one day"</em></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="why-us">
+      <div class="container">
+        <div class="section-header">
+          <h2>Why Choose Us</h2>
+          <p>Because We Teach Vocabulary the Scientific, Smart, and Memorable Way</p>
+        </div>
+
+        <div class="reasons-grid">
+          <div class="reason-item">
+            <div class="check-icon">✓</div>
+            <p><strong>Science-Backed Strategies:</strong> Built on spaced repetition and cognitive science principles.
+            </p>
+          </div>
+          <div class="reason-item">
+            <div class="check-icon">✓</div>
+            <p><strong>Memorable Mnemonics:</strong> Unique memory hooks to make words stick forever.</p>
+          </div>
+          <div class="reason-item">
+            <div class="check-icon">✓</div>
+            <p><strong>Contextual Mastery:</strong> Learn words in real-world sentences, not isolation.</p>
+          </div>
+          <div class="reason-item">
+            <div class="check-icon">✓</div>
+            <p><strong>Multisensory Learning:</strong> Dual visual and audio elements for deeper engagement.</p>
+          </div>
+          <div class="reason-item">
+            <div class="check-icon">✓</div>
+            <p><strong>Root Analysis:</strong> Break down words into prefixes, roots, and suffixes.</p>
+          </div>
+          <div class="reason-item">
+            <div class="check-icon">✓</div>
+            <p><strong>Student Focused:</strong> Perfect for academic vocabulary and exam prep (SAT, GRE).</p>
+          </div>
+          <div class="reason-item">
+            <div class="check-icon">✓</div>
+            <p><strong>Professional Grade:</strong> Master business terminology for effective communication.</p>
+          </div>
+          <div class="reason-item">
+            <div class="check-icon">✓</div>
+            <p><strong>Daily Engagement:</strong> "Word of the Day" features to build a daily habit.</p>
+          </div>
+          <div class="reason-item">
+            <div class="check-icon">✓</div>
+            <p><strong>Measurable Progress:</strong> Track your growth with personalized learning paths.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PPT Viewer Modal -->
+    <div id="pptModal" class="ppt-modal">
+      <div class="ppt-modal-content">
+        <button id="closePptBtn" class="ppt-close-btn" aria-label="Close presentation">×</button>
+
+        <div class="ppt-slide-container">
+          <div id="pptSlide" class="ppt-slide">
+            <!-- Slide content will be dynamically inserted here -->
+          </div>
+        </div>
+
+        <div class="ppt-controls">
+          <button id="prevSlideBtn" class="ppt-nav-btn ppt-prev" aria-label="Previous slide">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <div class="ppt-indicators" id="pptIndicators">
+            <!-- Slide indicators will be dynamically inserted here -->
+          </div>
+
+          <button id="nextSlideBtn" class="ppt-nav-btn ppt-next" aria-label="Next slide">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <div class="ppt-slide-counter">
+          <span id="currentSlideNum">1</span> / <span id="totalSlides">22</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-content">
+        <div class="footer-col">
+          <h4>WordWise.</h4>
+          <p>The smartest way to build your vocabulary.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="features.html">Features</a>
+          <a href="subscription.html">Pricing</a>
+
+          <a href="#">For Schools</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Blog</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+      <div class="container copyright">
+        <p>&copy; 2024 WordWise Inc. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Navigation Management -->
+  <script type="module" src="/js/navigation.js"></script>
+</body>
+
+</html>

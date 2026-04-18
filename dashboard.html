@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - WordWise</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G2S551QV48"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-G2S551QV48');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="index.html" class="logo">WordWise<span class="dot">.</span></a>
+                <div class="nav-links">
+                    <a href="features.html">Features</a>
+                    <a href="subscription.html">Pricing</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="dashboard.html" class="active">Dashboard</a>
+                    <div class="user-profile-nav">
+                        <div class="avatar" title="User Profile">JD</div>
+                        <a href="#" id="logout-btn"
+                            style="margin-left: 1rem; color: var(--text-muted); font-size: 0.9rem;">Logout</a>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-container">
+            <div class="container">
+                <!-- Welcome Header -->
+                <header class="dashboard-header">
+                    <div class="header-text">
+                        <h1>Welcome back, <span class="gradient-text">John</span></h1>
+                        <p>Your brain is ready for some science-backed growth today.</p>
+                    </div>
+                    <div class="streak-counter">
+                        <span class="fire-icon">🔥</span>
+                        <div class="streak-info">
+                            <span class="streak-number">12</span>
+                            <span class="streak-label">Day Streak</span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Progress Stats -->
+                <section class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📚</div>
+                        <div class="stat-info">
+                            <h3>Words Learned</h3>
+                            <p class="stat-value">142</p>
+                            <p class="stat-sub">Total vocabulary size</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🧠</div>
+                        <div class="stat-info">
+                            <h3>Retention Rate</h3>
+                            <p class="stat-value">94%</p>
+                            <p class="stat-sub">Optimized by spaced repetition</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-info">
+                            <h3>Mastery Level</h3>
+                            <p class="stat-value">Intermediate</p>
+                            <p class="stat-sub">Top 15% of learners</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="dashboard-main-grid">
+                    <!-- Left Column: Review & Challenge -->
+                    <div class="dashboard-col-left">
+                        <!-- Review Section -->
+                        <section class="dashboard-card review-card">
+                            <div class="card-header-small">
+                                <h2>Review Session</h2>
+                                <span class="badge-small">Science-Backed</span>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-circle">
+                                    <span class="review-count">5</span>
+                                    <span class="review-label">Words Due</span>
+                                </div>
+                                <div class="review-text">
+                                    <p>Your memory decay curve suggests these words are about to fade. Review them now
+                                        to strengthen the neural pathways.</p>
+                                    <a href="#" class="btn btn-primary full-width">Start Review Session</a>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Daily Challenge -->
+                        <section class="dashboard-card challenge-card">
+                            <div class="card-header-small">
+                                <h2>Daily Mnemonic Challenge</h2>
+                            </div>
+                            <div class="challenge-content">
+                                <p class="challenge-word">Obfuscate</p>
+                                <p class="challenge-desc">Create a memory hook for this word.</p>
+                                <div class="challenge-input-group">
+                                    <input type="text" placeholder="Type your mnemonic..." class="input-field">
+                                    <button class="btn btn-secondary">Save</button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Right Column: Recent Words -->
+                    <div class="dashboard-col-right">
+                        <section class="dashboard-card recent-card">
+                            <div class="card-header-small">
+                                <h2>Recently Learned</h2>
+                                <a href="#" class="view-all">View All</a>
+                            </div>
+                            <div class="recent-list">
+                                <!-- Word Item 1 -->
+                                <div class="recent-item">
+                                    <div class="recent-icon">🌊</div>
+                                    <div class="recent-details">
+                                        <h4>Serendipity</h4>
+                                        <p class="recent-def">Happy accident</p>
+                                        <div class="recent-meta">
+                                            <span class="mnemonic-hint">💡 Serene Dip</span>
+                                            <span class="root-hint">🌱 Serendip</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Word Item 2 -->
+                                <div class="recent-item">
+                                    <div class="recent-icon">⏳</div>
+                                    <div class="recent-details">
+                                        <h4>Ephemeral</h4>
+                                        <p class="recent-def">Short-lived</p>
+                                        <div class="recent-meta">
+                                            <span class="mnemonic-hint">💡 E-fem-eral (Fame)</span>
+                                            <span class="root-hint">🌱 Hemera (Day)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Word Item 3 -->
+                                <div class="recent-item">
+                                    <div class="recent-icon">🗣️</div>
+                                    <div class="recent-details">
+                                        <h4>Loquacious</h4>
+                                        <p class="recent-def">Talkative</p>
+                                        <div class="recent-meta">
+                                            <span class="mnemonic-hint">💡 Low-Quack-ious</span>
+                                            <span class="root-hint">🌱 Loqui (Speak)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container footer-content">
+                <div class="footer-col">
+                    <h4>WordWise.</h4>
+                    <p>The smartest way to build your vocabulary.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="features.html">Features</a>
+                    <a href="subscription.html">Pricing</a>
+
+                    <a href="#">For Schools</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+            <div class="container copyright">
+                <p>&copy; 2024 WordWise Inc. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <script type="module" src="/js/navigation.js"></script>
+    <script type="module" src="/main.js"></script>
+</body>
+
+</html>

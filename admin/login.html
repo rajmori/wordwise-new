@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login - WordWise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./admin-style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Admin Login Section -->
+        <section class="admin-login-section">
+            <div class="admin-login-container">
+                <div class="admin-login-card">
+                    <!-- Admin Badge -->
+                    <div class="admin-badge-wrapper">
+                        <div class="admin-badge">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                                    fill="currentColor" />
+                            </svg>
+                            <span>Admin Access</span>
+                        </div>
+                    </div>
+
+                    <div class="admin-header">
+                        <h1>WordWise<span class="dot">.</span></h1>
+                        <h2>Admin Portal</h2>
+                        <p>Manage subscribed course users and subscriptions</p>
+                    </div>
+
+                    <form id="adminLoginForm" novalidate>
+                        <div class="form-group">
+                            <label for="admin-email">Admin Email</label>
+                            <input type="email" id="admin-email" name="email" required placeholder="admin@wordwise.com"
+                                autocomplete="username">
+                            <span class="error-msg">Please enter a valid email</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="admin-password">Password</label>
+                            <input type="password" id="admin-password" name="password" required placeholder="••••••••"
+                                autocomplete="current-password">
+                            <span class="error-msg">Password is required</span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary full-width" id="adminLoginBtn">
+                            <span class="btn-text">Sign In to Admin Panel</span>
+                            <span class="loader" style="display:none;"></span>
+                        </button>
+                    </form>
+
+                    <!-- Error Message -->
+                    <div id="adminErrorMessage" class="error-alert" style="display:none;">
+                        <p>Invalid admin credentials. Please try again.</p>
+                    </div>
+
+                    <!-- Back to Main Site -->
+                    <div class="back-to-site">
+                        <a href="../index.html">← Back to WordWise</a>
+                    </div>
+                </div>
+
+                <!-- Info Panel -->
+                <div class="admin-info-panel">
+                    <h3>Admin Panel Features</h3>
+                    <ul class="feature-list">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>View all subscribed users</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Edit user account details</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Manage subscription details</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Track payment information</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Search and filter users</span>
+                        </li>
+                    </ul>
+
+                    <div class="demo-credentials">
+                        <h4>Demo Credentials</h4>
+                        <div class="credential-item">
+                            <span class="label">Email:</span>
+                            <code>admin@wordwise.com</code>
+                        </div>
+                        <div class="credential-item">
+                            <span class="label">Password:</span>
+                            <code>admin123</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script type="module" src="./admin.js"></script>
+</body>
+
+</html>
