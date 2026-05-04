@@ -90,7 +90,7 @@ If you want anyone to be able to sign in (not just test users):
 
 **Your Google Client ID:**
 ```
-740316754976-ovhtoo1nh2ervqc2h9cohqbefe316jsv.apps.googleusercontent.com
+287458285838-njhhmnitf8k6des5gjvve0qm6c9dmvmo.apps.googleusercontent.com
 ```
 
 **Required Redirect URIs:**

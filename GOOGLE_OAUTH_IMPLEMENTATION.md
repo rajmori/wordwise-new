@@ -103,7 +103,7 @@ MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/wordwise?retryWr
 JWT_SECRET=your-super-secret-jwt-key-change-this-in-production-min-32-chars
 
 # Google OAuth Client ID
-GOOGLE_CLIENT_ID=740316754976-ovhtoo1nh2ervqc2h9cohqbefe316jsv.apps.googleusercontent.com
+GOOGLE_CLIENT_ID=287458285838-c1noct3nue62klke4gjv0svhqa725l8p.apps.googleusercontent.com
 
 # Server Port
 PORT=3000

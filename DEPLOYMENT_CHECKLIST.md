@@ -35,8 +35,8 @@ Use this checklist to ensure a smooth deployment to production.
 - [ ] `NODE_ENV` = production
 - [ ] `MONGODB_URI` = (your MongoDB Atlas connection string)
 - [ ] `JWT_SECRET` = (strong random string)
-- [ ] `GOOGLE_CLIENT_ID` = 740316754976-ovhtoo1nh2ervqc2h9cohqbefe316jsv.apps.googleusercontent.com
-- [ ] `GCP_PROJECT_ID` = (your GCP project ID)
+- [ ] `GOOGLE_CLIENT_ID` = 287458285838-c1noct3nue62klke4gjv0svhqa725l8p.apps.googleusercontent.com
+- [ ] `GCP_PROJECT_ID` = wordwise-v2
 - [ ] `GCP_BUCKET_NAME` = wordwise-media
 - [ ] `ALLOWED_ORIGINS` = (your Cloudflare Pages URL)
 - [ ] `EMAIL_USER` = ifusetech@gmail.com

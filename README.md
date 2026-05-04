@@ -74,7 +74,7 @@ MONGODB_URI=mongodb://localhost:27017/wordwise
 JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 
 # GCP Storage (Optional)
-GCP_PROJECT_ID=your-gcp-project-id
+GCP_PROJECT_ID=wordwise-v2
 GCP_BUCKET_NAME=wordwise-media
 GCP_KEYFILE_PATH=./gcp-service-account-key.json
 

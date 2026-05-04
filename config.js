@@ -1,5 +1,5 @@
 // Google OAuth Configuration
-export const GOOGLE_CLIENT_ID = '740316754976-ovhtoo1nh2ervqc2h9cohqbefe316jsv.apps.googleusercontent.com';
+export const GOOGLE_CLIENT_ID = '287458285838-c1noct3nue62klke4gjv0svhqa725l8p.apps.googleusercontent.com';
 
 // Detect environment
 const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';

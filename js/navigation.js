@@ -102,7 +102,7 @@ class NavigationManager {
         switch (state) {
             case 'unauthenticated':
                 if (coursesPricingLink) {
-                    coursesPricingLink.textContent = 'Pricing';
+                    coursesPricingLink.textContent = 'Courses';
                     coursesPricingLink.style.display = '';
                 }
                 if (myCoursePlayerLink) myCoursePlayerLink.style.display = 'none';
@@ -116,7 +116,7 @@ class NavigationManager {
 
             case 'authenticated':
                 if (coursesPricingLink) {
-                    coursesPricingLink.textContent = 'Pricing';
+                    coursesPricingLink.textContent = 'Courses';
                     coursesPricingLink.style.display = '';
                 }
                 if (myCoursePlayerLink) myCoursePlayerLink.style.display = 'none';

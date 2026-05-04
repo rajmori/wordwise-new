@@ -45,8 +45,8 @@ PORT=3000
 NODE_ENV=production
 MONGODB_URI=mongodb+srv://wordwiseaadmin:OOnSDZZFiemYc12l@wordwise.odvkecn.mongodb.net/?appName=wordwise
 JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
-GOOGLE_CLIENT_ID=740316754976-ovhtoo1nh2ervqc2h9cohqbefe316jsv.apps.googleusercontent.com
-GCP_PROJECT_ID=your-gcp-project-id
+GOOGLE_CLIENT_ID=287458285838-c1noct3nue62klke4gjv0svhqa725l8p.apps.googleusercontent.com
+GCP_PROJECT_ID=wordwise-v2
 GCP_BUCKET_NAME=wordwise-media
 ALLOWED_ORIGINS=https://your-cloudflare-domain.pages.dev,https://your-custom-domain.com
 EMAIL_USER=ifusetech@gmail.com

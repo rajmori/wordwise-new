@@ -39,7 +39,7 @@ MONGODB_URI=mongodb+srv://rajrapidops_db_user:ozi8To2fUr2SgQtF@wordwise.odvkecn.
 JWT_SECRET=your-production-secret-key-change-this
 
 # GCP Storage
-GCP_PROJECT_ID=wordwise-479911
+GCP_PROJECT_ID=wordwise-v2
 GCP_BUCKET_NAME=wordwise-media
 GCP_KEYFILE_PATH=./gcp-service-account-key.json
 
