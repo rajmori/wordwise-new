@@ -1,7 +1,7 @@
 import express from 'express';
-import prisma from '../../../config/db.prisma.js';
-import { checkPermission } from '../../../middleware/rbac.js';
-import { logAudit } from '../../../utils/audit.js';
+import prisma from '../../../../config/db.prisma.js';
+import { checkPermission } from '../../../../middleware/rbac.js';
+import { logAudit } from '../../../../utils/audit.js';
 
 const router = express.Router();
 

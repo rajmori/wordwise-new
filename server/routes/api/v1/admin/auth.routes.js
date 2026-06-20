@@ -2,7 +2,7 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { OAuth2Client } from 'google-auth-library';
-import prisma from '../../../config/db.prisma.js';
+import prisma from '../../../../config/db.prisma.js';
 
 const router = express.Router();
 
