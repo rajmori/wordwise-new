@@ -1,1025 +1,1025 @@
 {
-  "C:\\D Drive\\wordwise-new\\.claude\\settings.json": {
+  ".claude/settings.json": {
     "mtime": 1781554419.9153805,
     "ast_hash": "7bf81dca0376bde3a32244b82bc7cbc0",
     "semantic_hash": "7bf81dca0376bde3a32244b82bc7cbc0"
   },
-  "C:\\D Drive\\wordwise-new\\.vs\\VSWorkspaceState.json": {
+  ".vs/VSWorkspaceState.json": {
     "mtime": 1776002984.2621827,
     "ast_hash": "c5d8964c7f5288c0be2b2463a8eccc7a",
     "semantic_hash": "c5d8964c7f5288c0be2b2463a8eccc7a"
   },
-  "C:\\D Drive\\wordwise-new\\.vs\\wordwise-new.slnx\\v18\\DocumentLayout.backup.json": {
+  ".vs/wordwise-new.slnx/v18/DocumentLayout.backup.json": {
     "mtime": 1776002738.6320064,
     "ast_hash": "70def23fd21517434cebabb9ddc7a7f4",
     "semantic_hash": "70def23fd21517434cebabb9ddc7a7f4"
   },
-  "C:\\D Drive\\wordwise-new\\.vs\\wordwise-new.slnx\\v18\\DocumentLayout.json": {
+  ".vs/wordwise-new.slnx/v18/DocumentLayout.json": {
     "mtime": 1776002984.1864192,
     "ast_hash": "016fb52df7b91c33f38dada5a07a3c33",
     "semantic_hash": "016fb52df7b91c33f38dada5a07a3c33"
   },
-  "C:\\D Drive\\wordwise-new\\admin\\admin.js": {
-    "mtime": 1775580002.081813,
-    "ast_hash": "f932385d952f9e9e9f455cb52cf7d8d3",
-    "semantic_hash": "f932385d952f9e9e9f455cb52cf7d8d3"
+  "admin/admin.js": {
+    "mtime": 1781984541.7174444,
+    "ast_hash": "61a4c0486a42743c7d030ce940d60e0e",
+    "semantic_hash": ""
   },
-  "C:\\D Drive\\wordwise-new\\admin\\auth-utils.js": {
+  "admin/auth-utils.js": {
     "mtime": 1765873350.0,
     "ast_hash": "d799ff9273aa94370dad8e70737b054a",
     "semantic_hash": "d799ff9273aa94370dad8e70737b054a"
   },
-  "C:\\D Drive\\wordwise-new\\admin\\course-editor.js": {
+  "admin/course-editor.js": {
     "mtime": 1775591868.8841262,
     "ast_hash": "76eb697c94f1a3e41058f8e3e4031076",
     "semantic_hash": "76eb697c94f1a3e41058f8e3e4031076"
   },
-  "C:\\D Drive\\wordwise-new\\admin\\course-management.js": {
+  "admin/course-management.js": {
     "mtime": 1767789077.0,
     "ast_hash": "7bff77aba51a9e3937a877b7775f37cf",
     "semantic_hash": "7bff77aba51a9e3937a877b7775f37cf"
   },
-  "C:\\D Drive\\wordwise-new\\admin\\flash-cards.js": {
+  "admin/flash-cards.js": {
     "mtime": 1767787618.0,
     "ast_hash": "1b449bebb20694446171a2ac029dc03e",
     "semantic_hash": "1b449bebb20694446171a2ac029dc03e"
   },
-  "C:\\D Drive\\wordwise-new\\admin\\quiz-management.js": {
-    "mtime": 1770192199.0,
-    "ast_hash": "81b8612f3a5d0759e47f1d6e4e9bcefa",
-    "semantic_hash": "81b8612f3a5d0759e47f1d6e4e9bcefa"
+  "admin/quiz-management.js": {
+    "mtime": 1781984547.5707521,
+    "ast_hash": "1c399de30c3bab4cef2616d543f341ab",
+    "semantic_hash": ""
   },
-  "C:\\D Drive\\wordwise-new\\auth-service.js": {
+  "auth-service.js": {
     "mtime": 1767864593.0,
     "ast_hash": "c8503fbb47de97427d06c8ff42d6b2ba",
     "semantic_hash": "c8503fbb47de97427d06c8ff42d6b2ba"
   },
-  "C:\\D Drive\\wordwise-new\\check-subs.js": {
+  "check-subs.js": {
     "mtime": 1766142375.0,
     "ast_hash": "fe73f65a710755549fc62f5061093989",
     "semantic_hash": "fe73f65a710755549fc62f5061093989"
   },
-  "C:\\D Drive\\wordwise-new\\client\\eslint.config.mjs": {
+  "client/eslint.config.mjs": {
     "mtime": 1777141859.4480948,
     "ast_hash": "dfa1f5f6a7037bf39dc510f30b180002",
     "semantic_hash": "dfa1f5f6a7037bf39dc510f30b180002"
   },
-  "C:\\D Drive\\wordwise-new\\client\\next-env.d.ts": {
+  "client/next-env.d.ts": {
     "mtime": 1777141859.998391,
     "ast_hash": "2a74d3909800ca5467fa83b0ab4a4890",
     "semantic_hash": "2a74d3909800ca5467fa83b0ab4a4890"
   },
-  "C:\\D Drive\\wordwise-new\\client\\next.config.ts": {
+  "client/next.config.ts": {
     "mtime": 1777141860.0689008,
     "ast_hash": "9b77af189a21a7a64e4bd7a426f64176",
     "semantic_hash": "9b77af189a21a7a64e4bd7a426f64176"
   },
-  "C:\\D Drive\\wordwise-new\\client\\package.json": {
+  "client/package.json": {
     "mtime": 1777141877.7455766,
     "ast_hash": "5f4deafa663649b3131c5525ad314325",
     "semantic_hash": "5f4deafa663649b3131c5525ad314325"
   },
-  "C:\\D Drive\\wordwise-new\\client\\postcss.config.mjs": {
+  "client/postcss.config.mjs": {
     "mtime": 1777141859.6653416,
     "ast_hash": "239f3ebf717465dc636818a1a619398d",
     "semantic_hash": "239f3ebf717465dc636818a1a619398d"
   },
-  "C:\\D Drive\\wordwise-new\\client\\src\\app\\layout.tsx": {
+  "client/src/app/layout.tsx": {
     "mtime": 1777141860.6160612,
     "ast_hash": "94c34ef68b3949a75807a0211ec2273c",
     "semantic_hash": "94c34ef68b3949a75807a0211ec2273c"
   },
-  "C:\\D Drive\\wordwise-new\\client\\src\\app\\page.tsx": {
+  "client/src/app/page.tsx": {
     "mtime": 1777141877.7365704,
     "ast_hash": "1e489b26bb597dc97f8d44954dd042da",
     "semantic_hash": "1e489b26bb597dc97f8d44954dd042da"
   },
-  "C:\\D Drive\\wordwise-new\\client\\tsconfig.json": {
+  "client/tsconfig.json": {
     "mtime": 1777141877.7277315,
     "ast_hash": "ee17fd1c97c735e9f3564e3f5251f125",
     "semantic_hash": "ee17fd1c97c735e9f3564e3f5251f125"
   },
-  "C:\\D Drive\\wordwise-new\\config.js": {
-    "mtime": 1777404683.3888052,
-    "ast_hash": "15cd45b29a6ed6f4e07359e25601e995",
-    "semantic_hash": "15cd45b29a6ed6f4e07359e25601e995"
+  "config.js": {
+    "mtime": 1781984535.8918452,
+    "ast_hash": "b236312c323cab1ea9182ca5d2a77576",
+    "semantic_hash": ""
   },
-  "C:\\D Drive\\wordwise-new\\contact-service.js": {
+  "contact-service.js": {
     "mtime": 1765889448.0,
     "ast_hash": "6b2c7a654adb0e691bc311903d78977a",
     "semantic_hash": "6b2c7a654adb0e691bc311903d78977a"
   },
-  "C:\\D Drive\\wordwise-new\\course-data.js": {
+  "course-data.js": {
     "mtime": 1765608489.0,
     "ast_hash": "b7e906a2b458840728b5757062d3e0dc",
     "semantic_hash": "b7e906a2b458840728b5757062d3e0dc"
   },
-  "C:\\D Drive\\wordwise-new\\course-player.js": {
+  "course-player.js": {
     "mtime": 1767960650.0,
     "ast_hash": "269b727ba18d21b039afeed07b5145da",
     "semantic_hash": "269b727ba18d21b039afeed07b5145da"
   },
-  "C:\\D Drive\\wordwise-new\\deploy.sh": {
+  "deploy.sh": {
     "mtime": 1765915492.0,
     "ast_hash": "c4494a0e3187e05d683633b1fef50b78",
     "semantic_hash": "c4494a0e3187e05d683633b1fef50b78"
   },
-  "C:\\D Drive\\wordwise-new\\js\\course-purchase.js": {
+  "js/course-purchase.js": {
     "mtime": 1767865521.0,
     "ast_hash": "b9e57c2ab03d08754986b690497b89b6",
     "semantic_hash": "b9e57c2ab03d08754986b690497b89b6"
   },
-  "C:\\D Drive\\wordwise-new\\js\\flash-cards.js": {
+  "js/flash-cards.js": {
     "mtime": 1767791787.0,
     "ast_hash": "1b8dd3dcc0e55fea0d20425e92c848c7",
     "semantic_hash": "1b8dd3dcc0e55fea0d20425e92c848c7"
   },
-  "C:\\D Drive\\wordwise-new\\js\\navigation.js": {
+  "js/navigation.js": {
     "mtime": 1777142585.9688091,
     "ast_hash": "96387384f4a2a931ebc32666af7e87a8",
     "semantic_hash": "96387384f4a2a931ebc32666af7e87a8"
   },
-  "C:\\D Drive\\wordwise-new\\js\\payment.js": {
+  "js/payment.js": {
     "mtime": 1766061433.0,
     "ast_hash": "87cabc22ab4a21fd431798821fb15a75",
     "semantic_hash": "87cabc22ab4a21fd431798821fb15a75"
   },
-  "C:\\D Drive\\wordwise-new\\js\\profile.js": {
+  "js/profile.js": {
     "mtime": 1767166917.0,
     "ast_hash": "7b8df6c54c87219c337b6106ee71de3b",
     "semantic_hash": "7b8df6c54c87219c337b6106ee71de3b"
   },
-  "C:\\D Drive\\wordwise-new\\js\\subscription.js": {
+  "js/subscription.js": {
     "mtime": 1766062265.0,
     "ast_hash": "1d75463fbb0f730c9204dc6a5b9e2429",
     "semantic_hash": "1d75463fbb0f730c9204dc6a5b9e2429"
   },
-  "C:\\D Drive\\wordwise-new\\main.js": {
+  "main.js": {
     "mtime": 1766140613.0,
     "ast_hash": "5f3d83b09434edc44de8539e28c094a8",
     "semantic_hash": "5f3d83b09434edc44de8539e28c094a8"
   },
-  "C:\\D Drive\\wordwise-new\\package.json": {
+  "package.json": {
     "mtime": 1767858500.0,
     "ast_hash": "e2d86dbb98a5371d627bedbcd5ecfdfb",
     "semantic_hash": "e2d86dbb98a5371d627bedbcd5ecfdfb"
   },
-  "C:\\D Drive\\wordwise-new\\ppt-viewer.js": {
+  "ppt-viewer.js": {
     "mtime": 1765608489.0,
     "ast_hash": "3f9b306ce12a85c51f3e0cf45fe1926e",
     "semantic_hash": "3f9b306ce12a85c51f3e0cf45fe1926e"
   },
-  "C:\\D Drive\\wordwise-new\\server\\check-courses.js": {
+  "server/check-courses.js": {
     "mtime": 1765608489.0,
     "ast_hash": "cc7fbfbe5afcd066e0797e8833a15ab1",
     "semantic_hash": "cc7fbfbe5afcd066e0797e8833a15ab1"
   },
-  "C:\\D Drive\\wordwise-new\\server\\check-subs.js": {
+  "server/check-subs.js": {
     "mtime": 1766142398.0,
     "ast_hash": "ad237f34c133a8b49954a894ffc8779c",
     "semantic_hash": "ad237f34c133a8b49954a894ffc8779c"
   },
-  "C:\\D Drive\\wordwise-new\\server\\config\\db.js": {
+  "server/config/db.js": {
     "mtime": 1776339400.352542,
     "ast_hash": "1dab40078ba8af81ff207093a8f16946",
     "semantic_hash": "1dab40078ba8af81ff207093a8f16946"
   },
-  "C:\\D Drive\\wordwise-new\\server\\config\\gcp.js": {
+  "server/config/gcp.js": {
     "mtime": 1765608489.0,
     "ast_hash": "4b17a1adc4920cdc562d640c81958927",
     "semantic_hash": "4b17a1adc4920cdc562d640c81958927"
   },
-  "C:\\D Drive\\wordwise-new\\server\\controllers\\adminController.js": {
+  "server/controllers/adminController.js": {
     "mtime": 1775579924.440261,
     "ast_hash": "f9bc29518a50c02606fd05c4c58574a8",
     "semantic_hash": "f9bc29518a50c02606fd05c4c58574a8"
   },
-  "C:\\D Drive\\wordwise-new\\server\\controllers\\auth.controller.js": {
+  "server/controllers/auth.controller.js": {
     "mtime": 1767179116.0,
     "ast_hash": "989fb8106d5f57b0b8bcf690b5d1f928",
     "semantic_hash": "989fb8106d5f57b0b8bcf690b5d1f928"
   },
-  "C:\\D Drive\\wordwise-new\\server\\controllers\\contactController.js": {
+  "server/controllers/contactController.js": {
     "mtime": 1765889286.0,
     "ast_hash": "bf240ae2e3742804890d79a6515229c3",
     "semantic_hash": "bf240ae2e3742804890d79a6515229c3"
   },
-  "C:\\D Drive\\wordwise-new\\server\\controllers\\courseController.js": {
+  "server/controllers/courseController.js": {
     "mtime": 1775590101.4167433,
     "ast_hash": "9842fcba113caee96b8daf7ed2fadb5d",
     "semantic_hash": "9842fcba113caee96b8daf7ed2fadb5d"
   },
-  "C:\\D Drive\\wordwise-new\\server\\controllers\\courseOrderController.js": {
+  "server/controllers/courseOrderController.js": {
     "mtime": 1767168193.0,
     "ast_hash": "e1ae62186ffcfd25d2b22707129b1652",
     "semantic_hash": "e1ae62186ffcfd25d2b22707129b1652"
   },
-  "C:\\D Drive\\wordwise-new\\server\\controllers\\flashCardBulkController.js": {
+  "server/controllers/flashCardBulkController.js": {
     "mtime": 1767780750.0,
     "ast_hash": "a28c86ce5bf9a41acd4d48b35c1f2f0a",
     "semantic_hash": "a28c86ce5bf9a41acd4d48b35c1f2f0a"
   },
-  "C:\\D Drive\\wordwise-new\\server\\controllers\\flashCardController.js": {
+  "server/controllers/flashCardController.js": {
     "mtime": 1767786175.0,
     "ast_hash": "a9d83355c1250ad5913886795d777bf5",
     "semantic_hash": "a9d83355c1250ad5913886795d777bf5"
   },
-  "C:\\D Drive\\wordwise-new\\server\\controllers\\lessonController.js": {
+  "server/controllers/lessonController.js": {
     "mtime": 1765608489.0,
     "ast_hash": "9d002590e6865e99fd55f184eb23cc05",
     "semantic_hash": "9d002590e6865e99fd55f184eb23cc05"
   },
-  "C:\\D Drive\\wordwise-new\\server\\controllers\\profile.controller.js": {
+  "server/controllers/profile.controller.js": {
     "mtime": 1767167464.0,
     "ast_hash": "209e9fcebfa93e7cad6c1afd9564070f",
     "semantic_hash": "209e9fcebfa93e7cad6c1afd9564070f"
   },
-  "C:\\D Drive\\wordwise-new\\server\\controllers\\quizController.js": {
+  "server/controllers/quizController.js": {
     "mtime": 1770192980.0,
     "ast_hash": "bcc7941ab32ad064bd2d18100ff6686f",
     "semantic_hash": "bcc7941ab32ad064bd2d18100ff6686f"
   },
-  "C:\\D Drive\\wordwise-new\\server\\controllers\\subscriptionController.js": {
+  "server/controllers/subscriptionController.js": {
     "mtime": 1767081594.0,
     "ast_hash": "6261bae3cee1693cade71015a660aeba",
     "semantic_hash": "6261bae3cee1693cade71015a660aeba"
   },
-  "C:\\D Drive\\wordwise-new\\server\\controllers\\uploadController.js": {
+  "server/controllers/uploadController.js": {
     "mtime": 1775591742.5422409,
     "ast_hash": "e095a0bbd75260dc7a88d78baaa2fee1",
     "semantic_hash": "e095a0bbd75260dc7a88d78baaa2fee1"
   },
-  "C:\\D Drive\\wordwise-new\\server\\controllers\\userAuthController.js": {
+  "server/controllers/userAuthController.js": {
     "mtime": 1775510840.583552,
     "ast_hash": "4a61b55159fe8a83bf9a29f74f1b69fb",
     "semantic_hash": "4a61b55159fe8a83bf9a29f74f1b69fb"
   },
-  "C:\\D Drive\\wordwise-new\\server\\create-gcp-bucket.js": {
+  "server/create-gcp-bucket.js": {
     "mtime": 1765608489.0,
     "ast_hash": "eadde2aeffd51619e1942081cc63a93f",
     "semantic_hash": "eadde2aeffd51619e1942081cc63a93f"
   },
-  "C:\\D Drive\\wordwise-new\\server\\encode-gcp-key.ps1": {
+  "server/encode-gcp-key.ps1": {
     "mtime": 1765608489.0,
     "ast_hash": "8f7bf509042095b51f62fe12d60674c4",
     "semantic_hash": "8f7bf509042095b51f62fe12d60674c4"
   },
-  "C:\\D Drive\\wordwise-new\\server\\inspect-ids.js": {
+  "server/inspect-ids.js": {
     "mtime": 1767180461.0,
     "ast_hash": "5a155ee166fc40908cf01d32bd051570",
     "semantic_hash": "5a155ee166fc40908cf01d32bd051570"
   },
-  "C:\\D Drive\\wordwise-new\\server\\middleware\\auth.js": {
+  "server/middleware/auth.js": {
     "mtime": 1775510187.1015344,
     "ast_hash": "69731eb552a3f540b036ec30518f2610",
     "semantic_hash": "69731eb552a3f540b036ec30518f2610"
   },
-  "C:\\D Drive\\wordwise-new\\server\\middleware\\checkSubscriptionAccess.js": {
+  "server/middleware/checkSubscriptionAccess.js": {
     "mtime": 1768219668.0,
     "ast_hash": "3ea67668fdecf559692f386bcfae5e4b",
     "semantic_hash": "3ea67668fdecf559692f386bcfae5e4b"
   },
-  "C:\\D Drive\\wordwise-new\\server\\middleware\\debug.js": {
+  "server/middleware/debug.js": {
     "mtime": 1765608489.0,
     "ast_hash": "f91e8b1c076375f87759f8c13c49ccfd",
     "semantic_hash": "f91e8b1c076375f87759f8c13c49ccfd"
   },
-  "C:\\D Drive\\wordwise-new\\server\\middleware\\upload.js": {
+  "server/middleware/upload.js": {
     "mtime": 1775591722.992793,
     "ast_hash": "60b88bfea94ab12a88fac44d506b8473",
     "semantic_hash": "60b88bfea94ab12a88fac44d506b8473"
   },
-  "C:\\D Drive\\wordwise-new\\server\\middleware\\userAuth.js": {
+  "server/middleware/userAuth.js": {
     "mtime": 1767098864.0,
     "ast_hash": "e69eb72d02adae0d2698dec9b4060170",
     "semantic_hash": "e69eb72d02adae0d2698dec9b4060170"
   },
-  "C:\\D Drive\\wordwise-new\\server\\middlewares\\auth.middleware.js": {
+  "server/middlewares/auth.middleware.js": {
     "mtime": 1775510185.2327027,
     "ast_hash": "2833d23148f08fcb14cd26a932eb4cba",
     "semantic_hash": "2833d23148f08fcb14cd26a932eb4cba"
   },
-  "C:\\D Drive\\wordwise-new\\server\\migrate-course-ids.js": {
+  "server/migrate-course-ids.js": {
     "mtime": 1767180477.0,
     "ast_hash": "6ead17a0d2f0eb1a7c61ce2f22bbd1d1",
     "semantic_hash": "6ead17a0d2f0eb1a7c61ce2f22bbd1d1"
   },
-  "C:\\D Drive\\wordwise-new\\server\\models\\Admin.js": {
+  "server/models/Admin.js": {
     "mtime": 1765871225.0,
     "ast_hash": "ca830577ef9d88bf17e28d4e303e4df5",
     "semantic_hash": "ca830577ef9d88bf17e28d4e303e4df5"
   },
-  "C:\\D Drive\\wordwise-new\\server\\models\\Counter.js": {
+  "server/models/Counter.js": {
     "mtime": 1767178514.0,
     "ast_hash": "1d70f9a32b343b387fb5e5d7a41883f8",
     "semantic_hash": "1d70f9a32b343b387fb5e5d7a41883f8"
   },
-  "C:\\D Drive\\wordwise-new\\server\\models\\Course.js": {
+  "server/models/Course.js": {
     "mtime": 1767958754.0,
     "ast_hash": "90756bc2dcba7a33694d6daef34afe75",
     "semantic_hash": "90756bc2dcba7a33694d6daef34afe75"
   },
-  "C:\\D Drive\\wordwise-new\\server\\models\\CourseOrder.js": {
+  "server/models/CourseOrder.js": {
     "mtime": 1767096528.0,
     "ast_hash": "31195667df7e18d9fd2442bb2d4d2493",
     "semantic_hash": "31195667df7e18d9fd2442bb2d4d2493"
   },
-  "C:\\D Drive\\wordwise-new\\server\\models\\FlashCard.js": {
+  "server/models/FlashCard.js": {
     "mtime": 1767779566.0,
     "ast_hash": "41002a94072189832d36306689bc5b73",
     "semantic_hash": "41002a94072189832d36306689bc5b73"
   },
-  "C:\\D Drive\\wordwise-new\\server\\models\\Lesson.js": {
+  "server/models/Lesson.js": {
     "mtime": 1775592653.2985356,
     "ast_hash": "8b01f091e1eac0bef800a9d1984ebac7",
     "semantic_hash": "8b01f091e1eac0bef800a9d1984ebac7"
   },
-  "C:\\D Drive\\wordwise-new\\server\\models\\LoginLog.js": {
+  "server/models/LoginLog.js": {
     "mtime": 1775510793.2164648,
     "ast_hash": "35fcc4626b010dafcf06458f6166fe7d",
     "semantic_hash": "35fcc4626b010dafcf06458f6166fe7d"
   },
-  "C:\\D Drive\\wordwise-new\\server\\models\\Quiz.js": {
+  "server/models/Quiz.js": {
     "mtime": 1770127287.0,
     "ast_hash": "efc25b3935906763bcd5c306b8a9a285",
     "semantic_hash": "efc25b3935906763bcd5c306b8a9a285"
   },
-  "C:\\D Drive\\wordwise-new\\server\\models\\RefreshToken.js": {
+  "server/models/RefreshToken.js": {
     "mtime": 1767179031.0,
     "ast_hash": "134733e0e4d221bd5a07ede94a34c432",
     "semantic_hash": "134733e0e4d221bd5a07ede94a34c432"
   },
-  "C:\\D Drive\\wordwise-new\\server\\models\\Subscription.js": {
+  "server/models/Subscription.js": {
     "mtime": 1766053953.0,
     "ast_hash": "ac036b37ddc636a53ca6c0392f9016b5",
     "semantic_hash": "ac036b37ddc636a53ca6c0392f9016b5"
   },
-  "C:\\D Drive\\wordwise-new\\server\\models\\resetToken.model.js": {
+  "server/models/resetToken.model.js": {
     "mtime": 1766140234.0,
     "ast_hash": "5a9b6d8fe21452bb48e3ca343d72c75c",
     "semantic_hash": "5a9b6d8fe21452bb48e3ca343d72c75c"
   },
-  "C:\\D Drive\\wordwise-new\\server\\models\\user.model.js": {
+  "server/models/user.model.js": {
     "mtime": 1766053926.0,
     "ast_hash": "01abcb92f3514a9557727cb8e87ffdec",
     "semantic_hash": "01abcb92f3514a9557727cb8e87ffdec"
   },
-  "C:\\D Drive\\wordwise-new\\server\\package.json": {
+  "server/package.json": {
     "mtime": 1775510822.3363605,
     "ast_hash": "f1c2d14806dfc1725082f18def956c9b",
     "semantic_hash": "f1c2d14806dfc1725082f18def956c9b"
   },
-  "C:\\D Drive\\wordwise-new\\server\\routes\\adminRoutes.js": {
+  "server/routes/adminRoutes.js": {
     "mtime": 1775580155.138541,
     "ast_hash": "b5be94a4a3de987c61c4eedabbb9379f",
     "semantic_hash": "b5be94a4a3de987c61c4eedabbb9379f"
   },
-  "C:\\D Drive\\wordwise-new\\server\\routes\\auth.routes.js": {
+  "server/routes/auth.routes.js": {
     "mtime": 1767179117.0,
     "ast_hash": "88d37185e6a0cc77d92cad842d1a2d38",
     "semantic_hash": "88d37185e6a0cc77d92cad842d1a2d38"
   },
-  "C:\\D Drive\\wordwise-new\\server\\routes\\contactRoutes.js": {
+  "server/routes/contactRoutes.js": {
     "mtime": 1765889394.0,
     "ast_hash": "dc42863855216cb458bea2dd13da4bd9",
     "semantic_hash": "dc42863855216cb458bea2dd13da4bd9"
   },
-  "C:\\D Drive\\wordwise-new\\server\\routes\\courseOrderRoutes.js": {
+  "server/routes/courseOrderRoutes.js": {
     "mtime": 1767096733.0,
     "ast_hash": "7abeeea3b4ba98d66a0cf6e83cf52dad",
     "semantic_hash": "7abeeea3b4ba98d66a0cf6e83cf52dad"
   },
-  "C:\\D Drive\\wordwise-new\\server\\routes\\courseRoutes.js": {
+  "server/routes/courseRoutes.js": {
     "mtime": 1767096962.0,
     "ast_hash": "b9910139553631cd0b0cffafa4cf76e9",
     "semantic_hash": "b9910139553631cd0b0cffafa4cf76e9"
   },
-  "C:\\D Drive\\wordwise-new\\server\\routes\\flashCardRoutes.js": {
+  "server/routes/flashCardRoutes.js": {
     "mtime": 1767786347.0,
     "ast_hash": "73f34d67b05d60a2ebefe4784f3b24af",
     "semantic_hash": "73f34d67b05d60a2ebefe4784f3b24af"
   },
-  "C:\\D Drive\\wordwise-new\\server\\routes\\lessonRoutes.js": {
+  "server/routes/lessonRoutes.js": {
     "mtime": 1765897737.0,
     "ast_hash": "f744a649ceffc9bf4dc0267365e274a3",
     "semantic_hash": "f744a649ceffc9bf4dc0267365e274a3"
   },
-  "C:\\D Drive\\wordwise-new\\server\\routes\\profile.routes.js": {
+  "server/routes/profile.routes.js": {
     "mtime": 1766133514.0,
     "ast_hash": "be33334ae497b490799e55097220b942",
     "semantic_hash": "be33334ae497b490799e55097220b942"
   },
-  "C:\\D Drive\\wordwise-new\\server\\routes\\quizRoutes.js": {
+  "server/routes/quizRoutes.js": {
     "mtime": 1770191942.0,
     "ast_hash": "3428ab579ce56aa251fad4454bc4112d",
     "semantic_hash": "3428ab579ce56aa251fad4454bc4112d"
   },
-  "C:\\D Drive\\wordwise-new\\server\\routes\\subscriptionRoutes.js": {
+  "server/routes/subscriptionRoutes.js": {
     "mtime": 1766133031.0,
     "ast_hash": "1b97dcaaac3972214076f10824d1257a",
     "semantic_hash": "1b97dcaaac3972214076f10824d1257a"
   },
-  "C:\\D Drive\\wordwise-new\\server\\routes\\uploadRoutes.js": {
+  "server/routes/uploadRoutes.js": {
     "mtime": 1775592617.3548005,
     "ast_hash": "395793bdd7a4d0aeb88b013da95256aa",
     "semantic_hash": "395793bdd7a4d0aeb88b013da95256aa"
   },
-  "C:\\D Drive\\wordwise-new\\server\\routes\\userRoutes.js": {
+  "server/routes/userRoutes.js": {
     "mtime": 1775510283.4728675,
     "ast_hash": "b8833bd9c638487aff60b94d40c7955d",
     "semantic_hash": "b8833bd9c638487aff60b94d40c7955d"
   },
-  "C:\\D Drive\\wordwise-new\\server\\seed-admin.js": {
+  "server/seed-admin.js": {
     "mtime": 1767779891.0,
     "ast_hash": "973af0ea3f738ad31baae40e2388226d",
     "semantic_hash": "973af0ea3f738ad31baae40e2388226d"
   },
-  "C:\\D Drive\\wordwise-new\\server\\server.js": {
+  "server/server.js": {
     "mtime": 1775592572.150374,
     "ast_hash": "f4f180a0001b6a7cdaa6fe82765fb424",
     "semantic_hash": "f4f180a0001b6a7cdaa6fe82765fb424"
   },
-  "C:\\D Drive\\wordwise-new\\server\\setup-stripe-product.js": {
+  "server/setup-stripe-product.js": {
     "mtime": 1765911428.0,
     "ast_hash": "5fef37ec2f942d0a2c5ec1dea8bce8a1",
     "semantic_hash": "5fef37ec2f942d0a2c5ec1dea8bce8a1"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-admin-session.js": {
+  "server/test-admin-session.js": {
     "mtime": 1775475350.0,
     "ast_hash": "fb3de66ae5fb4688f3a6c27e1d8b3ec9",
     "semantic_hash": "fb3de66ae5fb4688f3a6c27e1d8b3ec9"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-atomic-course-id.js": {
+  "server/test-atomic-course-id.js": {
     "mtime": 1767178805.0,
     "ast_hash": "4f5bf27d02a8023485dc18f9d4afac84",
     "semantic_hash": "4f5bf27d02a8023485dc18f9d4afac84"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-auth-antigravity.js": {
+  "server/test-auth-antigravity.js": {
     "mtime": 1766131925.0,
     "ast_hash": "a9c05026626d392d4682a069594a9513",
     "semantic_hash": "a9c05026626d392d4682a069594a9513"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-bulk-upload.js": {
+  "server/test-bulk-upload.js": {
     "mtime": 1767783381.0,
     "ast_hash": "12dd6eac5cd7f62ad43b698803c10359",
     "semantic_hash": "12dd6eac5cd7f62ad43b698803c10359"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-course-id.js": {
+  "server/test-course-id.js": {
     "mtime": 1767167524.0,
     "ast_hash": "21fca501a922ecfd4576e9a57289165e",
     "semantic_hash": "21fca501a922ecfd4576e9a57289165e"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-create-course.js": {
+  "server/test-create-course.js": {
     "mtime": 1765608489.0,
     "ast_hash": "90a90bddf447b70e701f2a70e2bc240f",
     "semantic_hash": "90a90bddf447b70e701f2a70e2bc240f"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-fixed-course.js": {
+  "server/test-fixed-course.js": {
     "mtime": 1765608489.0,
     "ast_hash": "4dce0f19a10b2abe7cfe2fe7064b92fe",
     "semantic_hash": "4dce0f19a10b2abe7cfe2fe7064b92fe"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-flash-cards.js": {
+  "server/test-flash-cards.js": {
     "mtime": 1767779951.0,
     "ast_hash": "b6eaa567f92ccbaa8cf3cdb9995d5a35",
     "semantic_hash": "b6eaa567f92ccbaa8cf3cdb9995d5a35"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-gcp-upload.js": {
+  "server/test-gcp-upload.js": {
     "mtime": 1765608489.0,
     "ast_hash": "f9aafa55b37b31a87c53c5d71abb0cec",
     "semantic_hash": "f9aafa55b37b31a87c53c5d71abb0cec"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-gcp.js": {
+  "server/test-gcp.js": {
     "mtime": 1767089795.0,
     "ast_hash": "9c049f43165eefe921806f41dc6a46e7",
     "semantic_hash": "9c049f43165eefe921806f41dc6a46e7"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-new-plan.js": {
+  "server/test-new-plan.js": {
     "mtime": 1766060325.0,
     "ast_hash": "ece06563f74098f46a7053cb38152317",
     "semantic_hash": "ece06563f74098f46a7053cb38152317"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-password-reset-antigravity.js": {
+  "server/test-password-reset-antigravity.js": {
     "mtime": 1766140357.0,
     "ast_hash": "3c38ea39cd74263f816cb8d2c44ebac9",
     "semantic_hash": "3c38ea39cd74263f816cb8d2c44ebac9"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-profile-antigravity.js": {
+  "server/test-profile-antigravity.js": {
     "mtime": 1766133549.0,
     "ast_hash": "f33172092206c08c9dda29acce16de7e",
     "semantic_hash": "f33172092206c08c9dda29acce16de7e"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-quiz-api.js": {
+  "server/test-quiz-api.js": {
     "mtime": 1770127562.0,
     "ast_hash": "eb8a2467a2bfddc1897983b1031dd755",
     "semantic_hash": "eb8a2467a2bfddc1897983b1031dd755"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-quiz-import-cycle.js": {
+  "server/test-quiz-import-cycle.js": {
     "mtime": 1770192618.0,
     "ast_hash": "614186985a564b8647b1ceb65138b9f7",
     "semantic_hash": "614186985a564b8647b1ceb65138b9f7"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-razorpay.js": {
+  "server/test-razorpay.js": {
     "mtime": 1765965770.0,
     "ast_hash": "00b757a811539b97dfba287b5078d2bc",
     "semantic_hash": "00b757a811539b97dfba287b5078d2bc"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-refresh-flow.js": {
+  "server/test-refresh-flow.js": {
     "mtime": 1767179143.0,
     "ast_hash": "71e66fe1b408e348826df3bfb919c89e",
     "semantic_hash": "71e66fe1b408e348826df3bfb919c89e"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-subscription.js": {
+  "server/test-subscription.js": {
     "mtime": 1765911492.0,
     "ast_hash": "b50b061f63629679e19e307a3fd0af25",
     "semantic_hash": "b50b061f63629679e19e307a3fd0af25"
   },
-  "C:\\D Drive\\wordwise-new\\server\\test-user-flash-cards.js": {
+  "server/test-user-flash-cards.js": {
     "mtime": 1767789681.0,
     "ast_hash": "a78f2eac256d2873303843f707cf7056",
     "semantic_hash": "a78f2eac256d2873303843f707cf7056"
   },
-  "C:\\D Drive\\wordwise-new\\server\\update-sub.js": {
+  "server/update-sub.js": {
     "mtime": 1766142434.0,
     "ast_hash": "72059c36433f7154ddf22b545547341d",
     "semantic_hash": "72059c36433f7154ddf22b545547341d"
   },
-  "C:\\D Drive\\wordwise-new\\server\\utils\\email.js": {
+  "server/utils/email.js": {
     "mtime": 1766140244.0,
     "ast_hash": "7ba4e4173d87129b28e76761ef761f68",
     "semantic_hash": "7ba4e4173d87129b28e76761ef761f68"
   },
-  "C:\\D Drive\\wordwise-new\\server\\utils\\gcp-storage.js": {
+  "server/utils/gcp-storage.js": {
     "mtime": 1775591902.3496926,
     "ast_hash": "0a8a077ca95e7738c0544adeebf4d2b5",
     "semantic_hash": "0a8a077ca95e7738c0544adeebf4d2b5"
   },
-  "C:\\D Drive\\wordwise-new\\server\\utils\\jwt.js": {
+  "server/utils/jwt.js": {
     "mtime": 1767179060.0,
     "ast_hash": "a2891b0ca98d14933380d96a329fb3a3",
     "semantic_hash": "a2891b0ca98d14933380d96a329fb3a3"
   },
-  "C:\\D Drive\\wordwise-new\\server\\utils\\subscriptionJobs.js": {
+  "server/utils/subscriptionJobs.js": {
     "mtime": 1765897510.0,
     "ast_hash": "79133d5781636ee578dbd96ef2da5b17",
     "semantic_hash": "79133d5781636ee578dbd96ef2da5b17"
   },
-  "C:\\D Drive\\wordwise-new\\server\\verify-purchase-api.js": {
+  "server/verify-purchase-api.js": {
     "mtime": 1767097740.0,
     "ast_hash": "8552113b2f9a60274baaadc55bfa265b",
     "semantic_hash": "8552113b2f9a60274baaadc55bfa265b"
   },
-  "C:\\D Drive\\wordwise-new\\start-with-ngrok.sh": {
+  "start-with-ngrok.sh": {
     "mtime": 1765965075.0,
     "ast_hash": "1784990695921108eabef538b18ff013",
     "semantic_hash": "1784990695921108eabef538b18ff013"
   },
-  "C:\\D Drive\\wordwise-new\\subscription-service.js": {
+  "subscription-service.js": {
     "mtime": 1766064064.0,
     "ast_hash": "4c5eb56e4a6eb323879437a2b8ffb2f8",
     "semantic_hash": "4c5eb56e4a6eb323879437a2b8ffb2f8"
   },
-  "C:\\D Drive\\wordwise-new\\test-admin-logic.js": {
+  "test-admin-logic.js": {
     "mtime": 1775506656.2735054,
     "ast_hash": "8a20b82bcfea5026b50913fdd658b662",
     "semantic_hash": "8a20b82bcfea5026b50913fdd658b662"
   },
-  "C:\\D Drive\\wordwise-new\\test-auth-compliance.js": {
+  "test-auth-compliance.js": {
     "mtime": 1775508163.1120574,
     "ast_hash": "344a6342dbea5a2738ec573e9836cc5b",
     "semantic_hash": "344a6342dbea5a2738ec573e9836cc5b"
   },
-  "C:\\D Drive\\wordwise-new\\tmp\\test-course-mgmt.js": {
+  "tmp/test-course-mgmt.js": {
     "mtime": 1775592673.8146367,
     "ast_hash": "f372a8e7f78c736cf5e478df1920385d",
     "semantic_hash": "f372a8e7f78c736cf5e478df1920385d"
   },
-  "C:\\D Drive\\wordwise-new\\vite.config.js": {
+  "vite.config.js": {
     "mtime": 1767865478.0,
     "ast_hash": "9553a3cf63a7e919a76763e59ba440f9",
     "semantic_hash": "9553a3cf63a7e919a76763e59ba440f9"
   },
-  "C:\\D Drive\\wordwise-new\\vocab-data.js": {
+  "vocab-data.js": {
     "mtime": 1765608489.0,
     "ast_hash": "bbaa6cea81f8491c18074fd5b5f215e8",
     "semantic_hash": "bbaa6cea81f8491c18074fd5b5f215e8"
   },
-  "C:\\D Drive\\wordwise-new\\.agents\\rules\\graphify.md": {
+  ".agents/rules/graphify.md": {
     "mtime": 1781554535.662928,
     "ast_hash": "a0e4d192b9e2e17256124dbfc8e24e6a",
     "semantic_hash": "a0e4d192b9e2e17256124dbfc8e24e6a"
   },
-  "C:\\D Drive\\wordwise-new\\.agents\\workflows\\graphify.md": {
+  ".agents/workflows/graphify.md": {
     "mtime": 1781554535.6765838,
     "ast_hash": "637776aa6f7496d069afe7520c845c8a",
     "semantic_hash": "637776aa6f7496d069afe7520c845c8a"
   },
-  "C:\\D Drive\\wordwise-new\\.claude\\CLAUDE.md": {
+  ".claude/CLAUDE.md": {
     "mtime": 1781554419.883459,
     "ast_hash": "817fe671013b35ae0bc9301dfe449a87",
     "semantic_hash": "817fe671013b35ae0bc9301dfe449a87"
   },
-  "C:\\D Drive\\wordwise-new\\.claude\\skills\\graphify\\SKILL.md": {
+  ".claude/skills/graphify/SKILL.md": {
     "mtime": 1781554419.8729508,
     "ast_hash": "26828fbc6cf325d3fb0ba6a3a28e03a1",
     "semantic_hash": "26828fbc6cf325d3fb0ba6a3a28e03a1"
   },
-  "C:\\D Drive\\wordwise-new\\.claude\\skills\\graphify\\references\\add-watch.md": {
+  ".claude/skills/graphify/references/add-watch.md": {
     "mtime": 1781554395.118729,
     "ast_hash": "0df0589623217ca38a12bdcabfb42f4c",
     "semantic_hash": "0df0589623217ca38a12bdcabfb42f4c"
   },
-  "C:\\D Drive\\wordwise-new\\.claude\\skills\\graphify\\references\\exports.md": {
+  ".claude/skills/graphify/references/exports.md": {
     "mtime": 1781554395.1197267,
     "ast_hash": "c04ddf8f1f5ef5e262ebec491a523c74",
     "semantic_hash": "c04ddf8f1f5ef5e262ebec491a523c74"
   },
-  "C:\\D Drive\\wordwise-new\\.claude\\skills\\graphify\\references\\extraction-spec.md": {
+  ".claude/skills/graphify/references/extraction-spec.md": {
     "mtime": 1781554395.120724,
     "ast_hash": "24808b03abfeaf5f6435bb69c0125b2c",
     "semantic_hash": "24808b03abfeaf5f6435bb69c0125b2c"
   },
-  "C:\\D Drive\\wordwise-new\\.claude\\skills\\graphify\\references\\github-and-merge.md": {
+  ".claude/skills/graphify/references/github-and-merge.md": {
     "mtime": 1781554395.1227186,
     "ast_hash": "cde13df085e4c492aeb7ba298a996d0d",
     "semantic_hash": "cde13df085e4c492aeb7ba298a996d0d"
   },
-  "C:\\D Drive\\wordwise-new\\.claude\\skills\\graphify\\references\\hooks.md": {
+  ".claude/skills/graphify/references/hooks.md": {
     "mtime": 1781554395.1247134,
     "ast_hash": "3f545db6ce646650bb9de588f5512a27",
     "semantic_hash": "3f545db6ce646650bb9de588f5512a27"
   },
-  "C:\\D Drive\\wordwise-new\\.claude\\skills\\graphify\\references\\query.md": {
+  ".claude/skills/graphify/references/query.md": {
     "mtime": 1781554395.1267076,
     "ast_hash": "c2a8e798674a81b02aa9975f43023819",
     "semantic_hash": "c2a8e798674a81b02aa9975f43023819"
   },
-  "C:\\D Drive\\wordwise-new\\.claude\\skills\\graphify\\references\\transcribe.md": {
+  ".claude/skills/graphify/references/transcribe.md": {
     "mtime": 1781554395.127706,
     "ast_hash": "70f6aa30d6211f3a2c7e9fc45479f50c",
     "semantic_hash": "70f6aa30d6211f3a2c7e9fc45479f50c"
   },
-  "C:\\D Drive\\wordwise-new\\.claude\\skills\\graphify\\references\\update.md": {
+  ".claude/skills/graphify/references/update.md": {
     "mtime": 1781554395.12871,
     "ast_hash": "0dad167a95bdb389f02fecffb60b1bc8",
     "semantic_hash": "0dad167a95bdb389f02fecffb60b1bc8"
   },
-  "C:\\D Drive\\wordwise-new\\ANNUAL_SUBSCRIPTION_REFACTOR_SUMMARY.md": {
+  "ANNUAL_SUBSCRIPTION_REFACTOR_SUMMARY.md": {
     "mtime": 1766056850.0,
     "ast_hash": "e84c8bcbae4192c7036192f333467ca5",
     "semantic_hash": "e84c8bcbae4192c7036192f333467ca5"
   },
-  "C:\\D Drive\\wordwise-new\\API_KEYS_UPDATED.md": {
+  "API_KEYS_UPDATED.md": {
     "mtime": 1766060774.0,
     "ast_hash": "68e58b04dfb5e844adf3f176509673f9",
     "semantic_hash": "68e58b04dfb5e844adf3f176509673f9"
   },
-  "C:\\D Drive\\wordwise-new\\CLAUDE.md": {
+  "CLAUDE.md": {
     "mtime": 1781554419.9034123,
     "ast_hash": "8a6643a420fdad6bfb583523bc6cef16",
     "semantic_hash": "8a6643a420fdad6bfb583523bc6cef16"
   },
-  "C:\\D Drive\\wordwise-new\\CLOUDFLARE_DEPLOY.md": {
+  "CLOUDFLARE_DEPLOY.md": {
     "mtime": 1765608489.0,
     "ast_hash": "52d68fc0fbef072caaa9de0b726f5dce",
     "semantic_hash": "52d68fc0fbef072caaa9de0b726f5dce"
   },
-  "C:\\D Drive\\wordwise-new\\CLOUDFLARE_DEPLOYMENT.md": {
+  "CLOUDFLARE_DEPLOYMENT.md": {
     "mtime": 1767865578.0,
     "ast_hash": "dd0f4f69fba4923ea130158ffd90d052",
     "semantic_hash": "dd0f4f69fba4923ea130158ffd90d052"
   },
-  "C:\\D Drive\\wordwise-new\\CLOUDFLARE_DEPLOYMENT_GUIDE.md": {
+  "CLOUDFLARE_DEPLOYMENT_GUIDE.md": {
     "mtime": 1777405203.8282185,
     "ast_hash": "e7f2a851c1c33243a1db2b5f99b0aff7",
     "semantic_hash": "e7f2a851c1c33243a1db2b5f99b0aff7"
   },
-  "C:\\D Drive\\wordwise-new\\CONTACT_FORM_EMAIL_SETUP.md": {
+  "CONTACT_FORM_EMAIL_SETUP.md": {
     "mtime": 1765889630.0,
     "ast_hash": "5fb72d5391e008805723869165e649ac",
     "semantic_hash": "5fb72d5391e008805723869165e649ac"
   },
-  "C:\\D Drive\\wordwise-new\\CREATE_RAZORPAY_PLAN.md": {
+  "CREATE_RAZORPAY_PLAN.md": {
     "mtime": 1765965431.0,
     "ast_hash": "65158f2de085708b8e3ea40d357d1844",
     "semantic_hash": "65158f2de085708b8e3ea40d357d1844"
   },
-  "C:\\D Drive\\wordwise-new\\DEPLOYMENT.md": {
+  "DEPLOYMENT.md": {
     "mtime": 1767865574.0,
     "ast_hash": "d04c025e1fac73712e97609719bba38c",
     "semantic_hash": "d04c025e1fac73712e97609719bba38c"
   },
-  "C:\\D Drive\\wordwise-new\\DEPLOYMENT_CHECKLIST.md": {
+  "DEPLOYMENT_CHECKLIST.md": {
     "mtime": 1777405201.7124054,
     "ast_hash": "0d03a117130b3a961144270b47eb5ede",
     "semantic_hash": "0d03a117130b3a961144270b47eb5ede"
   },
-  "C:\\D Drive\\wordwise-new\\DEPLOYMENT_GUIDE.md": {
+  "DEPLOYMENT_GUIDE.md": {
     "mtime": 1777143382.4974656,
     "ast_hash": "3117f8a014d2c85d5d6c8776cd665e57",
     "semantic_hash": "3117f8a014d2c85d5d6c8776cd665e57"
   },
-  "C:\\D Drive\\wordwise-new\\DEPLOY_DIRECT.md": {
+  "DEPLOY_DIRECT.md": {
     "mtime": 1765608489.0,
     "ast_hash": "faa4578931e73c04b11e649a9c0146b8",
     "semantic_hash": "faa4578931e73c04b11e649a9c0146b8"
   },
-  "C:\\D Drive\\wordwise-new\\DEPLOY_MANUAL.md": {
+  "DEPLOY_MANUAL.md": {
     "mtime": 1765608489.0,
     "ast_hash": "9dafdb115f57ec9cca659144b6254f96",
     "semantic_hash": "9dafdb115f57ec9cca659144b6254f96"
   },
-  "C:\\D Drive\\wordwise-new\\DIRECT_CHECKOUT_IMPLEMENTATION.md": {
+  "DIRECT_CHECKOUT_IMPLEMENTATION.md": {
     "mtime": 1766062328.0,
     "ast_hash": "58a849c6f02b88e6ef5b9ec013da50ef",
     "semantic_hash": "58a849c6f02b88e6ef5b9ec013da50ef"
   },
-  "C:\\D Drive\\wordwise-new\\DYNAMIC_PRICING_FEATURE.md": {
+  "DYNAMIC_PRICING_FEATURE.md": {
     "mtime": 1766061489.0,
     "ast_hash": "ebe7dbc76800e5b7ce8645c2a32c6a12",
     "semantic_hash": "ebe7dbc76800e5b7ce8645c2a32c6a12"
   },
-  "C:\\D Drive\\wordwise-new\\GCP_WIF_SETUP_GUIDE.md": {
+  "GCP_WIF_SETUP_GUIDE.md": {
     "mtime": 1777922335.0932972,
     "ast_hash": "cd6c102ab1ebbe886096b277919973e0",
     "semantic_hash": "cd6c102ab1ebbe886096b277919973e0"
   },
-  "C:\\D Drive\\wordwise-new\\GOOGLE_AUTH_INTEGRATION.md": {
+  "GOOGLE_AUTH_INTEGRATION.md": {
     "mtime": 1765878446.0,
     "ast_hash": "c65cf1cd2a76883a0266e654132f98dc",
     "semantic_hash": "c65cf1cd2a76883a0266e654132f98dc"
   },
-  "C:\\D Drive\\wordwise-new\\GOOGLE_OAUTH_FIX.md": {
+  "GOOGLE_OAUTH_FIX.md": {
     "mtime": 1777405197.72339,
     "ast_hash": "ed4f9c8a80bdc3a9283f0dce6c8ee570",
     "semantic_hash": "ed4f9c8a80bdc3a9283f0dce6c8ee570"
   },
-  "C:\\D Drive\\wordwise-new\\GOOGLE_OAUTH_IMPLEMENTATION.md": {
+  "GOOGLE_OAUTH_IMPLEMENTATION.md": {
     "mtime": 1777405199.6536922,
     "ast_hash": "767f18afc61931e813c8b1f3b1fe531a",
     "semantic_hash": "767f18afc61931e813c8b1f3b1fe531a"
   },
-  "C:\\D Drive\\wordwise-new\\IMPLEMENTATION_SUMMARY.md": {
+  "IMPLEMENTATION_SUMMARY.md": {
     "mtime": 1765910176.0,
     "ast_hash": "7247964303cb78665eeafd595a58b849",
     "semantic_hash": "7247964303cb78665eeafd595a58b849"
   },
-  "C:\\D Drive\\wordwise-new\\NAVIGATION_SESSION_MANAGEMENT.md": {
+  "NAVIGATION_SESSION_MANAGEMENT.md": {
     "mtime": 1765888781.0,
     "ast_hash": "97948b3968a1a787db94d1b4df71ab46",
     "semantic_hash": "97948b3968a1a787db94d1b4df71ab46"
   },
-  "C:\\D Drive\\wordwise-new\\PAYMENT_LINK_PLAN_AMOUNT_FIX.md": {
+  "PAYMENT_LINK_PLAN_AMOUNT_FIX.md": {
     "mtime": 1766061685.0,
     "ast_hash": "0c58a46dd822cf1cf07e2aaa23fc7c89",
     "semantic_hash": "0c58a46dd822cf1cf07e2aaa23fc7c89"
   },
-  "C:\\D Drive\\wordwise-new\\QUICK_START_GOOGLE_AUTH.md": {
+  "QUICK_START_GOOGLE_AUTH.md": {
     "mtime": 1765878491.0,
     "ast_hash": "77a6f0cd1ef2684525f2fee5825d977b",
     "semantic_hash": "77a6f0cd1ef2684525f2fee5825d977b"
   },
-  "C:\\D Drive\\wordwise-new\\QUICK_START_WITHOUT_WEBHOOKS.md": {
+  "QUICK_START_WITHOUT_WEBHOOKS.md": {
     "mtime": 1765965150.0,
     "ast_hash": "865cec65c22f2acf51c236554f0ef0ad",
     "semantic_hash": "865cec65c22f2acf51c236554f0ef0ad"
   },
-  "C:\\D Drive\\wordwise-new\\RAZORPAY_INTEGRATION_COMPLETE.md": {
+  "RAZORPAY_INTEGRATION_COMPLETE.md": {
     "mtime": 1765965179.0,
     "ast_hash": "3ecdbac4819b7897fe29bd0b2b6f4f0a",
     "semantic_hash": "3ecdbac4819b7897fe29bd0b2b6f4f0a"
   },
-  "C:\\D Drive\\wordwise-new\\RAZORPAY_SETUP_GUIDE.md": {
+  "RAZORPAY_SETUP_GUIDE.md": {
     "mtime": 1765965054.0,
     "ast_hash": "20e7b080ee479fc12ecab59ade552310",
     "semantic_hash": "20e7b080ee479fc12ecab59ade552310"
   },
-  "C:\\D Drive\\wordwise-new\\RAZORPAY_TEST_MODE_GUIDE.md": {
+  "RAZORPAY_TEST_MODE_GUIDE.md": {
     "mtime": 1766064111.0,
     "ast_hash": "2d86447d506ab9b7cdf31773c479b45a",
     "semantic_hash": "2d86447d506ab9b7cdf31773c479b45a"
   },
-  "C:\\D Drive\\wordwise-new\\README.md": {
+  "README.md": {
     "mtime": 1777143395.252167,
     "ast_hash": "8f38f7340fa772a3cc51a6fae307c67a",
     "semantic_hash": "8f38f7340fa772a3cc51a6fae307c67a"
   },
-  "C:\\D Drive\\wordwise-new\\STRIPE_SETUP_COMPLETE.md": {
+  "STRIPE_SETUP_COMPLETE.md": {
     "mtime": 1765911778.0,
     "ast_hash": "ed138b6653d039e1a50e49b9c496e88e",
     "semantic_hash": "ed138b6653d039e1a50e49b9c496e88e"
   },
-  "C:\\D Drive\\wordwise-new\\STRIPE_SUBSCRIPTION_SETUP.md": {
+  "STRIPE_SUBSCRIPTION_SETUP.md": {
     "mtime": 1765897821.0,
     "ast_hash": "fc96befcd455af966853b319366f65e3",
     "semantic_hash": "fc96befcd455af966853b319366f65e3"
   },
-  "C:\\D Drive\\wordwise-new\\STRIPE_TO_RAZORPAY_MIGRATION.md": {
+  "STRIPE_TO_RAZORPAY_MIGRATION.md": {
     "mtime": 1765958655.0,
     "ast_hash": "9fc4806eb2082d885c49a876bc0728d5",
     "semantic_hash": "9fc4806eb2082d885c49a876bc0728d5"
   },
-  "C:\\D Drive\\wordwise-new\\SUBSCRIPTION_FLOW_SUMMARY.md": {
+  "SUBSCRIPTION_FLOW_SUMMARY.md": {
     "mtime": 1766058553.0,
     "ast_hash": "9bbd8f91408e7bd76e8a74f834a9202c",
     "semantic_hash": "9bbd8f91408e7bd76e8a74f834a9202c"
   },
-  "C:\\D Drive\\wordwise-new\\TESTING_GUIDE.md": {
+  "TESTING_GUIDE.md": {
     "mtime": 1766056910.0,
     "ast_hash": "370deedc9276391aaa4fb8516acf7952",
     "semantic_hash": "370deedc9276391aaa4fb8516acf7952"
   },
-  "C:\\D Drive\\wordwise-new\\TEST_PAYMENT_NOW.md": {
+  "TEST_PAYMENT_NOW.md": {
     "mtime": 1765965616.0,
     "ast_hash": "dfb915a59daa27ad159afc70f076d753",
     "semantic_hash": "dfb915a59daa27ad159afc70f076d753"
   },
-  "C:\\D Drive\\wordwise-new\\USER_SESSION_MANAGEMENT.md": {
+  "USER_SESSION_MANAGEMENT.md": {
     "mtime": 1767865576.0,
     "ast_hash": "789aba15c4234a6d06c1c85ead7d5e1c",
     "semantic_hash": "789aba15c4234a6d06c1c85ead7d5e1c"
   },
-  "C:\\D Drive\\wordwise-new\\WEBHOOK_SETUP_SUCCESS.md": {
+  "WEBHOOK_SETUP_SUCCESS.md": {
     "mtime": 1765912382.0,
     "ast_hash": "c892a6beb464631def93efe2aa9b7468",
     "semantic_hash": "c892a6beb464631def93efe2aa9b7468"
   },
-  "C:\\D Drive\\wordwise-new\\WEBHOOK_TESTING_GUIDE.md": {
+  "WEBHOOK_TESTING_GUIDE.md": {
     "mtime": 1765965036.0,
     "ast_hash": "4a26ac25867e111976f2b8fe6bc6b1e3",
     "semantic_hash": "4a26ac25867e111976f2b8fe6bc6b1e3"
   },
-  "C:\\D Drive\\wordwise-new\\admin\\SESSION_MANAGEMENT_README.md": {
+  "admin/SESSION_MANAGEMENT_README.md": {
     "mtime": 1765877722.0,
     "ast_hash": "e590fb68b4e3843a6a0c44eb1ab9b363",
     "semantic_hash": "e590fb68b4e3843a6a0c44eb1ab9b363"
   },
-  "C:\\D Drive\\wordwise-new\\admin\\course-editor.html": {
+  "admin/course-editor.html": {
     "mtime": 1775591803.271684,
     "ast_hash": "160e4b8cb1a8bfc18dd833222178b009",
     "semantic_hash": "160e4b8cb1a8bfc18dd833222178b009"
   },
-  "C:\\D Drive\\wordwise-new\\admin\\courses.html": {
+  "admin/courses.html": {
     "mtime": 1770127499.0,
     "ast_hash": "5776f0d38aacd97a7042ba16c9e74af5",
     "semantic_hash": "5776f0d38aacd97a7042ba16c9e74af5"
   },
-  "C:\\D Drive\\wordwise-new\\admin\\dashboard.html": {
+  "admin/dashboard.html": {
     "mtime": 1775580119.6519833,
     "ast_hash": "9691923f36c7ec8107664f8eea02580d",
     "semantic_hash": "9691923f36c7ec8107664f8eea02580d"
   },
-  "C:\\D Drive\\wordwise-new\\admin\\flash-cards.html": {
+  "admin/flash-cards.html": {
     "mtime": 1770127501.0,
     "ast_hash": "606edba04bd76251eeffe8f58702d756",
     "semantic_hash": "606edba04bd76251eeffe8f58702d756"
   },
-  "C:\\D Drive\\wordwise-new\\admin\\login.html": {
+  "admin/login.html": {
     "mtime": 1765608489.0,
     "ast_hash": "cb232bea4a555398bdd5c2b661837eb0",
     "semantic_hash": "cb232bea4a555398bdd5c2b661837eb0"
   },
-  "C:\\D Drive\\wordwise-new\\admin\\quiz-management.html": {
+  "admin/quiz-management.html": {
     "mtime": 1770192148.0,
     "ast_hash": "3d75e29051ebb6cbf6d661632a0d29f1",
     "semantic_hash": "3d75e29051ebb6cbf6d661632a0d29f1"
   },
-  "C:\\D Drive\\wordwise-new\\client\\AGENTS.md": {
+  "client/AGENTS.md": {
     "mtime": 1777142056.0313058,
     "ast_hash": "9e09241799026ac05be315a2f0b50055",
     "semantic_hash": "9e09241799026ac05be315a2f0b50055"
   },
-  "C:\\D Drive\\wordwise-new\\client\\CLAUDE.md": {
+  "client/CLAUDE.md": {
     "mtime": 1777142056.0361464,
     "ast_hash": "5c27369b226fcf2be8a6cfe52224e767",
     "semantic_hash": "5c27369b226fcf2be8a6cfe52224e767"
   },
-  "C:\\D Drive\\wordwise-new\\client\\README.md": {
+  "client/README.md": {
     "mtime": 1777141859.269464,
     "ast_hash": "f15aaa42d5d299d091b1171097ea56ad",
     "semantic_hash": "f15aaa42d5d299d091b1171097ea56ad"
   },
-  "C:\\D Drive\\wordwise-new\\contact.html": {
+  "contact.html": {
     "mtime": 1777142585.40813,
     "ast_hash": "e5f22c990e371d03953fddf5d29d6dd4",
     "semantic_hash": "e5f22c990e371d03953fddf5d29d6dd4"
   },
-  "C:\\D Drive\\wordwise-new\\dashboard.html": {
+  "dashboard.html": {
     "mtime": 1777142585.4398067,
     "ast_hash": "165849e17ee01704b2b57a9ab98cba22",
     "semantic_hash": "165849e17ee01704b2b57a9ab98cba22"
   },
-  "C:\\D Drive\\wordwise-new\\features.html": {
+  "features.html": {
     "mtime": 1777142585.5025454,
     "ast_hash": "e0b2c73dfeda5b8c3a36d884c47897a8",
     "semantic_hash": "e0b2c73dfeda5b8c3a36d884c47897a8"
   },
-  "C:\\D Drive\\wordwise-new\\flash-cards.html": {
+  "flash-cards.html": {
     "mtime": 1775591175.531537,
     "ast_hash": "02394da383b21812909c7e8444434bbb",
     "semantic_hash": "02394da383b21812909c7e8444434bbb"
   },
-  "C:\\D Drive\\wordwise-new\\index.html": {
+  "index.html": {
     "mtime": 1777142585.5247073,
     "ast_hash": "b20714b918170da07c9f9bd6931aa4ec",
     "semantic_hash": "b20714b918170da07c9f9bd6931aa4ec"
   },
-  "C:\\D Drive\\wordwise-new\\login.html": {
+  "login.html": {
     "mtime": 1777142585.5919244,
     "ast_hash": "af7856ad98cd2764e647b7e6b62e9b6e",
     "semantic_hash": "af7856ad98cd2764e647b7e6b62e9b6e"
   },
-  "C:\\D Drive\\wordwise-new\\my-course.html": {
+  "my-course.html": {
     "mtime": 1777142585.6353192,
     "ast_hash": "4f5d16901218f8e66fd701e5031664ad",
     "semantic_hash": "4f5d16901218f8e66fd701e5031664ad"
   },
-  "C:\\D Drive\\wordwise-new\\my-courses.html": {
+  "my-courses.html": {
     "mtime": 1777142585.6852603,
     "ast_hash": "1541557fd17b90884102d40a16056e3d",
     "semantic_hash": "1541557fd17b90884102d40a16056e3d"
   },
-  "C:\\D Drive\\wordwise-new\\payment.html": {
+  "payment.html": {
     "mtime": 1777142585.756992,
     "ast_hash": "8cc9b4de4bba8b6fc15f24f88f099c80",
     "semantic_hash": "8cc9b4de4bba8b6fc15f24f88f099c80"
   },
-  "C:\\D Drive\\wordwise-new\\profile.html": {
+  "profile.html": {
     "mtime": 1777142585.8527677,
     "ast_hash": "6fa816c4e1dd84809aad36a6dfe6010c",
     "semantic_hash": "6fa816c4e1dd84809aad36a6dfe6010c"
   },
-  "C:\\D Drive\\wordwise-new\\server\\ADMIN_AUTH_README.md": {
+  "server/ADMIN_AUTH_README.md": {
     "mtime": 1765873176.0,
     "ast_hash": "aea70f4eca1cba97091bd387bc3b79b4",
     "semantic_hash": "aea70f4eca1cba97091bd387bc3b79b4"
   },
-  "C:\\D Drive\\wordwise-new\\server\\GCP_SETUP_GUIDE.md": {
+  "server/GCP_SETUP_GUIDE.md": {
     "mtime": 1765608489.0,
     "ast_hash": "5e12ae4af3d544b2422a50e19a34a9eb",
     "semantic_hash": "5e12ae4af3d544b2422a50e19a34a9eb"
   },
-  "C:\\D Drive\\wordwise-new\\server\\MONGODB_SETUP.md": {
+  "server/MONGODB_SETUP.md": {
     "mtime": 1765608489.0,
     "ast_hash": "191a8157c044c50135f0405633939acd",
     "semantic_hash": "191a8157c044c50135f0405633939acd"
   },
-  "C:\\D Drive\\wordwise-new\\server\\RAILWAY_DEPLOY.md": {
+  "server/RAILWAY_DEPLOY.md": {
     "mtime": 1777143384.5779464,
     "ast_hash": "ceccfe422ba536cb91ce224360a679a2",
     "semantic_hash": "ceccfe422ba536cb91ce224360a679a2"
   },
-  "C:\\D Drive\\wordwise-new\\server\\README.md": {
+  "server/README.md": {
     "mtime": 1765608489.0,
     "ast_hash": "258647b66dd3c3aafa6f8f1e5f91390a",
     "semantic_hash": "258647b66dd3c3aafa6f8f1e5f91390a"
   },
-  "C:\\D Drive\\wordwise-new\\server\\VIDEO_UPLOAD_UPDATE.md": {
+  "server/VIDEO_UPLOAD_UPDATE.md": {
     "mtime": 1765608489.0,
     "ast_hash": "a8249c5e00df7123164b454e8b274ac2",
     "semantic_hash": "a8249c5e00df7123164b454e8b274ac2"
   },
-  "C:\\D Drive\\wordwise-new\\server\\src\\README.md": {
+  "server/src/README.md": {
     "mtime": 1777142011.3283608,
     "ast_hash": "8b2102d96bd8e6f90348d33ed41e56d7",
     "semantic_hash": "8b2102d96bd8e6f90348d33ed41e56d7"
   },
-  "C:\\D Drive\\wordwise-new\\subscription.html": {
+  "subscription.html": {
     "mtime": 1777142585.9193344,
     "ast_hash": "e245135194c40781ae46ca11ef32323b",
     "semantic_hash": "e245135194c40781ae46ca11ef32323b"
   },
-  "C:\\D Drive\\wordwise-new\\subscription\\cancel.html": {
+  "subscription/cancel.html": {
     "mtime": 1765915043.0,
     "ast_hash": "015e4de395201b54b3f0e7612d9ad0b3",
     "semantic_hash": "015e4de395201b54b3f0e7612d9ad0b3"
   },
-  "C:\\D Drive\\wordwise-new\\subscription\\success.html": {
+  "subscription/success.html": {
     "mtime": 1767865523.0,
     "ast_hash": "c886e371b5765181e95c73139c5ed03b",
     "semantic_hash": "c886e371b5765181e95c73139c5ed03b"
   },
-  "C:\\D Drive\\wordwise-new\\client\\public\\file.svg": {
+  "client/public/file.svg": {
     "mtime": 1777141859.7127912,
     "ast_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71",
     "semantic_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71"
   },
-  "C:\\D Drive\\wordwise-new\\client\\public\\globe.svg": {
+  "client/public/globe.svg": {
     "mtime": 1777141859.7646668,
     "ast_hash": "2aaafa6a49b6563925fe440891e32717",
     "semantic_hash": "2aaafa6a49b6563925fe440891e32717"
   },
-  "C:\\D Drive\\wordwise-new\\client\\public\\next.svg": {
+  "client/public/next.svg": {
     "mtime": 1777141859.8129947,
     "ast_hash": "8e061864f388b47f33a1c3780831193e",
     "semantic_hash": "8e061864f388b47f33a1c3780831193e"
   },
-  "C:\\D Drive\\wordwise-new\\client\\public\\vercel.svg": {
+  "client/public/vercel.svg": {
     "mtime": 1777141859.869219,
     "ast_hash": "c0af2f507b369b085b35ef4bbe3bcf1e",
     "semantic_hash": "c0af2f507b369b085b35ef4bbe3bcf1e"
   },
-  "C:\\D Drive\\wordwise-new\\client\\public\\window.svg": {
+  "client/public/window.svg": {
     "mtime": 1777141859.9190602,
     "ast_hash": "a2760511c65806022ad20adf74370ff3",
     "semantic_hash": "a2760511c65806022ad20adf74370ff3"

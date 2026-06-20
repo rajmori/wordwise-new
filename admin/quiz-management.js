@@ -1,4 +1,5 @@
 import { requireAuth, getAdminToken } from './auth-utils.js';
+import { ADMIN_API_BASE_URL } from '../config.js';
 
 // Check authentication first
 requireAuth(true);
@@ -104,7 +105,7 @@ async function loadQuizzes() {
         if (status) params.append('status', status);
         if (search) params.append('search', search);
 
-        const response = await fetch(`http://localhost:3000/api/quizzes?${params}`, {
+        const response = await fetch(`${ADMIN_API_BASE_URL}/quizzes?${params}`, {
             headers: getHeaders()
         });
 
@@ -176,8 +177,8 @@ async function handleQuizSubmit(e) {
 
     try {
         const url = quizId
-            ? `http://localhost:3000/api/quizzes/${quizId}`
-            : 'http://localhost:3000/api/quizzes';
+            ? `${ADMIN_API_BASE_URL}/quizzes/${quizId}`
+            : `${ADMIN_API_BASE_URL}/quizzes`;
 
         const method = quizId ? 'PUT' : 'POST';
 
@@ -211,7 +212,7 @@ async function deleteQuiz(id, title) {
 async function executeDeleteQuiz() {
     const id = document.getElementById('deleteQuizId').value;
     try {
-        const response = await fetch(`http://localhost:3000/api/quizzes/${id}`, {
+        const response = await fetch(`${ADMIN_API_BASE_URL}/quizzes/${id}`, {
             method: 'DELETE',
             headers: getHeaders()
         });
@@ -249,7 +250,7 @@ async function handleImport(e) {
         const headers = getHeaders();
         delete headers['Content-Type'];
 
-        const response = await fetch('http://localhost:3000/api/quizzes/import', {
+        const response = await fetch(`${ADMIN_API_BASE_URL}/quizzes/import`, {
             method: 'POST',
             headers: headers,
             body: formData

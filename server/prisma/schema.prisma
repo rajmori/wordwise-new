@@ -1,0 +1,281 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ── Auth & RBAC Models ──────────────────────────────────────────────────────────
+
+model User {
+  id                    String            @id @default(uuid())
+  email                 String            @unique
+  password              String
+  name                  String
+  isSubscribed          Boolean           @default(false)
+  isActive              Boolean           @default(true)
+  lastLogin             DateTime?
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+  
+  userRoles             UserRole[]
+  quizAttempts          QuizAttempt[]
+  subscriptions         Subscription[]
+  payments              Payment[]
+  enrollments           Enrollment[]
+  loginLogs             LoginLog[]
+  auditLogs             AdminAuditLog[]   @relation("AdminAuditLogs")
+  
+  coursesCreated        Course[]          @relation("CourseCreator")
+  coursesUpdated        Course[]          @relation("CourseUpdater")
+  lessonsCreated        Lesson[]          @relation("LessonCreator")
+  lessonsUpdated        Lesson[]          @relation("LessonUpdater")
+  mediaUploaded         MediaAsset[]      @relation("MediaUploader")
+  quizzesCreated        Quiz[]            @relation("QuizCreator")
+  quizzesUpdated        Quiz[]            @relation("QuizUpdater")
+}
+
+model Role {
+  id          String       @id @default(uuid())
+  name        String       @unique // super_admin, content_admin, support_admin, finance_admin, analyst, readonly_admin
+  description String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  
+  userRoles   UserRole[]
+  permissions RolePermission[]
+}
+
+model Permission {
+  id          String           @id @default(uuid())
+  name        String           @unique // e.g. users:create, courses:publish, etc.
+  description String?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  
+  roles       RolePermission[]
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+  
+  role         Role        @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission  @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+  
+  @@id([roleId, permissionId])
+}
+
+model UserRole {
+  userId     String
+  roleId     String
+  assignedAt DateTime @default(now())
+  assignedBy String?
+  
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role       Role     @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  
+  @@id([userId, roleId])
+}
+
+// ── Course & Lesson Models ───────────────────────────────────────────────────
+
+model Course {
+  id          String       @id @default(uuid())
+  title       String
+  description String?
+  instructor  String?
+  isPublished Boolean      @default(false)
+  createdBy   String
+  updatedBy   String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  
+  creator     User         @relation("CourseCreator", fields: [createdBy], references: [id])
+  updater     User         @relation("CourseUpdater", fields: [updatedBy], references: [id])
+  lessons     Lesson[]
+  enrollments Enrollment[]
+}
+
+model Lesson {
+  id          String       @id @default(uuid())
+  courseId    String
+  title       String
+  description String?
+  sequence    Int          @default(0)
+  createdBy   String
+  updatedBy   String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  
+  course      Course       @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  creator     User         @relation("LessonCreator", fields: [createdBy], references: [id])
+  updater     User         @relation("LessonUpdater", fields: [updatedBy], references: [id])
+  mediaAssets MediaAsset[]
+}
+
+model MediaAsset {
+  id          String   @id @default(uuid())
+  lessonId    String?
+  url         String   // Signed Cloud Storage url or GCS path key
+  type        String   // video, document, image
+  size        Int      // in bytes
+  status      String   @default("uploaded") // uploaded, processing, failed
+  uploadedBy  String
+  createdAt   DateTime @default(now())
+  
+  lesson      Lesson?  @relation(fields: [lessonId], references: [id], onDelete: SetNull)
+  uploader    User     @relation("MediaUploader", fields: [uploadedBy], references: [id])
+}
+
+// ── Quiz Models ──────────────────────────────────────────────────────────────
+
+model Quiz {
+  id          String         @id @default(uuid())
+  title       String
+  alphabet    String         @db.VarChar(1)
+  sequence    Int
+  status      String         @default("draft") // draft, published
+  createdBy   String
+  updatedBy   String
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  
+  creator     User           @relation("QuizCreator", fields: [createdBy], references: [id])
+  updater     User           @relation("QuizUpdater", fields: [updatedBy], references: [id])
+  questions   QuizQuestion[]
+  attempts    QuizAttempt[]
+}
+
+model QuizQuestion {
+  id            String   @id @default(uuid())
+  quizId        String
+  text          String
+  options       Json     // JSON Array of options: ["Option A", "Option B", ...]
+  correctOption Int      // Index 0-3
+  hint          String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  quiz          Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+}
+
+model QuizAttempt {
+  id          String   @id @default(uuid())
+  userId      String
+  quizId      String
+  score       Int
+  answers     Json     // Map of answers: {"questionId": selectedIndex}
+  completedAt DateTime @default(now())
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quiz        Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+}
+
+// ── Transaction & Webhook Models ─────────────────────────────────────────────
+
+model Subscription {
+  id                    String            @id @default(uuid())
+  userId                String
+  planId                String
+  status                String            // active, cancelled, past_due, inactive
+  amount                Int               // in paise (e.g. 250000)
+  currentPeriodStart    DateTime
+  currentPeriodEnd      DateTime
+  cancelAtPeriodEnd     Boolean           @default(false)
+  provider              String            // stripe, razorpay
+  providerSubscriptionId String?          @unique
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+  
+  user                  User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan                  SubscriptionPlan  @relation(fields: [planId], references: [id])
+  payments              Payment[]
+}
+
+model SubscriptionPlan {
+  id             String         @id @default(uuid())
+  name           String
+  description    String?
+  amount         Int            // in paise
+  currency       String         @default("INR")
+  interval       String         @default("year") // month, year
+  providerPlanId String?        @unique // Stripe plan ID or Razorpay plan ID
+  isActive       Boolean        @default(true)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  
+  subscriptions  Subscription[]
+}
+
+model Payment {
+  id                String        @id @default(uuid())
+  userId            String
+  subscriptionId    String?
+  amount            Int
+  currency          String        @default("INR")
+  status            String        // success, failed, pending
+  provider          String        // stripe, razorpay
+  providerPaymentId String?       @unique
+  providerOrderId   String?
+  idempotencyKey    String?       @unique
+  createdAt         DateTime      @default(now())
+  
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscription      Subscription? @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
+}
+
+model WebhookEvent {
+  id          String    @id @default(uuid())
+  eventId     String    @unique
+  provider    String    // stripe, razorpay
+  type        String    // event type/name
+  payload     Json
+  processed   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  processedAt DateTime?
+}
+
+// ── Enrollment Model ──────────────────────────────────────────────────────────
+
+model Enrollment {
+  id          String    @id @default(uuid())
+  userId      String
+  courseId    String
+  status      String    @default("active") // active, completed
+  enrolledAt  DateTime  @default(now())
+  completedAt DateTime?
+  
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course      Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, courseId])
+}
+
+// ── Observability & Audit logging ──────────────────────────────────────────────
+
+model LoginLog {
+  id         String   @id @default(uuid())
+  userId     String
+  ipAddress  String?
+  location   String?
+  device     String?
+  userAgent  String?
+  timestamp  DateTime @default(now())
+  
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AdminAuditLog {
+  id         String   @id @default(uuid())
+  actorId    String
+  action     String   // e.g. "courses:publish", "subscriptions:override"
+  targetType String   // e.g. "Course", "Subscription"
+  targetId   String?
+  details    Json?    // changes made, context, correlationId
+  timestamp  DateTime @default(now())
+  
+  actor      User     @relation("AdminAuditLogs", fields: [actorId], references: [id], onDelete: Cascade)
+}

@@ -21,6 +21,7 @@ import subscriptionRoutes from './routes/subscriptionRoutes.js';
 import courseOrderRoutes from './routes/courseOrderRoutes.js';
 import flashCardRoutes from './routes/flashCardRoutes.js';
 import quizRoutes from './routes/quizRoutes.js';
+import adminV1Routes from './routes/api/v1/admin.routes.js';
 
 // Load environment variables
 dotenv.config();
@@ -80,6 +81,7 @@ app.get('/health', (req, res) => {
 });
 
 // API Routes
+app.use('/api/v1/admin', adminV1Routes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/profile', profileRoutes);

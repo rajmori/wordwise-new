@@ -5,8 +5,9 @@ import {
     logout,
     saveLoginSession,
 } from './auth-utils.js';
+import { ADMIN_API_BASE_URL } from '../config.js';
 
-const API_BASE = 'http://localhost:3000/api/admin';
+const API_BASE = ADMIN_API_BASE_URL;
 
 // ── Auth helpers ──────────────────────────────────────────────────────────────
 

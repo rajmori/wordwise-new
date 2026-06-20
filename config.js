@@ -26,9 +26,14 @@ export const APP_CONFIG = {
     adminTokenKey: 'wordwise_admin_token',
     isProduction,
     baseUrl,
-    apiUrl: import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
+    apiUrl: import.meta.env.VITE_API_URL || 'http://127.0.0.1:3000/api'
 };
 
 // API Base URL for backend server
-export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:3000/api';
+
+// Admin API versioned entrypoint
+export const ADMIN_API_BASE_URL = import.meta.env.VITE_API_URL 
+    ? `${import.meta.env.VITE_API_URL.replace(/\/api$/, '')}/api/v1/admin` 
+    : 'http://127.0.0.1:3000/api/v1/admin';
 
