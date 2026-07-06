@@ -1,16 +1,16 @@
-# Graph Report - wordwise-new  (2026-07-06)
+# Graph Report - wordwise-new  (2026-06-21)
 
 ## Corpus Check
-- 194 files · ~109,100 words
+- 181 files · ~102,881 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2075 nodes · 2418 edges · 176 communities (113 shown, 63 thin omitted)
+- 2037 nodes · 2340 edges · 182 communities (117 shown, 65 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 50 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5fdec48e`
+- Built from commit: `9f1547a9`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -128,6 +128,7 @@
 - [[_COMMUNITY_Community 110|Community 110]]
 - [[_COMMUNITY_Community 111|Community 111]]
 - [[_COMMUNITY_Community 112|Community 112]]
+- [[_COMMUNITY_Community 113|Community 113]]
 - [[_COMMUNITY_Community 114|Community 114]]
 - [[_COMMUNITY_Community 115|Community 115]]
 - [[_COMMUNITY_Community 116|Community 116]]
@@ -135,6 +136,7 @@
 - [[_COMMUNITY_Community 118|Community 118]]
 - [[_COMMUNITY_Community 119|Community 119]]
 - [[_COMMUNITY_Community 120|Community 120]]
+- [[_COMMUNITY_Community 121|Community 121]]
 - [[_COMMUNITY_Community 122|Community 122]]
 - [[_COMMUNITY_Community 123|Community 123]]
 - [[_COMMUNITY_Community 124|Community 124]]
@@ -144,6 +146,7 @@
 - [[_COMMUNITY_Community 128|Community 128]]
 - [[_COMMUNITY_Community 129|Community 129]]
 - [[_COMMUNITY_Community 130|Community 130]]
+- [[_COMMUNITY_Community 131|Community 131]]
 - [[_COMMUNITY_Community 132|Community 132]]
 - [[_COMMUNITY_Community 133|Community 133]]
 - [[_COMMUNITY_Community 134|Community 134]]
@@ -158,13 +161,16 @@
 - [[_COMMUNITY_Community 143|Community 143]]
 - [[_COMMUNITY_Community 144|Community 144]]
 - [[_COMMUNITY_Community 145|Community 145]]
+- [[_COMMUNITY_Community 146|Community 146]]
 - [[_COMMUNITY_Community 147|Community 147]]
+- [[_COMMUNITY_Community 148|Community 148]]
 - [[_COMMUNITY_Community 149|Community 149]]
 - [[_COMMUNITY_Community 150|Community 150]]
 - [[_COMMUNITY_Community 151|Community 151]]
 - [[_COMMUNITY_Community 152|Community 152]]
 - [[_COMMUNITY_Community 153|Community 153]]
 - [[_COMMUNITY_Community 154|Community 154]]
+- [[_COMMUNITY_Community 155|Community 155]]
 - [[_COMMUNITY_Community 156|Community 156]]
 - [[_COMMUNITY_Community 158|Community 158]]
 - [[_COMMUNITY_Community 159|Community 159]]
@@ -192,14 +198,14 @@
 ## Surprising Connections (you probably didn't know these)
 - `Vercel Logo (SVG)` --semantically_similar_to--> `Cloudflare Pages Deployment`  [INFERRED] [semantically similar]
   client/public/vercel.svg → CLOUDFLARE_DEPLOY.md
+- `Webhook Signature Verification` --references--> `handleWebhook()`  [INFERRED]
+  WEBHOOK_SETUP_SUCCESS.md → server/controllers/subscriptionController.js
 - `Admin Session Management README` --references--> `Auth Middleware (Admin JWT)`  [INFERRED]
   admin/SESSION_MANAGEMENT_README.md → server/middleware/auth.js
 - `User Login Page` --references--> `JWT Authentication`  [INFERRED]
   login.html → server/middleware/auth.js
 - `User Session Management` --references--> `JWT Authentication`  [INFERRED]
   USER_SESSION_MANAGEMENT.md → server/middleware/auth.js
-- `Dynamic Pricing / Plan Management` --conceptually_related_to--> `Razorpay Payment Gateway`  [INFERRED]
-  DYNAMIC_PRICING_FEATURE.md → server/controllers/subscriptionController.js
 
 ## Import Cycles
 - None detected.
@@ -210,7 +216,7 @@
 - **Mongoose Data Models** — models_user_model_usermodel, models_course_coursemodel, models_lesson_lessonmodel, models_subscription_subscriptionmodel, models_quiz_quizmodel [EXTRACTED 1.00]
 - **User-Facing Frontend Pages** — index_homepage, dashboard_userdashboard, login_loginpage, my_courses_mycoursespage, subscription_subscriptionpage [INFERRED 0.95]
 
-## Communities (176 total, 63 thin omitted)
+## Communities (182 total, 65 thin omitted)
 
 ### Community 0 - "Razorpay Payment & Pricing"
 Cohesion: 0.13
@@ -241,8 +247,8 @@ Cohesion: 0.22
 Nodes (9): Google OAuth 2.0 Login, Email via Nodemailer/SMTP, Contact Form Email Setup, User Auth Controller, Google Auth Integration Guide, Google OAuth Implementation, User Routes, Nodemailer Dependency (+1 more)
 
 ### Community 7 - "Webhook & Subscription API"
-Cohesion: 0.13
-Nodes (15): router, googleClient, router, router, upload, router, router, systemSettings (+7 more)
+Cohesion: 0.67
+Nodes (3): Webhook Signature Verification, Webhook Setup Success, Webhook Testing Guide
 
 ### Community 8 - "Frontend (Vanilla + Next.js)"
 Cohesion: 0.40
@@ -289,8 +295,8 @@ Cohesion: 0.05
 Nodes (43): 1. Clone the Repository, 2. Install Frontend Dependencies, 3. Install Backend Dependencies, 4. Configure Environment Variables, 5. Set Up MongoDB, 6. Set Up GCP Storage (Optional), Admin Features, Admin Login (+35 more)
 
 ### Community 42 - "Project README"
-Cohesion: 0.16
-Nodes (18): bulkUploadFlashCards(), parseCSV(), archiveFlashCard(), createFlashCard(), deleteFlashCard(), getFlashCards(), getUserFlashCards(), updateFlashCard() (+10 more)
+Cohesion: 0.09
+Nodes (30): bulkUploadFlashCards(), parseCSV(), archiveFlashCard(), createFlashCard(), deleteFlashCard(), getFlashCards(), getUserFlashCards(), updateFlashCard() (+22 more)
 
 ### Community 55 - "Community 55"
 Cohesion: 0.05
@@ -298,7 +304,7 @@ Nodes (42): Admin Panel, Authentication, 🚀 Backend Deployment (Railway/Render
 
 ### Community 56 - "Community 56"
 Cohesion: 0.05
-Nodes (43): author, dependencies, adm-zip, bcryptjs, cookie-parser, cors, csv-parser, dotenv (+35 more)
+Nodes (40): author, dependencies, adm-zip, bcryptjs, cookie-parser, cors, csv-parser, dotenv (+32 more)
 
 ### Community 57 - "Community 57"
 Cohesion: 0.07
@@ -417,8 +423,8 @@ Cohesion: 0.10
 Nodes (20): 1. Prepare for Deployment, 2. Deploy via Wrangler, 3. Set Environment Variables, 4. Custom Domain (Optional), API Calls Failing, Assets Not Loading, Build Fails, Detailed Steps (+12 more)
 
 ### Community 88 - "Community 88"
-Cohesion: 0.14
-Nodes (23): Webhook Signature Verification, cancelSubscription(), confirmPayment(), confirmPaymentLink(), createPaymentLink(), createSubscription(), getAllSubscriptions(), getPlanDetails() (+15 more)
+Cohesion: 0.18
+Nodes (19): cancelSubscription(), confirmPayment(), confirmPaymentLink(), createPaymentLink(), createSubscription(), getAllSubscriptions(), getPlanDetails(), getUserSubscription() (+11 more)
 
 ### Community 89 - "Community 89"
 Cohesion: 0.10
@@ -433,12 +439,12 @@ Cohesion: 0.10
 Nodes (19): 🚀 After Configuration, 📝 Alternative: Create New OAuth Client, 🔍 Current Configuration, ❌ Current Error, Error: "Access blocked: This app's request is invalid", Error: "redirect_uri_mismatch", Error: "This app is blocked", 🔧 Fix Google OAuth "Access Blocked" Error (+11 more)
 
 ### Community 92 - "Community 92"
-Cohesion: 0.06
-Nodes (47): deleteSubscription(), getSubscriptionById(), getSubscriptions(), updateSubscription(), forgotPassword(), getMe(), login(), logout() (+39 more)
+Cohesion: 0.27
+Nodes (14): forgotPassword(), getMe(), login(), logout(), refreshToken(), resetPassword(), saveRefreshToken(), setTokenCookie() (+6 more)
 
 ### Community 93 - "Community 93"
-Cohesion: 0.26
-Nodes (10): createQuiz(), deleteQuiz(), getAllQuizzes(), getQuizById(), importQuizzes(), publishQuiz(), updateQuiz(), questionSchema (+2 more)
+Cohesion: 0.25
+Nodes (15): client, emailPasswordLogin(), emailPasswordSignup(), generateJWT(), getSubscriptionBanner(), getUserProfile(), googleAuth(), googleSignin() (+7 more)
 
 ### Community 94 - "Community 94"
 Cohesion: 0.12
@@ -449,8 +455,8 @@ Cohesion: 0.12
 Nodes (16): 1. Install Dependencies, 2. Configure Environment, 3. Start MongoDB (if using local), 4. Start the Server, API Endpoints, Authentication, Courses, Default Admin Credentials (+8 more)
 
 ### Community 96 - "Community 96"
-Cohesion: 0.11
-Nodes (18): __dirname, __filename, initGCPStorage(), sendContactEmail(), getProfile(), updateProfile(), router, router (+10 more)
+Cohesion: 0.16
+Nodes (12): __dirname, __filename, initGCPStorage(), sendContactEmail(), router, router, router, router (+4 more)
 
 ### Community 97 - "Community 97"
 Cohesion: 0.12
@@ -461,8 +467,8 @@ Cohesion: 0.12
 Nodes (15): 1. Check Server Logs, 2. Test Image Upload, ✅ Current Configuration, Current Status, 📊 GCP Bucket Details, GCP Storage Setup Guide for WordWise, 🔧 If You Need to Reconfigure GCP, 🚀 Next Steps (+7 more)
 
 ### Community 99 - "Community 99"
-Cohesion: 0.67
-Nodes (3): 🎉 Implementation Complete!, **Next Steps:**, **What's Implemented:**
+Cohesion: 0.22
+Nodes (8): deleteSubscription(), getSubscriptionById(), getSubscriptions(), updateSubscription(), Subscription, subscriptionSchema, authLimiter, router
 
 ### Community 100 - "Community 100"
 Cohesion: 0.13
@@ -485,8 +491,8 @@ Cohesion: 0.22
 Nodes (8): createCourseOrder(), getMyPurchases(), razorpay, verifyCoursePayment(), authenticateUser(), CourseOrder, courseOrderSchema, router
 
 ### Community 105 - "Community 105"
-Cohesion: 0.20
-Nodes (12): Subscription Access Control, createLesson(), deleteLesson(), getLessonById(), getLessonsByCourse(), reorderLessons(), updateLesson(), checkSubscriptionAccess() (+4 more)
+Cohesion: 0.24
+Nodes (10): createLesson(), deleteLesson(), getLessonById(), getLessonsByCourse(), reorderLessons(), updateLesson(), interactiveExampleSchema, Lesson (+2 more)
 
 ### Community 106 - "Community 106"
 Cohesion: 0.15
@@ -514,7 +520,7 @@ Nodes (9): createCourse(), deleteCourse(), getAllCourses(), getAllPublishedCours
 
 ### Community 115 - "Community 115"
 Cohesion: 0.20
-Nodes (9): **Check Expiring Subscriptions**, **Get Subscription Statistics**, 📊 Monitoring, 📋 Overview, 🔐 Security Best Practices, **Server Logs**, 🎯 Stripe Annual Subscription Service - Setup Guide, 📞 Support (+1 more)
+Nodes (9): 🎉 Implementation Complete!, 📊 Monitoring, **Next Steps:**, 📋 Overview, 🔐 Security Best Practices, **Server Logs**, 🎯 Stripe Annual Subscription Service - Setup Guide, 📞 Support (+1 more)
 
 ### Community 116 - "Community 116"
 Cohesion: 0.22
@@ -527,6 +533,10 @@ Nodes (7): 1. Build Your Site, 2. Create ZIP File, 3. Upload to Cloudflare, 4. C
 ### Community 120 - "Community 120"
 Cohesion: 0.32
 Nodes (4): adminLogin(), authenticateAdmin(), Admin, adminSchema
+
+### Community 121 - "Community 121"
+Cohesion: 0.39
+Nodes (6): ResetToken, resetTokenSchema, fail(), log(), runTests(), success()
 
 ### Community 122 - "Community 122"
 Cohesion: 0.25
@@ -559,6 +569,10 @@ Nodes (6): 🔧 Setup Instructions, **Step 1: Create Stripe Account**, **Step 2:
 ### Community 130 - "Community 130"
 Cohesion: 0.33
 Nodes (6): **Test 1: Create Checkout Session**, **Test 2: Complete Checkout (Use Stripe Test Cards)**, **Test 3: Get User Subscription**, **Test 4: Access Protected Content**, **Test 5: Admin Cancel Subscription**, 🧪 Testing the Implementation
+
+### Community 131 - "Community 131"
+Cohesion: 0.60
+Nodes (3): getProfile(), updateProfile(), router
 
 ### Community 132 - "Community 132"
 Cohesion: 0.70
@@ -604,25 +618,33 @@ Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphif
 Cohesion: 0.50
 Nodes (3): Backend Domain-Driven Architecture, Folder Structure, Migration Steps
 
+### Community 146 - "Community 146"
+Cohesion: 0.67
+Nodes (3): Subscription Access Control, checkSubscriptionAccess(), My Courses Page
+
+### Community 155 - "Community 155"
+Cohesion: 0.67
+Nodes (3): **Check Expiring Subscriptions**, **Get Subscription Statistics**, 🛠️ Utility Functions
+
 ## Knowledge Gaps
-- **1159 isolated node(s):** `urlParams`, `courseId`, `courseData`, `currentLessonData`, `allCourses` (+1154 more)
+- **1153 isolated node(s):** `urlParams`, `courseId`, `courseData`, `currentLessonData`, `allCourses` (+1148 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **63 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **65 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `handleWebhook()` connect `Community 88` to `Razorpay Payment & Pricing`, `Community 96`, `Express Server & MongoDB`?**
-  _High betweenness centrality (0.012) - this node is a cross-community bridge._
-- **Why does `Express App (WordWise Server)` connect `Express Server & MongoDB` to `Community 88`, `Auth & Admin Security`, `Course Access & Orders`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+- **Why does `handleWebhook()` connect `Community 88` to `Razorpay Payment & Pricing`, `Community 96`, `Express Server & MongoDB`, `Webhook & Subscription API`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
 - **Why does `Razorpay Payment Gateway` connect `Razorpay Payment & Pricing` to `Community 88`, `Express Server & MongoDB`?**
+  _High betweenness centrality (0.007) - this node is a cross-community bridge._
+- **Why does `AuthService` connect `Community 77` to `PPT Viewer`, `Community 110`, `Community 107`, `Community 102`?**
   _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **What connects `urlParams`, `courseId`, `courseData` to the rest of the system?**
-  _1159 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1153 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Razorpay Payment & Pricing` be split into smaller, more focused modules?**
   _Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected._
 - **Should `Express Server & MongoDB` be split into smaller, more focused modules?**
   _Cohesion score 0.14285714285714285 - nodes in this community are weakly interconnected._
-- **Should `Webhook & Subscription API` be split into smaller, more focused modules?**
-  _Cohesion score 0.1265597147950089 - nodes in this community are weakly interconnected._
+- **Should `Profile Controller` be split into smaller, more focused modules?**
+  _Cohesion score 0.07529411764705882 - nodes in this community are weakly interconnected._

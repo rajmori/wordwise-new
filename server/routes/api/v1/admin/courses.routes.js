@@ -1,10 +1,10 @@
 import express from 'express';
 import multer from 'multer';
-import prisma from '../../../config/db.prisma.js';
-import { checkPermission } from '../../../middleware/rbac.js';
-import { logAudit } from '../../../utils/audit.js';
-import { getUploadSignedUrl, getDownloadSignedUrl } from '../../../utils/gcs.js';
-import { LMSMigrationAdapter } from '../../../utils/migration-adapter.js';
+import prisma from '../../../../config/db.prisma.js';
+import { checkPermission } from '../../../../middleware/rbac.js';
+import { logAudit } from '../../../../utils/audit.js';
+import { getUploadSignedUrl, getDownloadSignedUrl } from '../../../../utils/gcs.js';
+import { LMSMigrationAdapter } from '../../../../utils/migration-adapter.js';
 
 const router = express.Router();
 const upload = multer({ limits: { fileSize: 50 * 1024 * 1024 } }); // 50MB limit for archive files

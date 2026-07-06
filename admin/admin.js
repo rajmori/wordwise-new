@@ -132,7 +132,7 @@ if (window.location.pathname.includes('admin/login.html')) {
         loginBtn.disabled     = true;
 
         try {
-            const response = await fetch(`${API_BASE}/login`, {
+            const response = await fetch(`${API_BASE}/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
@@ -140,8 +140,8 @@ if (window.location.pathname.includes('admin/login.html')) {
 
             const data = await response.json();
 
-            if (data.success && data.token) {
-                saveLoginSession(data.token, data.admin);
+            if (data.success && (data.token || data.accessToken)) {
+                saveLoginSession(data.token || data.accessToken, data.admin || data.user);
                 window.location.href = './dashboard.html';
             } else {
                 throw new Error(data.message || 'Invalid credentials');

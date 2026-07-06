@@ -1,6 +1,6 @@
 import express from 'express';
-import prisma from '../../../config/db.prisma.js';
-import { checkPermission } from '../../../middleware/rbac.js';
+import prisma from '../../../../config/db.prisma.js';
+import { checkPermission } from '../../../../middleware/rbac.js';
 
 const router = express.Router();
 

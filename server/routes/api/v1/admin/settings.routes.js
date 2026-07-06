@@ -1,6 +1,6 @@
 import express from 'express';
-import { checkPermission } from '../../../middleware/rbac.js';
-import { logAudit } from '../../../utils/audit.js';
+import { checkPermission } from '../../../../middleware/rbac.js';
+import { logAudit } from '../../../../utils/audit.js';
 
 const router = express.Router();
 
