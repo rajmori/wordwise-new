@@ -1,41 +1,36 @@
 import express from 'express';
-import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { OAuth2Client } from 'google-auth-library';
-import prisma from '../../../../config/db.prisma.js';
+import Admin from '../../../../models/Admin.js';
 
 const router = express.Router();
 
-// Google Client setup using env variables
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
-// JWT token generation configuration
-const generateTokens = (adminPayload) => {
-    const accessToken = jwt.sign(
-        { ...adminPayload },
-        process.env.JWT_SECRET || 'fallback-jwt-secret-key-change-me',
-        { expiresIn: '15m' } // short-lived access JWT
-    );
-    const refreshToken = jwt.sign(
-        { id: adminPayload.id },
-        process.env.JWT_SECRET || 'fallback-jwt-secret-key-change-me',
-        { expiresIn: '7d' } // secure rotating refresh token
-    );
+const getJwtSecret = () => {
+    const secret = process.env.JWT_SECRET;
+    if (!secret) throw new Error('JWT_SECRET is not configured');
+    return secret;
+};
+
+const generateTokens = (payload) => {
+    const secret = getJwtSecret();
+    const accessToken = jwt.sign(payload, secret, { expiresIn: '15m' });
+    const refreshToken = jwt.sign({ id: payload.id }, secret, { expiresIn: '7d' });
     return { accessToken, refreshToken };
 };
 
-// Set HttpOnly Secure SameSite Cookie
 const setRefreshTokenCookie = (res, token) => {
     res.cookie('admin_refresh_token', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'strict',
-        maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+        maxAge: 7 * 24 * 60 * 60 * 1000
     });
 };
 
 /**
- * Admin Login via Email and Password
+ * POST /login — Email + password login
  */
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
@@ -44,66 +39,40 @@ router.post('/login', async (req, res) => {
     }
 
     try {
-        const user = await prisma.user.findUnique({
-            where: { email: email.toLowerCase() },
-            include: {
-                userRoles: {
-                    include: { role: true }
-                }
-            }
-        });
+        const admin = await Admin.findOne({ email: email.toLowerCase() });
 
-        if (!user || !user.isActive) {
+        if (!admin || !admin.isActive) {
             return res.status(401).json({ success: false, message: 'Invalid credentials or account deactivated.' });
         }
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
+        const isPasswordValid = await admin.comparePassword(password);
         if (!isPasswordValid) {
             return res.status(401).json({ success: false, message: 'Invalid credentials.' });
         }
 
-        const adminRoles = user.userRoles.map(ur => ur.role.name);
-        const isAdmin = adminRoles.some(role => 
-            ['super_admin', 'content_admin', 'support_admin', 'finance_admin', 'analyst', 'readonly_admin'].includes(role)
-        );
+        admin.lastLogin = new Date();
+        await admin.save();
 
-        if (!isAdmin) {
-            return res.status(403).json({ success: false, message: 'Access denied. Admin privileges required.' });
-        }
+        const tokenPayload = {
+            id: admin._id.toString(),
+            email: admin.email,
+            name: admin.name,
+            role: admin.role,
+            roles: [admin.role]
+        };
 
-        // Log the successful login attempt
-        await prisma.loginLog.create({
-            data: {
-                userId: user.id,
-                ipAddress: req.ip || req.headers['x-forwarded-for'] || '127.0.0.1',
-                device: req.headers['sec-ch-ua'] || 'Unknown Device',
-                userAgent: req.headers['user-agent']
-            }
-        });
-
-        // Update last login timestamp
-        await prisma.user.update({
-            where: { id: user.id },
-            data: { lastLogin: new Date() }
-        });
-
-        const { accessToken, refreshToken } = generateTokens({
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            roles: adminRoles
-        });
-
+        const { accessToken, refreshToken } = generateTokens(tokenPayload);
         setRefreshTokenCookie(res, refreshToken);
 
         res.json({
             success: true,
             accessToken,
             user: {
-                id: user.id,
-                email: user.email,
-                name: user.name,
-                roles: adminRoles
+                id: admin._id,
+                email: admin.email,
+                name: admin.name,
+                role: admin.role,
+                roles: [admin.role]
             }
         });
     } catch (error) {
@@ -113,7 +82,7 @@ router.post('/login', async (req, res) => {
 });
 
 /**
- * Google OIDC OAuth authentication endpoint
+ * POST /google — Google OIDC login
  */
 router.post('/google', async (req, res) => {
     const { idToken } = req.body;
@@ -126,73 +95,47 @@ router.post('/google', async (req, res) => {
             idToken,
             audience: process.env.GOOGLE_CLIENT_ID
         });
-        const payload = ticket.getPayload();
-        const { email } = payload;
+        const { email } = ticket.getPayload();
 
-        const user = await prisma.user.findUnique({
-            where: { email: email.toLowerCase() },
-            include: {
-                userRoles: {
-                    include: { role: true }
-                }
-            }
-        });
+        const admin = await Admin.findOne({ email: email.toLowerCase() });
 
-        if (!user || !user.isActive) {
-            return res.status(401).json({ success: false, message: 'Google OAuth failed. Admin account not found or deactivated.' });
+        if (!admin || !admin.isActive) {
+            return res.status(401).json({ success: false, message: 'Admin account not found or deactivated.' });
         }
 
-        const adminRoles = user.userRoles.map(ur => ur.role.name);
-        const isAdmin = adminRoles.some(role => 
-            ['super_admin', 'content_admin', 'support_admin', 'finance_admin', 'analyst', 'readonly_admin'].includes(role)
-        );
+        admin.lastLogin = new Date();
+        await admin.save();
 
-        if (!isAdmin) {
-            return res.status(403).json({ success: false, message: 'Access denied. Admin credentials required.' });
-        }
+        const tokenPayload = {
+            id: admin._id.toString(),
+            email: admin.email,
+            name: admin.name,
+            role: admin.role,
+            roles: [admin.role]
+        };
 
-        // Ingest login logs
-        await prisma.loginLog.create({
-            data: {
-                userId: user.id,
-                ipAddress: req.ip || req.headers['x-forwarded-for'] || '127.0.0.1',
-                device: req.headers['sec-ch-ua'] || 'Unknown Device',
-                userAgent: req.headers['user-agent']
-            }
-        });
-
-        await prisma.user.update({
-            where: { id: user.id },
-            data: { lastLogin: new Date() }
-        });
-
-        const { accessToken, refreshToken } = generateTokens({
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            roles: adminRoles
-        });
-
+        const { accessToken, refreshToken } = generateTokens(tokenPayload);
         setRefreshTokenCookie(res, refreshToken);
 
         res.json({
             success: true,
             accessToken,
             user: {
-                id: user.id,
-                email: user.email,
-                name: user.name,
-                roles: adminRoles
+                id: admin._id,
+                email: admin.email,
+                name: admin.name,
+                role: admin.role,
+                roles: [admin.role]
             }
         });
     } catch (error) {
-        console.error('Google OAuth verification failed:', error);
+        console.error('Google OAuth Error:', error);
         res.status(401).json({ success: false, message: 'Invalid Google token' });
     }
 });
 
 /**
- * Token Refresh endpoint - secure rotating refresh flow
+ * POST /refresh — Rotate refresh token
  */
 router.post('/refresh', async (req, res) => {
     const refreshToken = req.cookies.admin_refresh_token;
@@ -201,41 +144,32 @@ router.post('/refresh', async (req, res) => {
     }
 
     try {
-        const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET || 'fallback-jwt-secret-key-change-me');
-        const user = await prisma.user.findUnique({
-            where: { id: decoded.id },
-            include: {
-                userRoles: {
-                    include: { role: true }
-                }
-            }
-        });
+        const decoded = jwt.verify(refreshToken, getJwtSecret());
+        const admin = await Admin.findById(decoded.id);
 
-        if (!user || !user.isActive) {
+        if (!admin || !admin.isActive) {
             return res.status(401).json({ success: false, message: 'Invalid session or deactivated account.' });
         }
 
-        const adminRoles = user.userRoles.map(ur => ur.role.name);
-        const { accessToken, refreshToken: newRefreshToken } = generateTokens({
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            roles: adminRoles
-        });
+        const tokenPayload = {
+            id: admin._id.toString(),
+            email: admin.email,
+            name: admin.name,
+            role: admin.role,
+            roles: [admin.role]
+        };
 
+        const { accessToken, refreshToken: newRefreshToken } = generateTokens(tokenPayload);
         setRefreshTokenCookie(res, newRefreshToken);
 
-        res.json({
-            success: true,
-            accessToken
-        });
+        res.json({ success: true, accessToken });
     } catch (error) {
-        res.status(401).json({ success: false, message: 'Invalid session' });
+        res.status(401).json({ success: false, message: 'Invalid or expired session' });
     }
 });
 
 /**
- * Logout - clear cookie state
+ * POST /logout — Clear refresh token cookie
  */
 router.post('/logout', (req, res) => {
     res.clearCookie('admin_refresh_token');

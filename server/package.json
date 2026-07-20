@@ -7,7 +7,8 @@
     "scripts": {
         "start": "node server.js",
         "dev": "node --watch server.js",
-        "test": "jest --coverage"
+        "test": "node --experimental-vm-modules node_modules/.bin/jest --coverage",
+        "test:s3": "node --experimental-vm-modules node_modules/.bin/jest __tests__/s3.test.js --verbose"
     },
     "keywords": [
         "wordwise",
@@ -17,6 +18,8 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@aws-sdk/client-s3": "^3.1090.0",
+        "@aws-sdk/s3-request-presigner": "^3.1090.0",
         "@google-cloud/secret-manager": "^6.2.0",
         "@google-cloud/storage": "^7.7.0",
         "adm-zip": "^0.5.16",
@@ -41,6 +44,12 @@
         "ua-parser-js": "^2.0.9",
         "uuid": "^9.0.1",
         "xss-clean": "^0.1.4"
+    },
+    "jest": {
+        "testEnvironment": "node",
+        "transform": {},
+        "testMatch": ["**/__tests__/**/*.test.js"],
+        "setupFiles": ["<rootDir>/__tests__/setup.js"]
     },
     "devDependencies": {
         "@prisma/client": "^5.22.0",

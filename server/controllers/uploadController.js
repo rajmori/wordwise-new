@@ -1,4 +1,4 @@
-import { uploadToGCP, deleteFromGCP } from '../utils/gcp-storage.js';
+import { uploadToS3, deleteFromS3 } from '../utils/s3-storage.js';
 
 /**
  * Upload image to GCP bucket
@@ -15,7 +15,7 @@ export const uploadImage = async (req, res) => {
         const { courseId = 'general' } = req.body;
         const folder = `courses/${courseId}/images`;
 
-        const imageUrl = await uploadToGCP(
+        const imageUrl = await uploadToS3(
             req.file.buffer,
             req.file.originalname,
             req.file.mimetype,
@@ -55,7 +55,7 @@ export const uploadVideo = async (req, res) => {
         const { courseId = 'general' } = req.body;
         const folder = `courses/${courseId}/videos`;
 
-        const videoUrl = await uploadToGCP(
+        const videoUrl = await uploadToS3(
             req.file.buffer,
             req.file.originalname,
             req.file.mimetype,
@@ -96,7 +96,7 @@ export const uploadDocument = async (req, res) => {
         const { courseId = 'general' } = req.body;
         const folder = `courses/${courseId}/documents`;
 
-        const docUrl = await uploadToGCP(
+        const docUrl = await uploadToS3(
             req.file.buffer,
             req.file.originalname,
             req.file.mimetype,
@@ -135,7 +135,7 @@ export const deleteFile = async (req, res) => {
             });
         }
 
-        const deleted = await deleteFromGCP(fileUrl);
+        const deleted = await deleteFromS3(fileUrl);
 
         if (deleted) {
             res.json({

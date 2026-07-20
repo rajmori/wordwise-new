@@ -1,103 +1,70 @@
-import prisma from '../config/db.prisma.js';
+// Role → permission map. Replaces Prisma-based RBAC (no PostgreSQL configured).
+const ROLE_PERMISSIONS = {
+    super_admin: '*',
+    admin: [
+        'users:read', 'users:write',
+        'courses:read', 'courses:write', 'courses:publish',
+        'quizzes:read', 'quizzes:write', 'quizzes:publish',
+        'subscriptions:read', 'subscriptions:override',
+        'payments:read',
+        'audit:read',
+        'settings:read'
+    ]
+};
+
+const hasPermission = (role, permission) => {
+    const perms = ROLE_PERMISSIONS[role];
+    if (!perms) return false;
+    if (perms === '*') return true;
+    return perms.includes(permission);
+};
 
 /**
- * Enforce RBAC permissions on routes using PostgreSQL mapping
- * @param {string} requiredPermission - Permission string (e.g. 'users:create')
+ * Enforce a single permission. Requires auth middleware to have set req.user first.
  */
 export const checkPermission = (requiredPermission) => {
-    return async (req, res, next) => {
-        try {
-            // Assumes req.user is set by auth middleware (which decodes JWT)
-            if (!req.user || !req.user.id) {
-                return res.status(401).json({
-                    success: false,
-                    message: 'Authentication required. No user context found.'
-                });
-            }
-
-            const userId = req.user.id;
-
-            // Fetch user roles and their associated permissions
-            const userRoles = await prisma.userRole.findMany({
-                where: { userId },
-                include: {
-                    role: {
-                        include: {
-                            permissions: {
-                                include: {
-                                    permission: true
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // super_admin gets automatic bypass for all checks
-            const isSuperAdmin = userRoles.some(ur => ur.role.name === 'super_admin');
-            if (isSuperAdmin) {
-                return next();
-            }
-
-            // Extract all permissions mapped to the user's roles
-            const permissions = userRoles.flatMap(ur => 
-                ur.role.permissions.map(rp => rp.permission.name)
-            );
-
-            if (permissions.includes(requiredPermission)) {
-                return next();
-            }
-
-            return res.status(403).json({
+    return (req, res, next) => {
+        if (!req.user || !req.user.id) {
+            return res.status(401).json({
                 success: false,
-                message: `Access denied. Insufficient permissions: [${requiredPermission}] is required.`
-            });
-        } catch (error) {
-            console.error('RBAC Middleware Error:', error);
-            res.status(500).json({
-                success: false,
-                message: 'Internal authorization validation error.'
+                message: 'Authentication required.'
             });
         }
+
+        const roles = req.user.roles || (req.user.role ? [req.user.role] : []);
+
+        if (roles.some(r => hasPermission(r, requiredPermission))) {
+            return next();
+        }
+
+        return res.status(403).json({
+            success: false,
+            message: `Access denied. [${requiredPermission}] permission required.`
+        });
     };
 };
 
 /**
- * Helper to check if user has any of the allowed roles directly
- * @param {string[]} allowedRoles - Array of roles
+ * Allow through if the user holds any of the listed roles.
  */
 export const requireAnyRole = (allowedRoles) => {
-    return async (req, res, next) => {
-        try {
-            if (!req.user || !req.user.id) {
-                return res.status(401).json({
-                    success: false,
-                    message: 'Authentication required'
-                });
-            }
-
-            const userRoles = await prisma.userRole.findMany({
-                where: { userId: req.user.id },
-                include: { role: true }
-            });
-
-            const roles = userRoles.map(ur => ur.role.name);
-            
-            // super_admin always allowed
-            if (roles.includes('super_admin') || roles.some(r => allowedRoles.includes(r))) {
-                return next();
-            }
-
-            return res.status(403).json({
+    return (req, res, next) => {
+        if (!req.user || !req.user.id) {
+            return res.status(401).json({
                 success: false,
-                message: 'Access denied. Unauthorized role.'
-            });
-        } catch (error) {
-            console.error('RBAC Role Check Error:', error);
-            res.status(500).json({
-                success: false,
-                message: 'Internal authorization validation error.'
+                message: 'Authentication required.'
             });
         }
+
+        const roles = req.user.roles || (req.user.role ? [req.user.role] : []);
+
+        if (roles.includes('super_admin') || roles.some(r => allowedRoles.includes(r))) {
+            return next();
+        }
+
+        return res.status(403).json({
+            success: false,
+            message: 'Access denied. Unauthorized role.'
+        });
     };
 };

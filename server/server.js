@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
-import { initGCPStorage } from './config/gcp.js';
+import { initS3 } from './config/s3.js';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import mongoSanitize from 'express-mongo-sanitize';
@@ -135,8 +135,8 @@ const startServer = async () => {
         // Connect to MongoDB
         await connectDB();
 
-        // Initialize GCP Storage (optional - will log warning if not configured)
-        initGCPStorage();
+        // Initialize AWS S3 (optional - will log warning if not configured)
+        initS3();
 
         // Start server
         app.listen(PORT, () => {

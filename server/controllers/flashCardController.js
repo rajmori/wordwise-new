@@ -1,5 +1,5 @@
 import FlashCard from '../models/FlashCard.js';
-import { uploadToGCP, deleteFromGCP } from '../utils/gcp-storage.js';
+import { uploadToS3, deleteFromS3 } from '../utils/s3-storage.js';
 
 // @desc    Create a new flash card
 // @route   POST /api/flash-cards
@@ -23,9 +23,9 @@ export const createFlashCard = async (req, res) => {
             });
         }
 
-        // Upload to GCP
+        // Upload to S3
         // Using 'flash-cards' folder in bucket
-        const imageUrl = await uploadToGCP(
+        const imageUrl = await uploadToS3(
             req.file.buffer,
             req.file.originalname,
             req.file.mimetype,
@@ -178,14 +178,14 @@ export const updateFlashCard = async (req, res) => {
         if (req.file) {
             try {
                 // Delete old image
-                await deleteFromGCP(flashCard.imageUrl);
+                await deleteFromS3(flashCard.imageUrl);
             } catch (err) {
-                console.error('Failed to delete old image from GCP:', err);
+                console.error('Failed to delete old image from S3:', err);
                 // Continue with upload even if delete fails
             }
 
             // Upload new image
-            imageUrl = await uploadToGCP(
+            imageUrl = await uploadToS3(
                 req.file.buffer,
                 req.file.originalname,
                 req.file.mimetype,
@@ -268,9 +268,9 @@ export const deleteFlashCard = async (req, res) => {
             });
         }
 
-        // Delete image from GCP
+        // Delete image from S3
         if (flashCard.imageUrl) {
-            await deleteFromGCP(flashCard.imageUrl);
+            await deleteFromS3(flashCard.imageUrl);
         }
 
         await flashCard.deleteOne();

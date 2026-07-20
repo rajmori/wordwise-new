@@ -2,7 +2,7 @@ import AdmZip from 'adm-zip';
 import csv from 'csv-parser';
 import { Readable } from 'stream';
 import FlashCard from '../models/FlashCard.js';
-import { uploadToGCP } from '../utils/gcp-storage.js';
+import { uploadToS3 } from '../utils/s3-storage.js';
 
 // Helper to parse CSV buffer
 const parseCSV = (buffer) => {
@@ -82,7 +82,7 @@ export const bulkUploadFlashCards = async (req, res) => {
                 const mimeType = row.imageFilename.toLowerCase().endsWith('.png') ? 'image/png' :
                     row.imageFilename.toLowerCase().endsWith('.webp') ? 'image/webp' : 'image/jpeg';
 
-                const imageUrl = await uploadToGCP(
+                const imageUrl = await uploadToS3(
                     imageBuffer,
                     row.imageFilename,
                     mimeType,

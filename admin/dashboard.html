@@ -114,9 +114,9 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Plan</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                    <th>Payment</th>
+                                    <th>Subscribed</th>
+                                    <th>Last Login</th>
+                                    <th>Joined</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -125,6 +125,13 @@
                                 <!-- Populated by JavaScript -->
                             </tbody>
                         </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination-bar" id="paginationBar" style="display:none;justify-content:center;align-items:center;gap:12px;padding:1.25rem 0;">
+                        <button class="btn-secondary-admin" id="prevPageBtn" onclick="changePage(-1)">← Prev</button>
+                        <span id="pageInfo" style="font-size:14px;color:var(--text-secondary)"></span>
+                        <button class="btn-secondary-admin" id="nextPageBtn" onclick="changePage(1)">Next →</button>
                     </div>
                 </div>
             </div>
@@ -148,32 +155,40 @@
                             <span class="info-value" id="viewUserEmail">-</span>
                         </div>
                         <div class="info-item">
+                            <span class="info-label">Phone</span>
+                            <span class="info-value" id="viewUserPhone">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Account Status</span>
+                            <span class="info-value" id="viewUserStatus">-</span>
+                        </div>
+                        <div class="info-item">
                             <span class="info-label">Subscription Plan</span>
                             <span class="info-value" id="viewUserPlan">-</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Status</span>
-                            <span class="info-value" id="viewUserStatus">-</span>
+                            <span class="info-label">Subscription Status</span>
+                            <span class="info-value" id="viewUserSubStatus">-</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Start Date</span>
+                            <span class="info-label">Plan Start Date</span>
                             <span class="info-value" id="viewUserStartDate">-</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">End Date</span>
+                            <span class="info-label">Plan End Date</span>
                             <span class="info-value" id="viewUserEndDate">-</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Payment Amount</span>
-                            <span class="info-value" id="viewUserPayment">-</span>
+                            <span class="info-label">Enrolled Courses</span>
+                            <span class="info-value" id="viewUserCourses">-</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Payment Method</span>
-                            <span class="info-value" id="viewUserPaymentMethod">-</span>
+                            <span class="info-label">Last Login</span>
+                            <span class="info-value" id="viewUserLastLogin">-</span>
                         </div>
                         <div class="info-item">
-                            <span class="info-label">Last Payment Date</span>
-                            <span class="info-value" id="viewUserLastPayment">-</span>
+                            <span class="info-label">Login Count</span>
+                            <span class="info-value" id="viewUserLoginCount">-</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Account Created</span>
@@ -183,92 +198,68 @@
                 </div>
                 <div class="modal-actions">
                     <button class="btn-secondary-admin" onclick="closeModal('viewUserModal')">Close</button>
+                    <button class="btn btn-primary" id="viewUserEditBtn">Edit User</button>
                 </div>
             </div>
         </div>
 
-        <!-- ── Edit Subscription Modal ───────────────────────────────────── -->
-        <div id="editSubModal" class="modal">
+        <!-- ── Edit User Modal ───────────────────────────────────────────── -->
+        <div id="editUserModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Edit Subscription</h2>
-                    <button class="modal-close" onclick="closeModal('editSubModal')">×</button>
+                    <h2>Edit User</h2>
+                    <button class="modal-close" onclick="closeModal('editUserModal')">×</button>
                 </div>
-                <form id="editSubForm">
+                <form id="editUserForm">
                     <div class="modal-body">
-                        <input type="hidden" id="editSubId">
-
-                        <!-- User context (read-only) -->
-                        <div class="info-grid" style="margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.08);">
-                            <div class="info-item">
-                                <span class="info-label">User</span>
-                                <span class="info-value" id="editSubUserName">-</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Email</span>
-                                <span class="info-value" id="editSubUserEmail">-</span>
-                            </div>
-                        </div>
-
+                        <input type="hidden" id="editUserId">
                         <div class="info-grid">
                             <div class="form-group">
-                                <label for="editSubPlan">Plan Name</label>
-                                <input type="text" id="editSubPlan" placeholder="e.g. WordWise Annual" required>
+                                <label for="editUserName">Full Name</label>
+                                <input type="text" id="editUserName" placeholder="Full name" required>
                             </div>
                             <div class="form-group">
-                                <label for="editSubStatus">Status</label>
-                                <select id="editSubStatus" class="filter-select" required>
-                                    <option value="active">Active</option>
-                                    <option value="canceled">Canceled</option>
-                                    <option value="past_due">Past Due</option>
-                                    <option value="expired">Expired</option>
+                                <label for="editUserEmail">Email Address</label>
+                                <input type="email" id="editUserEmail" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editUserPhone">Phone</label>
+                                <input type="text" id="editUserPhone" placeholder="e.g. +91 9876543210">
+                            </div>
+                            <div class="form-group">
+                                <label for="editUserActive">Account Status</label>
+                                <select id="editUserActive" class="filter-select">
+                                    <option value="true">Active</option>
+                                    <option value="false">Inactive</option>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="editSubStartDate">Start Date</label>
-                                <input type="date" id="editSubStartDate">
-                            </div>
-                            <div class="form-group">
-                                <label for="editSubEndDate">End Date</label>
-                                <input type="date" id="editSubEndDate" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editSubAmount">Amount (₹)</label>
-                                <input type="number" id="editSubAmount" step="1" min="0" placeholder="e.g. 2500">
-                            </div>
-                            <div class="form-group" style="display:flex;align-items:center;gap:.75rem;padding-top:1.5rem;">
-                                <input type="checkbox" id="editSubCancelEnd" style="width:18px;height:18px;cursor:pointer;">
-                                <label for="editSubCancelEnd" style="margin:0;cursor:pointer;">Cancel at period end</label>
                             </div>
                         </div>
                     </div>
                     <div class="modal-actions">
-                        <button type="button" class="btn-secondary-admin" onclick="closeModal('editSubModal')">Cancel</button>
-                        <button type="submit" class="btn btn-primary" id="editSubSaveBtn">Save Changes</button>
+                        <button type="button" class="btn-secondary-admin" onclick="closeModal('editUserModal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="editUserSaveBtn">Save Changes</button>
                     </div>
                 </form>
             </div>
         </div>
 
-        <!-- ── Delete Confirmation Modal ──────────────────────────────────── -->
-        <div id="deleteSubModal" class="modal delete-modal">
+        <!-- ── Status Confirm Modal ──────────────────────────────────────── -->
+        <div id="statusModal" class="modal delete-modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Confirm Delete</h2>
-                    <button class="modal-close" onclick="closeModal('deleteSubModal')">×</button>
+                    <h2>Confirm Status Change</h2>
+                    <button class="modal-close" onclick="closeModal('statusModal')">×</button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="deleteSubId">
-                    <div class="delete-icon">⚠️</div>
-                    <h3>Delete Subscription?</h3>
-                    <p>Are you sure you want to delete the subscription for
-                        <strong id="deleteSubUserName"></strong>?
-                        This action cannot be undone.
-                    </p>
+                    <input type="hidden" id="statusUserId">
+                    <input type="hidden" id="statusUserTarget">
+                    <div class="delete-icon" id="statusModalIcon">⚠️</div>
+                    <h3 id="statusModalTitle">Change User Status?</h3>
+                    <p>Are you sure you want to <strong id="statusModalAction"></strong> the account for <strong id="statusModalUserName"></strong>?</p>
                 </div>
                 <div class="modal-actions">
-                    <button class="btn-secondary-admin" onclick="closeModal('deleteSubModal')">Cancel</button>
-                    <button class="btn-danger" id="confirmDeleteBtn" onclick="confirmDeleteSubscription()">Delete Subscription</button>
+                    <button class="btn-secondary-admin" onclick="closeModal('statusModal')">Cancel</button>
+                    <button class="btn btn-primary" id="confirmStatusBtn" onclick="confirmStatusChange()">Confirm</button>
                 </div>
             </div>
         </div>

@@ -164,50 +164,72 @@ if (window.location.pathname.includes('admin/dashboard.html')) {
         window.location.href = './login.html';
     }
 
-    let currentUsers = [];   // flat user-level rows (for stats / search / filter)
-    let filteredUsers = [];
-    // Map: userId → subscriptionId (used by edit/delete)
-    let userSubMap = {};
+    // Pagination state
+    let currentPage  = 1;
+    const PAGE_LIMIT = 10;
+    let totalPages   = 1;
+    let totalUsers   = 0;
 
-    // ── Data loading ────────────────────────────────────────────────────────
+    // Current search / filter values
+    let searchTerm   = '';
+    let statusFilter = 'all';
 
-    async function fetchUsers() {
-        const data = await apiRequest('GET', '/users');
-        return data?.success ? data.users : [];
+    // In-memory user cache for the current page (used by view/edit)
+    let currentUsers = [];
+
+    // ── API helpers ─────────────────────────────────────────────────────────
+
+    async function fetchUsersPage(page, search, status) {
+        const params = new URLSearchParams({ page, limit: PAGE_LIMIT });
+        if (search) params.append('search', search);
+        if (status && status !== 'all') params.append('status', status === 'Active' ? 'active' : 'inactive');
+        return apiRequest('GET', `/users?${params}`);
     }
 
+    async function fetchUserDetail(id) {
+        return apiRequest('GET', `/users/${id}`);
+    }
+
+    // ── Load & render ────────────────────────────────────────────────────────
+
     async function loadUsers() {
-        currentUsers = await fetchUsers();
-        filteredUsers = [...currentUsers];
-        renderStats();
-        renderUsersTable();
+        const tbody = document.getElementById('usersTableBody');
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:2rem;color:var(--text-secondary)">Loading…</td></tr>`;
+
+        const data = await fetchUsersPage(currentPage, searchTerm, statusFilter);
+        if (!data?.success) {
+            tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:2rem;color:#ef4444">Failed to load users</td></tr>`;
+            return;
+        }
+
+        currentUsers = data.users;
+        totalPages   = data.pagination.pages;
+        totalUsers   = data.pagination.total;
+
+        renderStats(data.pagination.total);
+        renderUsersTable(currentUsers);
+        renderPagination();
     }
 
     // ── Statistics ───────────────────────────────────────────────────────────
 
-    function calculateStats() {
-        const totalUsers   = currentUsers.length;
-        const activeUsers  = currentUsers.filter(u => u.status === 'Active').length;
-        const totalRevenue = currentUsers.reduce((s, u) => s + (u.paymentAmount || 0), 0);
+    function renderStats(total) {
+        const activeCount   = currentUsers.filter(u => u.isActive).length;
+        const subscribedCount = currentUsers.filter(u => u.isSubscribed).length;
         const thirtyDaysAgo = new Date();
         thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-        const recentSignups = currentUsers.filter(u => new Date(u.createdAt) >= thirtyDaysAgo).length;
-        return { totalUsers, activeUsers, totalRevenue, recentSignups };
-    }
+        const recentCount   = currentUsers.filter(u => new Date(u.createdAt) >= thirtyDaysAgo).length;
 
-    function renderStats() {
-        const s = calculateStats();
-        document.getElementById('totalUsers').textContent    = s.totalUsers;
-        document.getElementById('activeUsers').textContent   = s.activeUsers;
-        document.getElementById('totalRevenue').textContent  = formatCurrency(s.totalRevenue);
-        document.getElementById('recentSignups').textContent = s.recentSignups;
+        document.getElementById('totalUsers').textContent    = total;
+        document.getElementById('activeUsers').textContent   = activeCount;
+        document.getElementById('totalRevenue').textContent  = subscribedCount + ' subscribed';
+        document.getElementById('recentSignups').textContent = recentCount;
     }
 
     // ── Users table ─────────────────────────────────────────────────────────
 
-    function renderUsersTable(users = filteredUsers) {
+    function renderUsersTable(users) {
         const tbody = document.getElementById('usersTableBody');
-        userSubMap  = {};
 
         if (!users.length) {
             tbody.innerHTML = `
@@ -224,160 +246,179 @@ if (window.location.pathname.includes('admin/dashboard.html')) {
         }
 
         tbody.innerHTML = users.map(user => {
-            const uid   = user.id ? user.id.toString() : '';
-            const subId = user.subscriptionId || '';
-            if (uid) userSubMap[uid] = subId;
+            const uid      = user.id?.toString() || '';
+            const isActive = user.isActive;
+            const statusClass = isActive ? 'active' : 'inactive';
+            const statusLabel = isActive ? 'Active' : 'Inactive';
+            const plan = user.subscriptionPlan || 'free';
 
             return `
             <tr>
-                <td>${user.name}</td>
-                <td>${user.email}</td>
-                <td><span class="plan-badge">${user.subscriptionPlan}</span></td>
-                <td>${formatDate(user.subscriptionStartDate)}</td>
-                <td>${formatDate(user.subscriptionEndDate)}</td>
-                <td>${formatCurrency(user.paymentAmount)}</td>
-                <td><span class="status-badge ${user.status.toLowerCase()}">${user.status}</span></td>
+                <td>
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;">
+                            ${user.name?.charAt(0)?.toUpperCase() || '?'}
+                        </div>
+                        <span>${escHtml(user.name)}</span>
+                    </div>
+                </td>
+                <td>${escHtml(user.email)}</td>
+                <td><span class="plan-badge">${escHtml(plan)}</span></td>
+                <td>${user.isSubscribed ? '<span class="status-badge active">Yes</span>' : '<span class="status-badge inactive">No</span>'}</td>
+                <td>${formatDate(user.lastLogin)}</td>
+                <td>${formatDate(user.createdAt)}</td>
+                <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
                 <td>
                     <div class="action-buttons">
                         <button class="btn-icon" onclick="viewUser('${uid}')" title="View Details">👁️</button>
-                        <button class="btn-icon" onclick="editSubscription('${uid}','${subId}')" title="Edit Subscription" ${!subId ? 'disabled' : ''}>✏️</button>
-                        <button class="btn-icon delete" onclick="confirmDeleteSub('${uid}','${subId}')" title="Delete Subscription" ${!subId ? 'disabled' : ''}>🗑️</button>
+                        <button class="btn-icon" onclick="openEditUser('${uid}')" title="Edit User">✏️</button>
+                        <button class="btn-icon ${isActive ? 'delete' : ''}" onclick="openStatusModal('${uid}','${!isActive}')" title="${isActive ? 'Deactivate' : 'Activate'}">
+                            ${isActive ? '🚫' : '✅'}
+                        </button>
                     </div>
                 </td>
             </tr>`;
         }).join('');
     }
 
+    // ── Pagination ───────────────────────────────────────────────────────────
+
+    function renderPagination() {
+        const bar = document.getElementById('paginationBar');
+        if (totalPages <= 1) { bar.style.display = 'none'; return; }
+        bar.style.display = 'flex';
+        document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages} (${totalUsers} users)`;
+        document.getElementById('prevPageBtn').disabled = currentPage <= 1;
+        document.getElementById('nextPageBtn').disabled = currentPage >= totalPages;
+    }
+
+    window.changePage = function(delta) {
+        const next = currentPage + delta;
+        if (next < 1 || next > totalPages) return;
+        currentPage = next;
+        loadUsers();
+    };
+
     // ── Search & filter ──────────────────────────────────────────────────────
 
+    let searchDebounce;
     document.getElementById('searchUsers').addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        filteredUsers = currentUsers.filter(u =>
-            u.name.toLowerCase().includes(term) ||
-            u.email.toLowerCase().includes(term) ||
-            u.subscriptionPlan.toLowerCase().includes(term)
-        );
-        renderUsersTable(filteredUsers);
+        clearTimeout(searchDebounce);
+        searchDebounce = setTimeout(() => {
+            searchTerm  = e.target.value.trim();
+            currentPage = 1;
+            loadUsers();
+        }, 350);
     });
 
     document.getElementById('filterStatus').addEventListener('change', (e) => {
-        const status = e.target.value;
-        filteredUsers = status === 'all'
-            ? [...currentUsers]
-            : currentUsers.filter(u => u.status === status);
-        renderUsersTable(filteredUsers);
+        statusFilter = e.target.value;
+        currentPage  = 1;
+        loadUsers();
     });
 
     // ── View modal ───────────────────────────────────────────────────────────
 
-    window.viewUser = function(id) {
-        const user = currentUsers.find(u => u.id?.toString() === id);
-        if (!user) return;
+    window.viewUser = async function(id) {
+        const data = await fetchUserDetail(id);
+        if (!data?.success) { showToast('Failed to load user details', 'error'); return; }
+        const u = data.user;
 
-        document.getElementById('viewUserName').textContent         = user.name;
-        document.getElementById('viewUserEmail').textContent        = user.email;
-        document.getElementById('viewUserPlan').textContent         = user.subscriptionPlan;
-        document.getElementById('viewUserStatus').innerHTML         = `<span class="status-badge ${user.status.toLowerCase()}">${user.status}</span>`;
-        document.getElementById('viewUserStartDate').textContent    = formatDate(user.subscriptionStartDate);
-        document.getElementById('viewUserEndDate').textContent      = formatDate(user.subscriptionEndDate);
-        document.getElementById('viewUserPayment').textContent      = formatCurrency(user.paymentAmount);
-        document.getElementById('viewUserPaymentMethod').textContent = user.paymentMethod;
-        document.getElementById('viewUserLastPayment').textContent  = formatDate(user.lastPaymentDate);
-        document.getElementById('viewUserCreated').textContent      = formatDate(user.createdAt);
+        document.getElementById('viewUserName').textContent       = u.name;
+        document.getElementById('viewUserEmail').textContent      = u.email;
+        document.getElementById('viewUserPhone').textContent      = u.phone || 'N/A';
+        document.getElementById('viewUserStatus').innerHTML       = `<span class="status-badge ${u.isActive ? 'active' : 'inactive'}">${u.isActive ? 'Active' : 'Inactive'}</span>`;
+        document.getElementById('viewUserPlan').textContent       = u.subscription?.plan || 'free';
+        document.getElementById('viewUserSubStatus').textContent  = u.subscription?.status || 'N/A';
+        document.getElementById('viewUserStartDate').textContent  = formatDate(u.subscription?.startDate);
+        document.getElementById('viewUserEndDate').textContent    = formatDate(u.subscription?.endDate);
+        document.getElementById('viewUserCourses').textContent    = u.enrolledCourses?.length || 0;
+        document.getElementById('viewUserLastLogin').textContent  = formatDate(u.lastLogin);
+        document.getElementById('viewUserLoginCount').textContent = u.loginCount ?? 0;
+        document.getElementById('viewUserCreated').textContent    = formatDate(u.createdAt);
+
+        document.getElementById('viewUserEditBtn').onclick = () => {
+            closeModal('viewUserModal');
+            openEditUser(id);
+        };
 
         document.getElementById('viewUserModal').classList.add('active');
     };
 
-    // ── Edit subscription modal ──────────────────────────────────────────────
+    // ── Edit user modal ──────────────────────────────────────────────────────
 
-    window.editSubscription = async function(userId, subId) {
-        if (!subId) { showToast('No subscription to edit', 'error'); return; }
+    window.openEditUser = async function(id) {
+        const data = await fetchUserDetail(id);
+        if (!data?.success) { showToast('Failed to load user', 'error'); return; }
+        const u = data.user;
 
-        // Fetch latest subscription data from backend
-        const data = await apiRequest('GET', `/subscriptions/${subId}`);
-        if (!data?.success) { showToast(data?.message || 'Failed to load subscription', 'error'); return; }
+        document.getElementById('editUserId').value        = u.id;
+        document.getElementById('editUserName').value      = u.name;
+        document.getElementById('editUserEmail').value     = u.email;
+        document.getElementById('editUserPhone').value     = u.phone || '';
+        document.getElementById('editUserActive').value    = u.isActive ? 'true' : 'false';
 
-        const sub = data.subscription;
-
-        document.getElementById('editSubId').value              = sub._id;
-        document.getElementById('editSubPlan').value            = sub.planName || '';
-        document.getElementById('editSubStatus').value          = sub.status || 'active';
-        document.getElementById('editSubStartDate').value       = toInputDate(sub.currentPeriodStart);
-        document.getElementById('editSubEndDate').value         = toInputDate(sub.currentPeriodEnd);
-        document.getElementById('editSubAmount').value          = sub.amount != null ? (sub.amount / 100).toFixed(0) : '';
-        document.getElementById('editSubCancelEnd').checked     = !!sub.cancelAtPeriodEnd;
-
-        // Show user context
-        document.getElementById('editSubUserName').textContent  = sub.userId?.name  || userId;
-        document.getElementById('editSubUserEmail').textContent = sub.userId?.email || '';
-
-        document.getElementById('editSubModal').classList.add('active');
+        document.getElementById('editUserModal').classList.add('active');
     };
 
-    // Edit form submit
-    document.getElementById('editSubForm').addEventListener('submit', async (e) => {
+    document.getElementById('editUserForm').addEventListener('submit', async (e) => {
         e.preventDefault();
+        const id       = document.getElementById('editUserId').value;
+        const saveBtn  = document.getElementById('editUserSaveBtn');
+        saveBtn.disabled    = true;
+        saveBtn.textContent = 'Saving…';
 
-        const subId          = document.getElementById('editSubId').value;
-        const planName       = document.getElementById('editSubPlan').value.trim();
-        const status         = document.getElementById('editSubStatus').value;
-        const startDate      = document.getElementById('editSubStartDate').value;
-        const endDate        = document.getElementById('editSubEndDate').value;
-        const amountRupees   = parseFloat(document.getElementById('editSubAmount').value);
-        const cancelAtPeriodEnd = document.getElementById('editSubCancelEnd').checked;
-
-        const saveBtn = document.getElementById('editSubSaveBtn');
-        saveBtn.disabled     = true;
-        saveBtn.textContent  = 'Saving…';
-
-        const data = await apiRequest('PUT', `/subscriptions/${subId}`, {
-            planName,
-            status,
-            currentPeriodStart: startDate ? new Date(startDate).toISOString() : undefined,
-            currentPeriodEnd:   endDate   ? new Date(endDate).toISOString()   : undefined,
-            amount: isNaN(amountRupees) ? undefined : amountRupees * 100, // store in paise
-            cancelAtPeriodEnd
+        const data = await apiRequest('PUT', `/users/${id}`, {
+            name:     document.getElementById('editUserName').value.trim(),
+            email:    document.getElementById('editUserEmail').value.trim(),
+            phone:    document.getElementById('editUserPhone').value.trim() || undefined,
+            isActive: document.getElementById('editUserActive').value === 'true'
         });
 
         saveBtn.disabled    = false;
         saveBtn.textContent = 'Save Changes';
 
         if (data?.success) {
-            showToast('Subscription updated successfully');
-            closeModal('editSubModal');
-            await loadUsers(); // refresh table
+            showToast('User updated successfully');
+            closeModal('editUserModal');
+            loadUsers();
         } else {
-            showToast(data?.message || 'Failed to update subscription', 'error');
+            showToast(data?.message || 'Failed to update user', 'error');
         }
     });
 
-    // ── Delete modal ─────────────────────────────────────────────────────────
+    // ── Status toggle modal ──────────────────────────────────────────────────
 
-    window.confirmDeleteSub = function(userId, subId) {
-        if (!subId) { showToast('No subscription to delete', 'error'); return; }
-        const user = currentUsers.find(u => u.id?.toString() === userId);
-        document.getElementById('deleteSubId').value           = subId;
-        document.getElementById('deleteSubUserName').textContent = user?.name || userId;
-        document.getElementById('deleteSubModal').classList.add('active');
+    window.openStatusModal = function(id, activate) {
+        const user = currentUsers.find(u => u.id?.toString() === id);
+        const isActivating = activate === 'true' || activate === true;
+        document.getElementById('statusUserId').value         = id;
+        document.getElementById('statusUserTarget').value     = isActivating ? 'true' : 'false';
+        document.getElementById('statusModalIcon').textContent = isActivating ? '✅' : '🚫';
+        document.getElementById('statusModalTitle').textContent = isActivating ? 'Activate Account?' : 'Deactivate Account?';
+        document.getElementById('statusModalAction').textContent = isActivating ? 'activate' : 'deactivate';
+        document.getElementById('statusModalUserName').textContent = user?.name || id;
+        document.getElementById('statusModal').classList.add('active');
     };
 
-    window.confirmDeleteSubscription = async function() {
-        const subId   = document.getElementById('deleteSubId').value;
-        const delBtn  = document.getElementById('confirmDeleteBtn');
-        delBtn.disabled    = true;
-        delBtn.textContent = 'Deleting…';
+    window.confirmStatusChange = async function() {
+        const id       = document.getElementById('statusUserId').value;
+        const isActive = document.getElementById('statusUserTarget').value === 'true';
+        const btn      = document.getElementById('confirmStatusBtn');
+        btn.disabled    = true;
+        btn.textContent = 'Updating…';
 
-        const data = await apiRequest('DELETE', `/subscriptions/${subId}`);
+        const data = await apiRequest('PATCH', `/users/${id}/status`, { isActive });
 
-        delBtn.disabled    = false;
-        delBtn.textContent = 'Delete Subscription';
+        btn.disabled    = false;
+        btn.textContent = 'Confirm';
 
         if (data?.success) {
-            showToast('Subscription deleted successfully');
-            closeModal('deleteSubModal');
-            await loadUsers();
+            showToast(data.message);
+            closeModal('statusModal');
+            loadUsers();
         } else {
-            showToast(data?.message || 'Failed to delete subscription', 'error');
+            showToast(data?.message || 'Failed to update status', 'error');
         }
     };
 
@@ -392,6 +433,13 @@ if (window.location.pathname.includes('admin/dashboard.html')) {
             if (e.target === modal) modal.classList.remove('active');
         });
     });
+
+    // ── XSS guard ────────────────────────────────────────────────────────────
+
+    function escHtml(str) {
+        return String(str ?? '').replace(/[&<>"']/g, c =>
+            ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
 
     // ── Logout ───────────────────────────────────────────────────────────────
 
